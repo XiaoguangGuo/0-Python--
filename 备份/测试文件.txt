@@ -1,0 +1,3238 @@
+Python 3.9.7 (tags/v3.9.7:1016ef3, Aug 30 2021, 20:19:38) [MSC v.1929 64 bit (AMD64)] on win32
+Type "help", "copyright", "credits" or "license()" for more information.
+>>> 
+========= RESTART: D:\运营\0-Python程序\测试中\2编写-SearchTerm20221211 - 副本.py =========
+没有CABulkfile文件
+没有HM-USBulkfile文件
+没有MXBulkfile文件
+SearchTermAll_Good_Country
+
+Warning (from warnings module):
+  File "D:\python3.9\lib\site-packages\openpyxl\styles\stylesheet.py", line 226
+    warn("Workbook contains no default style, apply openpyxl's default")
+UserWarning: Workbook contains no default style, apply openpyxl's default
+NEW-CA_bulk-a2ylsh1y5o0352-20221204-20221210-1670814042940.xlsx             Record ID  ... Increase bids by placement
+0      62981740439983  ...                        NaN
+1      62981740439983  ...                         0%
+2      62981740439983  ...                        NaN
+3      62981740439983  ...                         0%
+4      39664612341528  ...                        NaN
+...               ...  ...                        ...
+1353   34479719454947  ...                        NaN
+1354    6627844110686  ...                        NaN
+1355   73134700707629  ...                        NaN
+1356   41201555199774  ...                        NaN
+1357  103056757969628  ...                        NaN
+
+[1358 rows x 28 columns]
+Stoi_keyword= b07fs77mqd
+Asin-cutter
+806    Manual
+Name: Campaign Targeting Type, dtype: object 1
+['Manual']
+好词产生的广告来自手动广告
+这个手动广告不包含这个好词的exact
+这个手动广告不包含这个好词的phrase
+Stoi_keyword= b000ssx0we
+Auto-Cutterwithcan
+393    Auto
+Name: Campaign Targeting Type, dtype: object 1
+['Auto']
+这个好词来自自动广告 Auto-Cutterwithcan
+好词对应的广告从自动广告产生
+SKUlist ['i202012-biscuit cutter with can-Straight', 'i20201215-biscuit cutter with Can-Ripple']
+选的SKU i202012-biscuit cutter with can-Straight
+好词对应的SKU：bulkfile_Campaign_SKUMax2 i202012-biscuit cutter with can-Straight
+bulkfile全部campaign list ['Pr1-cutterwithscan', 'Auto-Cutterwithcan', 'Pr3-Cutterwithcan', 'Asin-cutter']
+bulkfileSKU_Manual_Campaign_List ['Pr1-cutterwithscan', 'Pr3-Cutterwithcan', 'Asin-cutter']
+遍历手动Campaign
+遍历手动Campaign
+遍历手动Campaign
+本次List循环没有pr4广告,继续循环
+pr4number 0
+没有pr4，生成一个
+Stoi_keyword= b01mqtqxss
+Auto-Cutterwithcan
+393    Auto
+Name: Campaign Targeting Type, dtype: object 1
+['Auto']
+这个好词来自自动广告 Auto-Cutterwithcan
+好词对应的广告从自动广告产生
+SKUlist ['i202012-biscuit cutter with can-Straight', 'i20201215-biscuit cutter with Can-Ripple']
+选的SKU i202012-biscuit cutter with can-Straight
+好词对应的SKU：bulkfile_Campaign_SKUMax2 i202012-biscuit cutter with can-Straight
+bulkfile全部campaign list ['Pr1-cutterwithscan', 'Auto-Cutterwithcan', 'Pr3-Cutterwithcan', 'Asin-cutter']
+bulkfileSKU_Manual_Campaign_List ['Pr1-cutterwithscan', 'Pr3-Cutterwithcan', 'Asin-cutter']
+遍历手动Campaign
+遍历手动Campaign
+遍历手动Campaign
+本次List循环没有pr4广告,继续循环
+pr4number 0
+没有pr4，生成一个
+Stoi_keyword= b07fx75kmz
+Auto-Cutterwithcan
+393    Auto
+Name: Campaign Targeting Type, dtype: object 1
+['Auto']
+这个好词来自自动广告 Auto-Cutterwithcan
+好词对应的广告从自动广告产生
+SKUlist ['i202012-biscuit cutter with can-Straight', 'i20201215-biscuit cutter with Can-Ripple']
+选的SKU i202012-biscuit cutter with can-Straight
+好词对应的SKU：bulkfile_Campaign_SKUMax2 i202012-biscuit cutter with can-Straight
+bulkfile全部campaign list ['Pr1-cutterwithscan', 'Auto-Cutterwithcan', 'Pr3-Cutterwithcan', 'Asin-cutter']
+bulkfileSKU_Manual_Campaign_List ['Pr1-cutterwithscan', 'Pr3-Cutterwithcan', 'Asin-cutter']
+遍历手动Campaign
+遍历手动Campaign
+遍历手动Campaign
+本次List循环没有pr4广告,继续循环
+pr4number 0
+没有pr4，生成一个
+Stoi_keyword= b0877x26tf
+Auto-Cutterwithcan
+393    Auto
+Name: Campaign Targeting Type, dtype: object 1
+['Auto']
+这个好词来自自动广告 Auto-Cutterwithcan
+好词对应的广告从自动广告产生
+SKUlist ['i202012-biscuit cutter with can-Straight', 'i20201215-biscuit cutter with Can-Ripple']
+选的SKU i202012-biscuit cutter with can-Straight
+好词对应的SKU：bulkfile_Campaign_SKUMax2 i202012-biscuit cutter with can-Straight
+bulkfile全部campaign list ['Pr1-cutterwithscan', 'Auto-Cutterwithcan', 'Pr3-Cutterwithcan', 'Asin-cutter']
+bulkfileSKU_Manual_Campaign_List ['Pr1-cutterwithscan', 'Pr3-Cutterwithcan', 'Asin-cutter']
+遍历手动Campaign
+遍历手动Campaign
+遍历手动Campaign
+本次List循环没有pr4广告,继续循环
+pr4number 0
+没有pr4，生成一个
+Stoi_keyword= b08qn1fcl1
+Auto-Cutterwithcan
+393    Auto
+Name: Campaign Targeting Type, dtype: object 1
+['Auto']
+这个好词来自自动广告 Auto-Cutterwithcan
+好词对应的广告从自动广告产生
+SKUlist ['i202012-biscuit cutter with can-Straight', 'i20201215-biscuit cutter with Can-Ripple']
+选的SKU i202012-biscuit cutter with can-Straight
+好词对应的SKU：bulkfile_Campaign_SKUMax2 i202012-biscuit cutter with can-Straight
+bulkfile全部campaign list ['Pr1-cutterwithscan', 'Auto-Cutterwithcan', 'Pr3-Cutterwithcan', 'Asin-cutter']
+bulkfileSKU_Manual_Campaign_List ['Pr1-cutterwithscan', 'Pr3-Cutterwithcan', 'Asin-cutter']
+遍历手动Campaign
+遍历手动Campaign
+遍历手动Campaign
+本次List循环没有pr4广告,继续循环
+pr4number 0
+没有pr4，生成一个
+Stoi_keyword= biscuit cutter
+Auto-Cutterwithcan
+393    Auto
+Name: Campaign Targeting Type, dtype: object 1
+['Auto']
+这个好词来自自动广告 Auto-Cutterwithcan
+好词对应的广告从自动广告产生
+SKUlist ['i202012-biscuit cutter with can-Straight', 'i20201215-biscuit cutter with Can-Ripple']
+选的SKU i202012-biscuit cutter with can-Straight
+好词对应的SKU：bulkfile_Campaign_SKUMax2 i202012-biscuit cutter with can-Straight
+bulkfile全部campaign list ['Pr1-cutterwithscan', 'Auto-Cutterwithcan', 'Pr3-Cutterwithcan', 'Asin-cutter']
+bulkfileSKU_Manual_Campaign_List ['Pr1-cutterwithscan', 'Pr3-Cutterwithcan', 'Asin-cutter']
+遍历手动Campaign
+遍历手动Campaign
+遍历手动Campaign
+本次List循环没有pr4广告,继续循环
+pr4number 0
+没有pr4，生成一个
+Stoi_keyword= cookie cutter fluted
+Auto-Cutterwithcan
+393    Auto
+Name: Campaign Targeting Type, dtype: object 1
+['Auto']
+这个好词来自自动广告 Auto-Cutterwithcan
+好词对应的广告从自动广告产生
+SKUlist ['i202012-biscuit cutter with can-Straight', 'i20201215-biscuit cutter with Can-Ripple']
+选的SKU i202012-biscuit cutter with can-Straight
+好词对应的SKU：bulkfile_Campaign_SKUMax2 i202012-biscuit cutter with can-Straight
+bulkfile全部campaign list ['Pr1-cutterwithscan', 'Auto-Cutterwithcan', 'Pr3-Cutterwithcan', 'Asin-cutter']
+bulkfileSKU_Manual_Campaign_List ['Pr1-cutterwithscan', 'Pr3-Cutterwithcan', 'Asin-cutter']
+遍历手动Campaign
+遍历手动Campaign
+遍历手动Campaign
+本次List循环没有pr4广告,继续循环
+pr4number 0
+没有pr4，生成一个
+Stoi_keyword= cookie cutters round
+Auto-cutter6
+76    Auto
+Name: Campaign Targeting Type, dtype: object 1
+['Auto']
+这个好词来自自动广告 Auto-cutter6
+好词对应的广告从自动广告产生
+SKUlist ['i20191121-Cookie Cutter-Set-6']
+选的SKU i20191121-Cookie Cutter-Set-6
+好词对应的SKU：bulkfile_Campaign_SKUMax2 i20191121-Cookie Cutter-Set-6
+bulkfile全部campaign list ['Pr3-set6cookiecutters', 'Auto-cutter6', 'Pr3-Biscuitcutter-Set6']
+bulkfileSKU_Manual_Campaign_List ['Pr3-set6cookiecutters', 'Pr3-Biscuitcutter-Set6']
+遍历手动Campaign
+遍历手动Campaign
+本次List循环没有pr4广告,继续循环
+pr4number 0
+没有pr4，生成一个
+Stoi_keyword= cut in pastry
+Auto-cutter6
+76    Auto
+Name: Campaign Targeting Type, dtype: object 1
+['Auto']
+这个好词来自自动广告 Auto-cutter6
+好词对应的广告从自动广告产生
+SKUlist ['i20191121-Cookie Cutter-Set-6']
+选的SKU i20191121-Cookie Cutter-Set-6
+好词对应的SKU：bulkfile_Campaign_SKUMax2 i20191121-Cookie Cutter-Set-6
+bulkfile全部campaign list ['Pr3-set6cookiecutters', 'Auto-cutter6', 'Pr3-Biscuitcutter-Set6']
+bulkfileSKU_Manual_Campaign_List ['Pr3-set6cookiecutters', 'Pr3-Biscuitcutter-Set6']
+遍历手动Campaign
+遍历手动Campaign
+本次List循环没有pr4广告,继续循环
+pr4number 0
+没有pr4，生成一个
+Stoi_keyword= fluted tart set
+Auto-cutter6
+76    Auto
+Name: Campaign Targeting Type, dtype: object 1
+['Auto']
+这个好词来自自动广告 Auto-cutter6
+好词对应的广告从自动广告产生
+SKUlist ['i20191121-Cookie Cutter-Set-6']
+选的SKU i20191121-Cookie Cutter-Set-6
+好词对应的SKU：bulkfile_Campaign_SKUMax2 i20191121-Cookie Cutter-Set-6
+bulkfile全部campaign list ['Pr3-set6cookiecutters', 'Auto-cutter6', 'Pr3-Biscuitcutter-Set6']
+bulkfileSKU_Manual_Campaign_List ['Pr3-set6cookiecutters', 'Pr3-Biscuitcutter-Set6']
+遍历手动Campaign
+遍历手动Campaign
+本次List循环没有pr4广告,继续循环
+pr4number 0
+没有pr4，生成一个
+Stoi_keyword= stainless steel cookie cutter set
+Auto-cutter6
+76    Auto
+Name: Campaign Targeting Type, dtype: object 1
+['Auto']
+这个好词来自自动广告 Auto-cutter6
+好词对应的广告从自动广告产生
+SKUlist ['i20191121-Cookie Cutter-Set-6']
+选的SKU i20191121-Cookie Cutter-Set-6
+好词对应的SKU：bulkfile_Campaign_SKUMax2 i20191121-Cookie Cutter-Set-6
+bulkfile全部campaign list ['Pr3-set6cookiecutters', 'Auto-cutter6', 'Pr3-Biscuitcutter-Set6']
+bulkfileSKU_Manual_Campaign_List ['Pr3-set6cookiecutters', 'Pr3-Biscuitcutter-Set6']
+遍历手动Campaign
+遍历手动Campaign
+本次List循环没有pr4广告,继续循环
+pr4number 0
+没有pr4，生成一个
+Stoi_keyword= b0000ddyzn
+Biscuitcutter
+933    Auto
+Name: Campaign Targeting Type, dtype: object 1
+['Auto']
+这个好词来自自动广告 Biscuitcutter
+好词对应的广告从自动广告产生
+SKUlist ['iX20190427-Biscuit']
+选的SKU iX20190427-Biscuit
+好词对应的SKU：bulkfile_Campaign_SKUMax2 iX20190427-Biscuit
+bulkfile全部campaign list ['Cookiecutter5set', 'Pr3-广泛词', '广告活动 - 2020-08-28 02:58:47', 'pr2-asin', '圆形波纹五件套手动', 'Biscuitcutter']
+bulkfileSKU_Manual_Campaign_List ['Cookiecutter5set', 'Pr3-广泛词', '广告活动 - 2020-08-28 02:58:47', 'pr2-asin', '圆形波纹五件套手动']
+遍历手动Campaign
+遍历手动Campaign
+遍历手动Campaign
+遍历手动Campaign
+遍历手动Campaign
+本次List循环没有pr4广告,继续循环
+pr4number 0
+没有pr4，生成一个
+Stoi_keyword= b07fs77mqd
+Biscuitcutter
+933    Auto
+Name: Campaign Targeting Type, dtype: object 1
+['Auto']
+这个好词来自自动广告 Biscuitcutter
+好词对应的广告从自动广告产生
+SKUlist ['iX20190427-Biscuit']
+选的SKU iX20190427-Biscuit
+好词对应的SKU：bulkfile_Campaign_SKUMax2 iX20190427-Biscuit
+bulkfile全部campaign list ['Cookiecutter5set', 'Pr3-广泛词', '广告活动 - 2020-08-28 02:58:47', 'pr2-asin', '圆形波纹五件套手动', 'Biscuitcutter']
+bulkfileSKU_Manual_Campaign_List ['Cookiecutter5set', 'Pr3-广泛词', '广告活动 - 2020-08-28 02:58:47', 'pr2-asin', '圆形波纹五件套手动']
+遍历手动Campaign
+遍历手动Campaign
+遍历手动Campaign
+遍历手动Campaign
+遍历手动Campaign
+本次List循环没有pr4广告,继续循环
+pr4number 0
+没有pr4，生成一个
+Stoi_keyword= b07ykrf2l5
+Biscuitcutter
+933    Auto
+Name: Campaign Targeting Type, dtype: object 1
+['Auto']
+这个好词来自自动广告 Biscuitcutter
+好词对应的广告从自动广告产生
+SKUlist ['iX20190427-Biscuit']
+选的SKU iX20190427-Biscuit
+好词对应的SKU：bulkfile_Campaign_SKUMax2 iX20190427-Biscuit
+bulkfile全部campaign list ['Cookiecutter5set', 'Pr3-广泛词', '广告活动 - 2020-08-28 02:58:47', 'pr2-asin', '圆形波纹五件套手动', 'Biscuitcutter']
+bulkfileSKU_Manual_Campaign_List ['Cookiecutter5set', 'Pr3-广泛词', '广告活动 - 2020-08-28 02:58:47', 'pr2-asin', '圆形波纹五件套手动']
+遍历手动Campaign
+遍历手动Campaign
+遍历手动Campaign
+遍历手动Campaign
+遍历手动Campaign
+本次List循环没有pr4广告,继续循环
+pr4number 0
+没有pr4，生成一个
+Stoi_keyword= b081tbj957
+Biscuitcutter
+933    Auto
+Name: Campaign Targeting Type, dtype: object 1
+['Auto']
+这个好词来自自动广告 Biscuitcutter
+好词对应的广告从自动广告产生
+SKUlist ['iX20190427-Biscuit']
+选的SKU iX20190427-Biscuit
+好词对应的SKU：bulkfile_Campaign_SKUMax2 iX20190427-Biscuit
+bulkfile全部campaign list ['Cookiecutter5set', 'Pr3-广泛词', '广告活动 - 2020-08-28 02:58:47', 'pr2-asin', '圆形波纹五件套手动', 'Biscuitcutter']
+bulkfileSKU_Manual_Campaign_List ['Cookiecutter5set', 'Pr3-广泛词', '广告活动 - 2020-08-28 02:58:47', 'pr2-asin', '圆形波纹五件套手动']
+遍历手动Campaign
+遍历手动Campaign
+遍历手动Campaign
+遍历手动Campaign
+遍历手动Campaign
+本次List循环没有pr4广告,继续循环
+pr4number 0
+没有pr4，生成一个
+Stoi_keyword= b08gpbrdv5
+Biscuitcutter
+933    Auto
+Name: Campaign Targeting Type, dtype: object 1
+['Auto']
+这个好词来自自动广告 Biscuitcutter
+好词对应的广告从自动广告产生
+SKUlist ['iX20190427-Biscuit']
+选的SKU iX20190427-Biscuit
+好词对应的SKU：bulkfile_Campaign_SKUMax2 iX20190427-Biscuit
+bulkfile全部campaign list ['Cookiecutter5set', 'Pr3-广泛词', '广告活动 - 2020-08-28 02:58:47', 'pr2-asin', '圆形波纹五件套手动', 'Biscuitcutter']
+bulkfileSKU_Manual_Campaign_List ['Cookiecutter5set', 'Pr3-广泛词', '广告活动 - 2020-08-28 02:58:47', 'pr2-asin', '圆形波纹五件套手动']
+遍历手动Campaign
+遍历手动Campaign
+遍历手动Campaign
+遍历手动Campaign
+遍历手动Campaign
+本次List循环没有pr4广告,继续循环
+pr4number 0
+没有pr4，生成一个
+Stoi_keyword= b08yrknnff
+Biscuitcutter
+933    Auto
+Name: Campaign Targeting Type, dtype: object 1
+['Auto']
+这个好词来自自动广告 Biscuitcutter
+好词对应的广告从自动广告产生
+SKUlist ['iX20190427-Biscuit']
+选的SKU iX20190427-Biscuit
+好词对应的SKU：bulkfile_Campaign_SKUMax2 iX20190427-Biscuit
+bulkfile全部campaign list ['Cookiecutter5set', 'Pr3-广泛词', '广告活动 - 2020-08-28 02:58:47', 'pr2-asin', '圆形波纹五件套手动', 'Biscuitcutter']
+bulkfileSKU_Manual_Campaign_List ['Cookiecutter5set', 'Pr3-广泛词', '广告活动 - 2020-08-28 02:58:47', 'pr2-asin', '圆形波纹五件套手动']
+遍历手动Campaign
+遍历手动Campaign
+遍历手动Campaign
+遍历手动Campaign
+遍历手动Campaign
+本次List循环没有pr4广告,继续循环
+pr4number 0
+没有pr4，生成一个
+Stoi_keyword= b09921m4fg
+Biscuitcutter
+933    Auto
+Name: Campaign Targeting Type, dtype: object 1
+['Auto']
+这个好词来自自动广告 Biscuitcutter
+好词对应的广告从自动广告产生
+SKUlist ['iX20190427-Biscuit']
+选的SKU iX20190427-Biscuit
+好词对应的SKU：bulkfile_Campaign_SKUMax2 iX20190427-Biscuit
+bulkfile全部campaign list ['Cookiecutter5set', 'Pr3-广泛词', '广告活动 - 2020-08-28 02:58:47', 'pr2-asin', '圆形波纹五件套手动', 'Biscuitcutter']
+bulkfileSKU_Manual_Campaign_List ['Cookiecutter5set', 'Pr3-广泛词', '广告活动 - 2020-08-28 02:58:47', 'pr2-asin', '圆形波纹五件套手动']
+遍历手动Campaign
+遍历手动Campaign
+遍历手动Campaign
+遍历手动Campaign
+遍历手动Campaign
+本次List循环没有pr4广告,继续循环
+pr4number 0
+没有pr4，生成一个
+Stoi_keyword= biscuit cutter set
+Biscuitcutter
+933    Auto
+Name: Campaign Targeting Type, dtype: object 1
+['Auto']
+这个好词来自自动广告 Biscuitcutter
+好词对应的广告从自动广告产生
+SKUlist ['iX20190427-Biscuit']
+选的SKU iX20190427-Biscuit
+好词对应的SKU：bulkfile_Campaign_SKUMax2 iX20190427-Biscuit
+bulkfile全部campaign list ['Cookiecutter5set', 'Pr3-广泛词', '广告活动 - 2020-08-28 02:58:47', 'pr2-asin', '圆形波纹五件套手动', 'Biscuitcutter']
+bulkfileSKU_Manual_Campaign_List ['Cookiecutter5set', 'Pr3-广泛词', '广告活动 - 2020-08-28 02:58:47', 'pr2-asin', '圆形波纹五件套手动']
+遍历手动Campaign
+遍历手动Campaign
+遍历手动Campaign
+遍历手动Campaign
+遍历手动Campaign
+本次List循环没有pr4广告,继续循环
+pr4number 0
+没有pr4，生成一个
+Stoi_keyword= biscuit cutters
+Biscuitcutter
+933    Auto
+Name: Campaign Targeting Type, dtype: object 1
+['Auto']
+这个好词来自自动广告 Biscuitcutter
+好词对应的广告从自动广告产生
+SKUlist ['iX20190427-Biscuit']
+选的SKU iX20190427-Biscuit
+好词对应的SKU：bulkfile_Campaign_SKUMax2 iX20190427-Biscuit
+bulkfile全部campaign list ['Cookiecutter5set', 'Pr3-广泛词', '广告活动 - 2020-08-28 02:58:47', 'pr2-asin', '圆形波纹五件套手动', 'Biscuitcutter']
+bulkfileSKU_Manual_Campaign_List ['Cookiecutter5set', 'Pr3-广泛词', '广告活动 - 2020-08-28 02:58:47', 'pr2-asin', '圆形波纹五件套手动']
+遍历手动Campaign
+遍历手动Campaign
+遍历手动Campaign
+遍历手动Campaign
+遍历手动Campaign
+本次List循环没有pr4广告,继续循环
+pr4number 0
+没有pr4，生成一个
+Stoi_keyword= cookie cutter with a handle
+Biscuitcutter
+933    Auto
+Name: Campaign Targeting Type, dtype: object 1
+['Auto']
+这个好词来自自动广告 Biscuitcutter
+好词对应的广告从自动广告产生
+SKUlist ['iX20190427-Biscuit']
+选的SKU iX20190427-Biscuit
+好词对应的SKU：bulkfile_Campaign_SKUMax2 iX20190427-Biscuit
+bulkfile全部campaign list ['Cookiecutter5set', 'Pr3-广泛词', '广告活动 - 2020-08-28 02:58:47', 'pr2-asin', '圆形波纹五件套手动', 'Biscuitcutter']
+bulkfileSKU_Manual_Campaign_List ['Cookiecutter5set', 'Pr3-广泛词', '广告活动 - 2020-08-28 02:58:47', 'pr2-asin', '圆形波纹五件套手动']
+遍历手动Campaign
+遍历手动Campaign
+遍历手动Campaign
+遍历手动Campaign
+遍历手动Campaign
+本次List循环没有pr4广告,继续循环
+pr4number 0
+没有pr4，生成一个
+Stoi_keyword= cookie cutters
+Biscuitcutter
+933    Auto
+Name: Campaign Targeting Type, dtype: object 1
+['Auto']
+这个好词来自自动广告 Biscuitcutter
+好词对应的广告从自动广告产生
+SKUlist ['iX20190427-Biscuit']
+选的SKU iX20190427-Biscuit
+好词对应的SKU：bulkfile_Campaign_SKUMax2 iX20190427-Biscuit
+bulkfile全部campaign list ['Cookiecutter5set', 'Pr3-广泛词', '广告活动 - 2020-08-28 02:58:47', 'pr2-asin', '圆形波纹五件套手动', 'Biscuitcutter']
+bulkfileSKU_Manual_Campaign_List ['Cookiecutter5set', 'Pr3-广泛词', '广告活动 - 2020-08-28 02:58:47', 'pr2-asin', '圆形波纹五件套手动']
+遍历手动Campaign
+遍历手动Campaign
+遍历手动Campaign
+遍历手动Campaign
+遍历手动Campaign
+本次List循环没有pr4广告,继续循环
+pr4number 0
+没有pr4，生成一个
+Stoi_keyword= english muffin rings
+Biscuitcutter
+933    Auto
+Name: Campaign Targeting Type, dtype: object 1
+['Auto']
+这个好词来自自动广告 Biscuitcutter
+好词对应的广告从自动广告产生
+SKUlist ['iX20190427-Biscuit']
+选的SKU iX20190427-Biscuit
+好词对应的SKU：bulkfile_Campaign_SKUMax2 iX20190427-Biscuit
+bulkfile全部campaign list ['Cookiecutter5set', 'Pr3-广泛词', '广告活动 - 2020-08-28 02:58:47', 'pr2-asin', '圆形波纹五件套手动', 'Biscuitcutter']
+bulkfileSKU_Manual_Campaign_List ['Cookiecutter5set', 'Pr3-广泛词', '广告活动 - 2020-08-28 02:58:47', 'pr2-asin', '圆形波纹五件套手动']
+遍历手动Campaign
+遍历手动Campaign
+遍历手动Campaign
+遍历手动Campaign
+遍历手动Campaign
+本次List循环没有pr4广告,继续循环
+pr4number 0
+没有pr4，生成一个
+Stoi_keyword= moule a biscuit
+Biscuitcutter
+933    Auto
+Name: Campaign Targeting Type, dtype: object 1
+['Auto']
+这个好词来自自动广告 Biscuitcutter
+好词对应的广告从自动广告产生
+SKUlist ['iX20190427-Biscuit']
+选的SKU iX20190427-Biscuit
+好词对应的SKU：bulkfile_Campaign_SKUMax2 iX20190427-Biscuit
+bulkfile全部campaign list ['Cookiecutter5set', 'Pr3-广泛词', '广告活动 - 2020-08-28 02:58:47', 'pr2-asin', '圆形波纹五件套手动', 'Biscuitcutter']
+bulkfileSKU_Manual_Campaign_List ['Cookiecutter5set', 'Pr3-广泛词', '广告活动 - 2020-08-28 02:58:47', 'pr2-asin', '圆形波纹五件套手动']
+遍历手动Campaign
+遍历手动Campaign
+遍历手动Campaign
+遍历手动Campaign
+遍历手动Campaign
+本次List循环没有pr4广告,继续循环
+pr4number 0
+没有pr4，生成一个
+Stoi_keyword= toasters 2 slices
+Biscuitcutter
+933    Auto
+Name: Campaign Targeting Type, dtype: object 1
+['Auto']
+这个好词来自自动广告 Biscuitcutter
+好词对应的广告从自动广告产生
+SKUlist ['iX20190427-Biscuit']
+选的SKU iX20190427-Biscuit
+好词对应的SKU：bulkfile_Campaign_SKUMax2 iX20190427-Biscuit
+bulkfile全部campaign list ['Cookiecutter5set', 'Pr3-广泛词', '广告活动 - 2020-08-28 02:58:47', 'pr2-asin', '圆形波纹五件套手动', 'Biscuitcutter']
+bulkfileSKU_Manual_Campaign_List ['Cookiecutter5set', 'Pr3-广泛词', '广告活动 - 2020-08-28 02:58:47', 'pr2-asin', '圆形波纹五件套手动']
+遍历手动Campaign
+遍历手动Campaign
+遍历手动Campaign
+遍历手动Campaign
+遍历手动Campaign
+本次List循环没有pr4广告,继续循环
+pr4number 0
+没有pr4，生成一个
+Stoi_keyword= b06vsbkjbq
+CUTTERSET
+305    Auto
+Name: Campaign Targeting Type, dtype: object 1
+['Auto']
+这个好词来自自动广告 CUTTERSET
+好词对应的广告从自动广告产生
+SKUlist ['20191128-CookieDoughSet']
+选的SKU 20191128-CookieDoughSet
+好词对应的SKU：bulkfile_Campaign_SKUMax2 20191128-CookieDoughSet
+bulkfile全部campaign list ['baking tool', '圆形平口五件套自动', 'CUTTERSET', 'DOUGHTOOLSET']
+bulkfileSKU_Manual_Campaign_List ['baking tool', 'DOUGHTOOLSET']
+遍历手动Campaign
+遍历手动Campaign
+本次List循环没有pr4广告,继续循环
+pr4number 0
+没有pr4，生成一个
+Stoi_keyword= b07hvklxn7
+CUTTERSET
+305    Auto
+Name: Campaign Targeting Type, dtype: object 1
+['Auto']
+这个好词来自自动广告 CUTTERSET
+好词对应的广告从自动广告产生
+SKUlist ['20191128-CookieDoughSet']
+选的SKU 20191128-CookieDoughSet
+好词对应的SKU：bulkfile_Campaign_SKUMax2 20191128-CookieDoughSet
+bulkfile全部campaign list ['baking tool', '圆形平口五件套自动', 'CUTTERSET', 'DOUGHTOOLSET']
+bulkfileSKU_Manual_Campaign_List ['baking tool', 'DOUGHTOOLSET']
+遍历手动Campaign
+遍历手动Campaign
+本次List循环没有pr4广告,继续循环
+pr4number 0
+没有pr4，生成一个
+Stoi_keyword= bench scraper baking
+CUTTERSET
+305    Auto
+Name: Campaign Targeting Type, dtype: object 1
+['Auto']
+这个好词来自自动广告 CUTTERSET
+好词对应的广告从自动广告产生
+SKUlist ['20191128-CookieDoughSet']
+选的SKU 20191128-CookieDoughSet
+好词对应的SKU：bulkfile_Campaign_SKUMax2 20191128-CookieDoughSet
+bulkfile全部campaign list ['baking tool', '圆形平口五件套自动', 'CUTTERSET', 'DOUGHTOOLSET']
+bulkfileSKU_Manual_Campaign_List ['baking tool', 'DOUGHTOOLSET']
+遍历手动Campaign
+遍历手动Campaign
+本次List循环没有pr4广告,继续循环
+pr4number 0
+没有pr4，生成一个
+Stoi_keyword= bread cutter
+CUTTERSET
+305    Auto
+Name: Campaign Targeting Type, dtype: object 1
+['Auto']
+这个好词来自自动广告 CUTTERSET
+好词对应的广告从自动广告产生
+SKUlist ['20191128-CookieDoughSet']
+选的SKU 20191128-CookieDoughSet
+好词对应的SKU：bulkfile_Campaign_SKUMax2 20191128-CookieDoughSet
+bulkfile全部campaign list ['baking tool', '圆形平口五件套自动', 'CUTTERSET', 'DOUGHTOOLSET']
+bulkfileSKU_Manual_Campaign_List ['baking tool', 'DOUGHTOOLSET']
+遍历手动Campaign
+遍历手动Campaign
+本次List循环没有pr4广告,继续循环
+pr4number 0
+没有pr4，生成一个
+Stoi_keyword= bread slicer
+CUTTERSET
+305    Auto
+Name: Campaign Targeting Type, dtype: object 1
+['Auto']
+这个好词来自自动广告 CUTTERSET
+好词对应的广告从自动广告产生
+SKUlist ['20191128-CookieDoughSet']
+选的SKU 20191128-CookieDoughSet
+好词对应的SKU：bulkfile_Campaign_SKUMax2 20191128-CookieDoughSet
+bulkfile全部campaign list ['baking tool', '圆形平口五件套自动', 'CUTTERSET', 'DOUGHTOOLSET']
+bulkfileSKU_Manual_Campaign_List ['baking tool', 'DOUGHTOOLSET']
+遍历手动Campaign
+遍历手动Campaign
+本次List循环没有pr4广告,继续循环
+pr4number 0
+没有pr4，生成一个
+Stoi_keyword= cookie cutter set
+CUTTERSET
+305    Auto
+Name: Campaign Targeting Type, dtype: object 1
+['Auto']
+这个好词来自自动广告 CUTTERSET
+好词对应的广告从自动广告产生
+SKUlist ['20191128-CookieDoughSet']
+选的SKU 20191128-CookieDoughSet
+好词对应的SKU：bulkfile_Campaign_SKUMax2 20191128-CookieDoughSet
+bulkfile全部campaign list ['baking tool', '圆形平口五件套自动', 'CUTTERSET', 'DOUGHTOOLSET']
+bulkfileSKU_Manual_Campaign_List ['baking tool', 'DOUGHTOOLSET']
+遍历手动Campaign
+遍历手动Campaign
+本次List循环没有pr4广告,继续循环
+pr4number 0
+没有pr4，生成一个
+Stoi_keyword= coupe pate
+CUTTERSET
+305    Auto
+Name: Campaign Targeting Type, dtype: object 1
+['Auto']
+这个好词来自自动广告 CUTTERSET
+好词对应的广告从自动广告产生
+SKUlist ['20191128-CookieDoughSet']
+选的SKU 20191128-CookieDoughSet
+好词对应的SKU：bulkfile_Campaign_SKUMax2 20191128-CookieDoughSet
+bulkfile全部campaign list ['baking tool', '圆形平口五件套自动', 'CUTTERSET', 'DOUGHTOOLSET']
+bulkfileSKU_Manual_Campaign_List ['baking tool', 'DOUGHTOOLSET']
+遍历手动Campaign
+遍历手动Campaign
+本次List循环没有pr4广告,继续循环
+pr4number 0
+没有pr4，生成一个
+Stoi_keyword= dessert tools
+CUTTERSET
+305    Auto
+Name: Campaign Targeting Type, dtype: object 1
+['Auto']
+这个好词来自自动广告 CUTTERSET
+好词对应的广告从自动广告产生
+SKUlist ['20191128-CookieDoughSet']
+选的SKU 20191128-CookieDoughSet
+好词对应的SKU：bulkfile_Campaign_SKUMax2 20191128-CookieDoughSet
+bulkfile全部campaign list ['baking tool', '圆形平口五件套自动', 'CUTTERSET', 'DOUGHTOOLSET']
+bulkfileSKU_Manual_Campaign_List ['baking tool', 'DOUGHTOOLSET']
+遍历手动Campaign
+遍历手动Campaign
+本次List循环没有pr4广告,继续循环
+pr4number 0
+没有pr4，生成一个
+Stoi_keyword= dough cutter
+CUTTERSET
+305    Auto
+Name: Campaign Targeting Type, dtype: object 1
+['Auto']
+这个好词来自自动广告 CUTTERSET
+好词对应的广告从自动广告产生
+SKUlist ['20191128-CookieDoughSet']
+选的SKU 20191128-CookieDoughSet
+好词对应的SKU：bulkfile_Campaign_SKUMax2 20191128-CookieDoughSet
+bulkfile全部campaign list ['baking tool', '圆形平口五件套自动', 'CUTTERSET', 'DOUGHTOOLSET']
+bulkfileSKU_Manual_Campaign_List ['baking tool', 'DOUGHTOOLSET']
+遍历手动Campaign
+遍历手动Campaign
+本次List循环没有pr4广告,继续循环
+pr4number 0
+没有pr4，生成一个
+Stoi_keyword= dough cutter set
+CUTTERSET
+305    Auto
+Name: Campaign Targeting Type, dtype: object 1
+['Auto']
+这个好词来自自动广告 CUTTERSET
+好词对应的广告从自动广告产生
+SKUlist ['20191128-CookieDoughSet']
+选的SKU 20191128-CookieDoughSet
+好词对应的SKU：bulkfile_Campaign_SKUMax2 20191128-CookieDoughSet
+bulkfile全部campaign list ['baking tool', '圆形平口五件套自动', 'CUTTERSET', 'DOUGHTOOLSET']
+bulkfileSKU_Manual_Campaign_List ['baking tool', 'DOUGHTOOLSET']
+遍历手动Campaign
+遍历手动Campaign
+本次List循环没有pr4广告,继续循环
+pr4number 0
+没有pr4，生成一个
+Stoi_keyword= dough rolling
+CUTTERSET
+305    Auto
+Name: Campaign Targeting Type, dtype: object 1
+['Auto']
+这个好词来自自动广告 CUTTERSET
+好词对应的广告从自动广告产生
+SKUlist ['20191128-CookieDoughSet']
+选的SKU 20191128-CookieDoughSet
+好词对应的SKU：bulkfile_Campaign_SKUMax2 20191128-CookieDoughSet
+bulkfile全部campaign list ['baking tool', '圆形平口五件套自动', 'CUTTERSET', 'DOUGHTOOLSET']
+bulkfileSKU_Manual_Campaign_List ['baking tool', 'DOUGHTOOLSET']
+遍历手动Campaign
+遍历手动Campaign
+本次List循环没有pr4广告,继续循环
+pr4number 0
+没有pr4，生成一个
+Stoi_keyword= dough scraper
+CUTTERSET
+305    Auto
+Name: Campaign Targeting Type, dtype: object 1
+['Auto']
+这个好词来自自动广告 CUTTERSET
+好词对应的广告从自动广告产生
+SKUlist ['20191128-CookieDoughSet']
+选的SKU 20191128-CookieDoughSet
+好词对应的SKU：bulkfile_Campaign_SKUMax2 20191128-CookieDoughSet
+bulkfile全部campaign list ['baking tool', '圆形平口五件套自动', 'CUTTERSET', 'DOUGHTOOLSET']
+bulkfileSKU_Manual_Campaign_List ['baking tool', 'DOUGHTOOLSET']
+遍历手动Campaign
+遍历手动Campaign
+本次List循环没有pr4广告,继续循环
+pr4number 0
+没有pr4，生成一个
+Stoi_keyword= mold
+CUTTERSET
+305    Auto
+Name: Campaign Targeting Type, dtype: object 1
+['Auto']
+这个好词来自自动广告 CUTTERSET
+好词对应的广告从自动广告产生
+SKUlist ['20191128-CookieDoughSet']
+选的SKU 20191128-CookieDoughSet
+好词对应的SKU：bulkfile_Campaign_SKUMax2 20191128-CookieDoughSet
+bulkfile全部campaign list ['baking tool', '圆形平口五件套自动', 'CUTTERSET', 'DOUGHTOOLSET']
+bulkfileSKU_Manual_Campaign_List ['baking tool', 'DOUGHTOOLSET']
+遍历手动Campaign
+遍历手动Campaign
+本次List循环没有pr4广告,继续循环
+pr4number 0
+没有pr4，生成一个
+Stoi_keyword= pastry blender
+CUTTERSET
+305    Auto
+Name: Campaign Targeting Type, dtype: object 1
+['Auto']
+这个好词来自自动广告 CUTTERSET
+好词对应的广告从自动广告产生
+SKUlist ['20191128-CookieDoughSet']
+选的SKU 20191128-CookieDoughSet
+好词对应的SKU：bulkfile_Campaign_SKUMax2 20191128-CookieDoughSet
+bulkfile全部campaign list ['baking tool', '圆形平口五件套自动', 'CUTTERSET', 'DOUGHTOOLSET']
+bulkfileSKU_Manual_Campaign_List ['baking tool', 'DOUGHTOOLSET']
+遍历手动Campaign
+遍历手动Campaign
+本次List循环没有pr4广告,继续循环
+pr4number 0
+没有pr4，生成一个
+Stoi_keyword= pastry cutter
+CUTTERSET
+305    Auto
+Name: Campaign Targeting Type, dtype: object 1
+['Auto']
+这个好词来自自动广告 CUTTERSET
+好词对应的广告从自动广告产生
+SKUlist ['20191128-CookieDoughSet']
+选的SKU 20191128-CookieDoughSet
+好词对应的SKU：bulkfile_Campaign_SKUMax2 20191128-CookieDoughSet
+bulkfile全部campaign list ['baking tool', '圆形平口五件套自动', 'CUTTERSET', 'DOUGHTOOLSET']
+bulkfileSKU_Manual_Campaign_List ['baking tool', 'DOUGHTOOLSET']
+遍历手动Campaign
+遍历手动Campaign
+本次List循环没有pr4广告,继续循环
+pr4number 0
+没有pr4，生成一个
+Stoi_keyword= pastry scraper
+CUTTERSET
+305    Auto
+Name: Campaign Targeting Type, dtype: object 1
+['Auto']
+这个好词来自自动广告 CUTTERSET
+好词对应的广告从自动广告产生
+SKUlist ['20191128-CookieDoughSet']
+选的SKU 20191128-CookieDoughSet
+好词对应的SKU：bulkfile_Campaign_SKUMax2 20191128-CookieDoughSet
+bulkfile全部campaign list ['baking tool', '圆形平口五件套自动', 'CUTTERSET', 'DOUGHTOOLSET']
+bulkfileSKU_Manual_Campaign_List ['baking tool', 'DOUGHTOOLSET']
+遍历手动Campaign
+遍历手动Campaign
+本次List循环没有pr4广告,继续循环
+pr4number 0
+没有pr4，生成一个
+Stoi_keyword= pizza cutter
+CUTTERSET
+305    Auto
+Name: Campaign Targeting Type, dtype: object 1
+['Auto']
+这个好词来自自动广告 CUTTERSET
+好词对应的广告从自动广告产生
+SKUlist ['20191128-CookieDoughSet']
+选的SKU 20191128-CookieDoughSet
+好词对应的SKU：bulkfile_Campaign_SKUMax2 20191128-CookieDoughSet
+bulkfile全部campaign list ['baking tool', '圆形平口五件套自动', 'CUTTERSET', 'DOUGHTOOLSET']
+bulkfileSKU_Manual_Campaign_List ['baking tool', 'DOUGHTOOLSET']
+遍历手动Campaign
+遍历手动Campaign
+本次List循环没有pr4广告,继续循环
+pr4number 0
+没有pr4，生成一个
+Stoi_keyword= shortbread cutter
+CUTTERSET
+305    Auto
+Name: Campaign Targeting Type, dtype: object 1
+['Auto']
+这个好词来自自动广告 CUTTERSET
+好词对应的广告从自动广告产生
+SKUlist ['20191128-CookieDoughSet']
+选的SKU 20191128-CookieDoughSet
+好词对应的SKU：bulkfile_Campaign_SKUMax2 20191128-CookieDoughSet
+bulkfile全部campaign list ['baking tool', '圆形平口五件套自动', 'CUTTERSET', 'DOUGHTOOLSET']
+bulkfileSKU_Manual_Campaign_List ['baking tool', 'DOUGHTOOLSET']
+遍历手动Campaign
+遍历手动Campaign
+本次List循环没有pr4广告,继续循环
+pr4number 0
+没有pr4，生成一个
+Stoi_keyword= steel dough scraper
+CUTTERSET
+305    Auto
+Name: Campaign Targeting Type, dtype: object 1
+['Auto']
+这个好词来自自动广告 CUTTERSET
+好词对应的广告从自动广告产生
+SKUlist ['20191128-CookieDoughSet']
+选的SKU 20191128-CookieDoughSet
+好词对应的SKU：bulkfile_Campaign_SKUMax2 20191128-CookieDoughSet
+bulkfile全部campaign list ['baking tool', '圆形平口五件套自动', 'CUTTERSET', 'DOUGHTOOLSET']
+bulkfileSKU_Manual_Campaign_List ['baking tool', 'DOUGHTOOLSET']
+遍历手动Campaign
+遍历手动Campaign
+本次List循环没有pr4广告,继续循环
+pr4number 0
+没有pr4，生成一个
+Stoi_keyword= wilton
+CUTTERSET
+305    Auto
+Name: Campaign Targeting Type, dtype: object 1
+['Auto']
+这个好词来自自动广告 CUTTERSET
+好词对应的广告从自动广告产生
+SKUlist ['20191128-CookieDoughSet']
+选的SKU 20191128-CookieDoughSet
+好词对应的SKU：bulkfile_Campaign_SKUMax2 20191128-CookieDoughSet
+bulkfile全部campaign list ['baking tool', '圆形平口五件套自动', 'CUTTERSET', 'DOUGHTOOLSET']
+bulkfileSKU_Manual_Campaign_List ['baking tool', 'DOUGHTOOLSET']
+遍历手动Campaign
+遍历手动Campaign
+本次List循环没有pr4广告,继续循环
+pr4number 0
+没有pr4，生成一个
+Stoi_keyword= 3 inch ribbed biscuit cutter
+Cookiecutter5set
+211    Manual
+Name: Campaign Targeting Type, dtype: object 1
+['Manual']
+好词产生的广告来自手动广告
+这个手动广告不包含这个好词的exact
+这个手动广告不包含这个好词的phrase
+Stoi_keyword= best biscuit cutter set
+Cookiecutter5set
+211    Manual
+Name: Campaign Targeting Type, dtype: object 1
+['Manual']
+好词产生的广告来自手动广告
+这个手动广告不包含这个好词的exact
+这个手动广告不包含这个好词的phrase
+Stoi_keyword= biscuit cutter set
+Cookiecutter5set
+211    Manual
+Name: Campaign Targeting Type, dtype: object 1
+['Manual']
+好词产生的广告来自手动广告
+这个手动广告不包含这个好词的exact
+这个手动广告不包含这个好词的phrase
+Stoi_keyword= biscuit cutters
+Cookiecutter5set
+211    Manual
+Name: Campaign Targeting Type, dtype: object 1
+['Manual']
+好词产生的广告来自手动广告
+这个手动广告包含有这个好词的exact
+这个手动广告包含有这个好词的phrase
+Stoi_keyword= biscuits cutter
+Cookiecutter5set
+211    Manual
+Name: Campaign Targeting Type, dtype: object 1
+['Manual']
+好词产生的广告来自手动广告
+这个手动广告不包含这个好词的exact
+这个手动广告不包含这个好词的phrase
+Stoi_keyword= circle biscuit cutter
+Cookiecutter5set
+211    Manual
+Name: Campaign Targeting Type, dtype: object 1
+['Manual']
+好词产生的广告来自手动广告
+这个手动广告不包含这个好词的exact
+这个手动广告不包含这个好词的phrase
+Stoi_keyword= cookie cutters round
+Cookiecutter5set
+211    Manual
+Name: Campaign Targeting Type, dtype: object 1
+['Manual']
+好词产生的广告来自手动广告
+这个手动广告不包含这个好词的exact
+这个手动广告不包含这个好词的phrase
+Stoi_keyword= fluted biscuit cutter
+Cookiecutter5set
+211    Manual
+Name: Campaign Targeting Type, dtype: object 1
+['Manual']
+好词产生的广告来自手动广告
+这个手动广告不包含这个好词的exact
+这个手动广告不包含这个好词的phrase
+Stoi_keyword= handled round cookie cutter set
+Cookiecutter5set
+211    Manual
+Name: Campaign Targeting Type, dtype: object 1
+['Manual']
+好词产生的广告来自手动广告
+这个手动广告包含有这个好词的exact
+这个手动广告不包含这个好词的phrase
+Stoi_keyword= hulisen biscuit cutter set
+Cookiecutter5set
+211    Manual
+Name: Campaign Targeting Type, dtype: object 1
+['Manual']
+好词产生的广告来自手动广告
+这个手动广告不包含这个好词的exact
+这个手动广告不包含这个好词的phrase
+Stoi_keyword= rolling cookie cutter
+Cookiecutter5set
+211    Manual
+Name: Campaign Targeting Type, dtype: object 1
+['Manual']
+好词产生的广告来自手动广告
+这个手动广告不包含这个好词的exact
+这个手动广告不包含这个好词的phrase
+Stoi_keyword= round biscuit cutter
+Cookiecutter5set
+211    Manual
+Name: Campaign Targeting Type, dtype: object 1
+['Manual']
+好词产生的广告来自手动广告
+这个手动广告不包含这个好词的exact
+这个手动广告不包含这个好词的phrase
+Stoi_keyword= scone cutter
+Cookiecutter5set
+211    Manual
+Name: Campaign Targeting Type, dtype: object 1
+['Manual']
+好词产生的广告来自手动广告
+这个手动广告包含有这个好词的exact
+这个手动广告不包含这个好词的phrase
+Stoi_keyword= stainless steel biscuit cutter
+Cookiecutter5set
+211    Manual
+Name: Campaign Targeting Type, dtype: object 1
+['Manual']
+好词产生的广告来自手动广告
+这个手动广告不包含这个好词的exact
+这个手动广告不包含这个好词的phrase
+Stoi_keyword= tea biscuit cutter
+Cookiecutter5set
+211    Manual
+Name: Campaign Targeting Type, dtype: object 1
+['Manual']
+好词产生的广告来自手动广告
+这个手动广告不包含这个好词的exact
+这个手动广告不包含这个好词的phrase
+Stoi_keyword= b00jouzoty
+DOUGHBLENDER
+39    Auto
+Name: Campaign Targeting Type, dtype: object 1
+['Auto']
+这个好词来自自动广告 DOUGHBLENDER
+好词对应的广告从自动广告产生
+SKUlist ['ix20200512-Dough Blender-01']
+选的SKU ix20200512-Dough Blender-01
+好词对应的SKU：bulkfile_Campaign_SKUMax2 ix20200512-Dough Blender-01
+bulkfile全部campaign list ['DOUGHBLENDER', 'DoughBlender', 'Pr1-pastryblender']
+bulkfileSKU_Manual_Campaign_List ['DoughBlender', 'Pr1-pastryblender']
+遍历手动Campaign
+遍历手动Campaign
+本次List循环没有pr4广告,继续循环
+pr4number 0
+没有pr4，生成一个
+Stoi_keyword= b00shje4xu
+DOUGHBLENDER
+39    Auto
+Name: Campaign Targeting Type, dtype: object 1
+['Auto']
+这个好词来自自动广告 DOUGHBLENDER
+好词对应的广告从自动广告产生
+SKUlist ['ix20200512-Dough Blender-01']
+选的SKU ix20200512-Dough Blender-01
+好词对应的SKU：bulkfile_Campaign_SKUMax2 ix20200512-Dough Blender-01
+bulkfile全部campaign list ['DOUGHBLENDER', 'DoughBlender', 'Pr1-pastryblender']
+bulkfileSKU_Manual_Campaign_List ['DoughBlender', 'Pr1-pastryblender']
+遍历手动Campaign
+遍历手动Campaign
+本次List循环没有pr4广告,继续循环
+pr4number 0
+没有pr4，生成一个
+Stoi_keyword= b07255t6sw
+DOUGHBLENDER
+39    Auto
+Name: Campaign Targeting Type, dtype: object 1
+['Auto']
+这个好词来自自动广告 DOUGHBLENDER
+好词对应的广告从自动广告产生
+SKUlist ['ix20200512-Dough Blender-01']
+选的SKU ix20200512-Dough Blender-01
+好词对应的SKU：bulkfile_Campaign_SKUMax2 ix20200512-Dough Blender-01
+bulkfile全部campaign list ['DOUGHBLENDER', 'DoughBlender', 'Pr1-pastryblender']
+bulkfileSKU_Manual_Campaign_List ['DoughBlender', 'Pr1-pastryblender']
+遍历手动Campaign
+遍历手动Campaign
+本次List循环没有pr4广告,继续循环
+pr4number 0
+没有pr4，生成一个
+Stoi_keyword= b07knjspdd
+DOUGHBLENDER
+39    Auto
+Name: Campaign Targeting Type, dtype: object 1
+['Auto']
+这个好词来自自动广告 DOUGHBLENDER
+好词对应的广告从自动广告产生
+SKUlist ['ix20200512-Dough Blender-01']
+选的SKU ix20200512-Dough Blender-01
+好词对应的SKU：bulkfile_Campaign_SKUMax2 ix20200512-Dough Blender-01
+bulkfile全部campaign list ['DOUGHBLENDER', 'DoughBlender', 'Pr1-pastryblender']
+bulkfileSKU_Manual_Campaign_List ['DoughBlender', 'Pr1-pastryblender']
+遍历手动Campaign
+遍历手动Campaign
+本次List循环没有pr4广告,继续循环
+pr4number 0
+没有pr4，生成一个
+Stoi_keyword= b07lbhrndp
+DOUGHBLENDER
+39    Auto
+Name: Campaign Targeting Type, dtype: object 1
+['Auto']
+这个好词来自自动广告 DOUGHBLENDER
+好词对应的广告从自动广告产生
+SKUlist ['ix20200512-Dough Blender-01']
+选的SKU ix20200512-Dough Blender-01
+好词对应的SKU：bulkfile_Campaign_SKUMax2 ix20200512-Dough Blender-01
+bulkfile全部campaign list ['DOUGHBLENDER', 'DoughBlender', 'Pr1-pastryblender']
+bulkfileSKU_Manual_Campaign_List ['DoughBlender', 'Pr1-pastryblender']
+遍历手动Campaign
+遍历手动Campaign
+本次List循环没有pr4广告,继续循环
+pr4number 0
+没有pr4，生成一个
+Stoi_keyword= b07ytq3pgx
+DOUGHBLENDER
+39    Auto
+Name: Campaign Targeting Type, dtype: object 1
+['Auto']
+这个好词来自自动广告 DOUGHBLENDER
+好词对应的广告从自动广告产生
+SKUlist ['ix20200512-Dough Blender-01']
+选的SKU ix20200512-Dough Blender-01
+好词对应的SKU：bulkfile_Campaign_SKUMax2 ix20200512-Dough Blender-01
+bulkfile全部campaign list ['DOUGHBLENDER', 'DoughBlender', 'Pr1-pastryblender']
+bulkfileSKU_Manual_Campaign_List ['DoughBlender', 'Pr1-pastryblender']
+遍历手动Campaign
+遍历手动Campaign
+本次List循环没有pr4广告,继续循环
+pr4number 0
+没有pr4，生成一个
+Stoi_keyword= b0836dqhjz
+DOUGHBLENDER
+39    Auto
+Name: Campaign Targeting Type, dtype: object 1
+['Auto']
+这个好词来自自动广告 DOUGHBLENDER
+好词对应的广告从自动广告产生
+SKUlist ['ix20200512-Dough Blender-01']
+选的SKU ix20200512-Dough Blender-01
+好词对应的SKU：bulkfile_Campaign_SKUMax2 ix20200512-Dough Blender-01
+bulkfile全部campaign list ['DOUGHBLENDER', 'DoughBlender', 'Pr1-pastryblender']
+bulkfileSKU_Manual_Campaign_List ['DoughBlender', 'Pr1-pastryblender']
+遍历手动Campaign
+遍历手动Campaign
+本次List循环没有pr4广告,继续循环
+pr4number 0
+没有pr4，生成一个
+Stoi_keyword= b089nrhs3f
+DOUGHBLENDER
+39    Auto
+Name: Campaign Targeting Type, dtype: object 1
+['Auto']
+这个好词来自自动广告 DOUGHBLENDER
+好词对应的广告从自动广告产生
+SKUlist ['ix20200512-Dough Blender-01']
+选的SKU ix20200512-Dough Blender-01
+好词对应的SKU：bulkfile_Campaign_SKUMax2 ix20200512-Dough Blender-01
+bulkfile全部campaign list ['DOUGHBLENDER', 'DoughBlender', 'Pr1-pastryblender']
+bulkfileSKU_Manual_Campaign_List ['DoughBlender', 'Pr1-pastryblender']
+遍历手动Campaign
+遍历手动Campaign
+本次List循环没有pr4广告,继续循环
+pr4number 0
+没有pr4，生成一个
+Stoi_keyword= b089xybzz8
+DOUGHBLENDER
+39    Auto
+Name: Campaign Targeting Type, dtype: object 1
+['Auto']
+这个好词来自自动广告 DOUGHBLENDER
+好词对应的广告从自动广告产生
+SKUlist ['ix20200512-Dough Blender-01']
+选的SKU ix20200512-Dough Blender-01
+好词对应的SKU：bulkfile_Campaign_SKUMax2 ix20200512-Dough Blender-01
+bulkfile全部campaign list ['DOUGHBLENDER', 'DoughBlender', 'Pr1-pastryblender']
+bulkfileSKU_Manual_Campaign_List ['DoughBlender', 'Pr1-pastryblender']
+遍历手动Campaign
+遍历手动Campaign
+本次List循环没有pr4广告,继续循环
+pr4number 0
+没有pr4，生成一个
+Stoi_keyword= b08bf7gypp
+DOUGHBLENDER
+39    Auto
+Name: Campaign Targeting Type, dtype: object 1
+['Auto']
+这个好词来自自动广告 DOUGHBLENDER
+好词对应的广告从自动广告产生
+SKUlist ['ix20200512-Dough Blender-01']
+选的SKU ix20200512-Dough Blender-01
+好词对应的SKU：bulkfile_Campaign_SKUMax2 ix20200512-Dough Blender-01
+bulkfile全部campaign list ['DOUGHBLENDER', 'DoughBlender', 'Pr1-pastryblender']
+bulkfileSKU_Manual_Campaign_List ['DoughBlender', 'Pr1-pastryblender']
+遍历手动Campaign
+遍历手动Campaign
+本次List循环没有pr4广告,继续循环
+pr4number 0
+没有pr4，生成一个
+Stoi_keyword= b08c4mgnt8
+DOUGHBLENDER
+39    Auto
+Name: Campaign Targeting Type, dtype: object 1
+['Auto']
+这个好词来自自动广告 DOUGHBLENDER
+好词对应的广告从自动广告产生
+SKUlist ['ix20200512-Dough Blender-01']
+选的SKU ix20200512-Dough Blender-01
+好词对应的SKU：bulkfile_Campaign_SKUMax2 ix20200512-Dough Blender-01
+bulkfile全部campaign list ['DOUGHBLENDER', 'DoughBlender', 'Pr1-pastryblender']
+bulkfileSKU_Manual_Campaign_List ['DoughBlender', 'Pr1-pastryblender']
+遍历手动Campaign
+遍历手动Campaign
+本次List循环没有pr4广告,继续循环
+pr4number 0
+没有pr4，生成一个
+Stoi_keyword= coupe pate patisserie
+DOUGHBLENDER
+39    Auto
+Name: Campaign Targeting Type, dtype: object 1
+['Auto']
+这个好词来自自动广告 DOUGHBLENDER
+好词对应的广告从自动广告产生
+SKUlist ['ix20200512-Dough Blender-01']
+选的SKU ix20200512-Dough Blender-01
+好词对应的SKU：bulkfile_Campaign_SKUMax2 ix20200512-Dough Blender-01
+bulkfile全部campaign list ['DOUGHBLENDER', 'DoughBlender', 'Pr1-pastryblender']
+bulkfileSKU_Manual_Campaign_List ['DoughBlender', 'Pr1-pastryblender']
+遍历手动Campaign
+遍历手动Campaign
+本次List循环没有pr4广告,继续循环
+pr4number 0
+没有pr4，生成一个
+Stoi_keyword= dough blender and cutter
+DOUGHBLENDER
+39    Auto
+Name: Campaign Targeting Type, dtype: object 1
+['Auto']
+这个好词来自自动广告 DOUGHBLENDER
+好词对应的广告从自动广告产生
+SKUlist ['ix20200512-Dough Blender-01']
+选的SKU ix20200512-Dough Blender-01
+好词对应的SKU：bulkfile_Campaign_SKUMax2 ix20200512-Dough Blender-01
+bulkfile全部campaign list ['DOUGHBLENDER', 'DoughBlender', 'Pr1-pastryblender']
+bulkfileSKU_Manual_Campaign_List ['DoughBlender', 'Pr1-pastryblender']
+遍历手动Campaign
+遍历手动Campaign
+本次List循环没有pr4广告,继续循环
+pr4number 0
+没有pr4，生成一个
+Stoi_keyword= dough blender pastry cutter
+DOUGHBLENDER
+39    Auto
+Name: Campaign Targeting Type, dtype: object 1
+['Auto']
+这个好词来自自动广告 DOUGHBLENDER
+好词对应的广告从自动广告产生
+SKUlist ['ix20200512-Dough Blender-01']
+选的SKU ix20200512-Dough Blender-01
+好词对应的SKU：bulkfile_Campaign_SKUMax2 ix20200512-Dough Blender-01
+bulkfile全部campaign list ['DOUGHBLENDER', 'DoughBlender', 'Pr1-pastryblender']
+bulkfileSKU_Manual_Campaign_List ['DoughBlender', 'Pr1-pastryblender']
+遍历手动Campaign
+遍历手动Campaign
+本次List循环没有pr4广告,继续循环
+pr4number 0
+没有pr4，生成一个
+Stoi_keyword= flour and butter blender
+DOUGHBLENDER
+39    Auto
+Name: Campaign Targeting Type, dtype: object 1
+['Auto']
+这个好词来自自动广告 DOUGHBLENDER
+好词对应的广告从自动广告产生
+SKUlist ['ix20200512-Dough Blender-01']
+选的SKU ix20200512-Dough Blender-01
+好词对应的SKU：bulkfile_Campaign_SKUMax2 ix20200512-Dough Blender-01
+bulkfile全部campaign list ['DOUGHBLENDER', 'DoughBlender', 'Pr1-pastryblender']
+bulkfileSKU_Manual_Campaign_List ['DoughBlender', 'Pr1-pastryblender']
+遍历手动Campaign
+遍历手动Campaign
+本次List循环没有pr4广告,继续循环
+pr4number 0
+没有pr4，生成一个
+Stoi_keyword= pastry blender
+DOUGHBLENDER
+39    Auto
+Name: Campaign Targeting Type, dtype: object 1
+['Auto']
+这个好词来自自动广告 DOUGHBLENDER
+好词对应的广告从自动广告产生
+SKUlist ['ix20200512-Dough Blender-01']
+选的SKU ix20200512-Dough Blender-01
+好词对应的SKU：bulkfile_Campaign_SKUMax2 ix20200512-Dough Blender-01
+bulkfile全部campaign list ['DOUGHBLENDER', 'DoughBlender', 'Pr1-pastryblender']
+bulkfileSKU_Manual_Campaign_List ['DoughBlender', 'Pr1-pastryblender']
+遍历手动Campaign
+遍历手动Campaign
+本次List循环没有pr4广告,继续循环
+pr4number 0
+没有pr4，生成一个
+Stoi_keyword= pastry cutter
+DOUGHBLENDER
+39    Auto
+Name: Campaign Targeting Type, dtype: object 1
+['Auto']
+这个好词来自自动广告 DOUGHBLENDER
+好词对应的广告从自动广告产生
+SKUlist ['ix20200512-Dough Blender-01']
+选的SKU ix20200512-Dough Blender-01
+好词对应的SKU：bulkfile_Campaign_SKUMax2 ix20200512-Dough Blender-01
+bulkfile全部campaign list ['DOUGHBLENDER', 'DoughBlender', 'Pr1-pastryblender']
+bulkfileSKU_Manual_Campaign_List ['DoughBlender', 'Pr1-pastryblender']
+遍历手动Campaign
+遍历手动Campaign
+本次List循环没有pr4广告,继续循环
+pr4number 0
+没有pr4，生成一个
+Stoi_keyword= pastry cutter stainless steel
+DOUGHBLENDER
+39    Auto
+Name: Campaign Targeting Type, dtype: object 1
+['Auto']
+这个好词来自自动广告 DOUGHBLENDER
+好词对应的广告从自动广告产生
+SKUlist ['ix20200512-Dough Blender-01']
+选的SKU ix20200512-Dough Blender-01
+好词对应的SKU：bulkfile_Campaign_SKUMax2 ix20200512-Dough Blender-01
+bulkfile全部campaign list ['DOUGHBLENDER', 'DoughBlender', 'Pr1-pastryblender']
+bulkfileSKU_Manual_Campaign_List ['DoughBlender', 'Pr1-pastryblender']
+遍历手动Campaign
+遍历手动Campaign
+本次List循环没有pr4广告,继续循环
+pr4number 0
+没有pr4，生成一个
+Stoi_keyword= pastry dough cutter
+DOUGHBLENDER
+39    Auto
+Name: Campaign Targeting Type, dtype: object 1
+['Auto']
+这个好词来自自动广告 DOUGHBLENDER
+好词对应的广告从自动广告产生
+SKUlist ['ix20200512-Dough Blender-01']
+选的SKU ix20200512-Dough Blender-01
+好词对应的SKU：bulkfile_Campaign_SKUMax2 ix20200512-Dough Blender-01
+bulkfile全部campaign list ['DOUGHBLENDER', 'DoughBlender', 'Pr1-pastryblender']
+bulkfileSKU_Manual_Campaign_List ['DoughBlender', 'Pr1-pastryblender']
+遍历手动Campaign
+遍历手动Campaign
+本次List循环没有pr4广告,继续循环
+pr4number 0
+没有pr4，生成一个
+Stoi_keyword= steel blade dough cutter
+DOUGHBLENDER
+39    Auto
+Name: Campaign Targeting Type, dtype: object 1
+['Auto']
+这个好词来自自动广告 DOUGHBLENDER
+好词对应的广告从自动广告产生
+SKUlist ['ix20200512-Dough Blender-01']
+选的SKU ix20200512-Dough Blender-01
+好词对应的SKU：bulkfile_Campaign_SKUMax2 ix20200512-Dough Blender-01
+bulkfile全部campaign list ['DOUGHBLENDER', 'DoughBlender', 'Pr1-pastryblender']
+bulkfileSKU_Manual_Campaign_List ['DoughBlender', 'Pr1-pastryblender']
+遍历手动Campaign
+遍历手动Campaign
+本次List循环没有pr4广告,继续循环
+pr4number 0
+没有pr4，生成一个
+Stoi_keyword= bread dough cutter
+DOUGHTOOLSET
+621    Manual
+Name: Campaign Targeting Type, dtype: object 1
+['Manual']
+好词产生的广告来自手动广告
+这个手动广告不包含这个好词的exact
+这个手动广告不包含这个好词的phrase
+Stoi_keyword= pastry knife cutter set
+DOUGHTOOLSET
+621    Manual
+Name: Campaign Targeting Type, dtype: object 1
+['Manual']
+好词产生的广告来自手动广告
+这个手动广告包含有这个好词的exact
+这个手动广告不包含这个好词的phrase
+Stoi_keyword= bazooka pastry blender
+DoughBlender
+86    Manual
+Name: Campaign Targeting Type, dtype: object 1
+['Manual']
+好词产生的广告来自手动广告
+这个手动广告不包含这个好词的exact
+这个手动广告不包含这个好词的phrase
+Stoi_keyword= dough cutter
+DoughBlender
+86    Manual
+Name: Campaign Targeting Type, dtype: object 1
+['Manual']
+好词产生的广告来自手动广告
+这个手动广告包含有这个好词的exact
+这个手动广告不包含这个好词的phrase
+Stoi_keyword= pastry blender
+DoughBlender
+86    Manual
+Name: Campaign Targeting Type, dtype: object 1
+['Manual']
+好词产生的广告来自手动广告
+这个手动广告包含有这个好词的exact
+这个手动广告包含有这个好词的phrase
+Stoi_keyword= pastry blender cutter
+DoughBlender
+86    Manual
+Name: Campaign Targeting Type, dtype: object 1
+['Manual']
+好词产生的广告来自手动广告
+这个手动广告不包含这个好词的exact
+这个手动广告不包含这个好词的phrase
+Stoi_keyword= pastry cutter
+DoughBlender
+86    Manual
+Name: Campaign Targeting Type, dtype: object 1
+['Manual']
+好词产生的广告来自手动广告
+这个手动广告包含有这个好词的exact
+这个手动广告不包含这个好词的phrase
+Stoi_keyword= pastry cutter stainless steel
+DoughBlender
+86    Manual
+Name: Campaign Targeting Type, dtype: object 1
+['Manual']
+好词产生的广告来自手动广告
+这个手动广告包含有这个好词的exact
+这个手动广告包含有这个好词的phrase
+Stoi_keyword= stainless steel pastry blender
+DoughBlender
+86    Manual
+Name: Campaign Targeting Type, dtype: object 1
+['Manual']
+好词产生的广告来自手动广告
+这个手动广告不包含这个好词的exact
+这个手动广告不包含这个好词的phrase
+Stoi_keyword= biscuits cutter
+GUANGIAN-shoudong
+154    Manual
+Name: Campaign Targeting Type, dtype: object 1
+['Manual']
+好词产生的广告来自手动广告
+这个手动广告不包含这个好词的exact
+这个手动广告不包含这个好词的phrase
+Stoi_keyword= 4” - 6 “ halloween cookie cutters
+GUANGMIAN-Manual2
+285    Manual
+Name: Campaign Targeting Type, dtype: object 1
+['Manual']
+好词产生的广告来自手动广告
+这个手动广告不包含这个好词的exact
+这个手动广告不包含这个好词的phrase
+Stoi_keyword= biscuit cutter with handle
+GUANGMIAN-Manual2
+285    Manual
+Name: Campaign Targeting Type, dtype: object 1
+['Manual']
+好词产生的广告来自手动广告
+这个手动广告包含有这个好词的exact
+这个手动广告不包含这个好词的phrase
+Stoi_keyword= biscuit cutters with handles
+GUANGMIAN-Manual2
+285    Manual
+Name: Campaign Targeting Type, dtype: object 1
+['Manual']
+好词产生的广告来自手动广告
+这个手动广告不包含这个好词的exact
+这个手动广告不包含这个好词的phrase
+Stoi_keyword= christmas cookie cutters plastic
+GUANGMIAN-Manual2
+285    Manual
+Name: Campaign Targeting Type, dtype: object 1
+['Manual']
+好词产生的广告来自手动广告
+这个手动广告不包含这个好词的exact
+这个手动广告不包含这个好词的phrase
+Stoi_keyword= cookie cutter 3”
+GUANGMIAN-Manual2
+285    Manual
+Name: Campaign Targeting Type, dtype: object 1
+['Manual']
+好词产生的广告来自手动广告
+这个手动广告不包含这个好词的exact
+这个手动广告不包含这个好词的phrase
+Stoi_keyword= cookie cutter fluted
+GUANGMIAN-Manual2
+285    Manual
+Name: Campaign Targeting Type, dtype: object 1
+['Manual']
+好词产生的广告来自手动广告
+这个手动广告不包含这个好词的exact
+这个手动广告不包含这个好词的phrase
+Stoi_keyword= cookie cutter set
+GUANGMIAN-Manual2
+285    Manual
+Name: Campaign Targeting Type, dtype: object 1
+['Manual']
+好词产生的广告来自手动广告
+这个手动广告不包含这个好词的exact
+这个手动广告不包含这个好词的phrase
+Stoi_keyword= ornament cookie cutter
+GUANGMIAN-Manual2
+285    Manual
+Name: Campaign Targeting Type, dtype: object 1
+['Manual']
+好词产生的广告来自手动广告
+这个手动广告不包含这个好词的exact
+这个手动广告不包含这个好词的phrase
+Stoi_keyword= pasta cutter
+PR3-cookiewithcanrippled
+893    Manual
+Name: Campaign Targeting Type, dtype: object 1
+['Manual']
+好词产生的广告来自手动广告
+这个手动广告包含有这个好词的exact
+这个手动广告包含有这个好词的phrase
+Stoi_keyword= pasta cutters shapes
+PR3-cookiewithcanrippled
+893    Manual
+Name: Campaign Targeting Type, dtype: object 1
+['Manual']
+好词产生的广告来自手动广告
+这个手动广告不包含这个好词的exact
+这个手动广告不包含这个好词的phrase
+Stoi_keyword= round cookie cutter set
+PR3-cookiewithcanrippled
+893    Manual
+Name: Campaign Targeting Type, dtype: object 1
+['Manual']
+好词产生的广告来自手动广告
+这个手动广告包含有这个好词的exact
+这个手动广告不包含这个好词的phrase
+Stoi_keyword= 3 inch scone cutter
+Pr1-cutterwithscan
+162    Manual
+Name: Campaign Targeting Type, dtype: object 1
+['Manual']
+好词产生的广告来自手动广告
+这个手动广告不包含这个好词的exact
+这个手动广告不包含这个好词的phrase
+Stoi_keyword= scone cutter
+Pr1-cutterwithscan
+162    Manual
+Name: Campaign Targeting Type, dtype: object 1
+['Manual']
+好词产生的广告来自手动广告
+这个手动广告包含有这个好词的exact
+这个手动广告包含有这个好词的phrase
+Stoi_keyword= scone cutters
+Pr1-cutterwithscan
+162    Manual
+Name: Campaign Targeting Type, dtype: object 1
+['Manual']
+好词产生的广告来自手动广告
+这个手动广告包含有这个好词的exact
+这个手动广告包含有这个好词的phrase
+Stoi_keyword= 2 inch biscuit cutter
+Pr3-5cutter-fluted-0322
+832    Manual
+Name: Campaign Targeting Type, dtype: object 1
+['Manual']
+好词产生的广告来自手动广告
+这个手动广告包含有这个好词的exact
+这个手动广告包含有这个好词的phrase
+Stoi_keyword= biscuit cutters
+Pr3-5cutter-fluted-0322
+832    Manual
+Name: Campaign Targeting Type, dtype: object 1
+['Manual']
+好词产生的广告来自手动广告
+这个手动广告包含有这个好词的exact
+这个手动广告包含有这个好词的phrase
+Stoi_keyword= circle cookie cutters
+Pr3-5cutter-fluted-0322
+832    Manual
+Name: Campaign Targeting Type, dtype: object 1
+['Manual']
+好词产生的广告来自手动广告
+这个手动广告包含有这个好词的exact
+这个手动广告包含有这个好词的phrase
+Stoi_keyword= 2 1/2 inch round cookie cutter
+Pr3-Biscuitcutter-Set6
+315    Manual
+Name: Campaign Targeting Type, dtype: object 1
+['Manual']
+好词产生的广告来自手动广告
+这个手动广告不包含这个好词的exact
+这个手动广告不包含这个好词的phrase
+Stoi_keyword= circle cookie cutter set
+Pr3-Biscuitcutter-Set6
+315    Manual
+Name: Campaign Targeting Type, dtype: object 1
+['Manual']
+好词产生的广告来自手动广告
+这个手动广告包含有这个好词的exact
+这个手动广告不包含这个好词的phrase
+Stoi_keyword= cookie cutter circle
+Pr3-Biscuitcutter-Set6
+315    Manual
+Name: Campaign Targeting Type, dtype: object 1
+['Manual']
+好词产生的广告来自手动广告
+这个手动广告包含有这个好词的exact
+这个手动广告包含有这个好词的phrase
+Stoi_keyword= cookie cutter sets
+Pr3-Biscuitcutter-Set6
+315    Manual
+Name: Campaign Targeting Type, dtype: object 1
+['Manual']
+好词产生的广告来自手动广告
+这个手动广告包含有这个好词的exact
+这个手动广告不包含这个好词的phrase
+Stoi_keyword= cookie cutters round
+Pr3-Biscuitcutter-Set6
+315    Manual
+Name: Campaign Targeting Type, dtype: object 1
+['Manual']
+好词产生的广告来自手动广告
+这个手动广告包含有这个好词的exact
+这个手动广告包含有这个好词的phrase
+Stoi_keyword= different shape round cookie cutter
+Pr3-Biscuitcutter-Set6
+315    Manual
+Name: Campaign Targeting Type, dtype: object 1
+['Manual']
+好词产生的广告来自手动广告
+这个手动广告不包含这个好词的exact
+这个手动广告不包含这个好词的phrase
+Stoi_keyword= irish scone cutter
+Pr3-Biscuitcutter-Set6
+315    Manual
+Name: Campaign Targeting Type, dtype: object 1
+['Manual']
+好词产生的广告来自手动广告
+这个手动广告不包含这个好词的exact
+这个手动广告不包含这个好词的phrase
+Stoi_keyword= linzer cookie cutter set bestseller
+Pr3-Biscuitcutter-Set6
+315    Manual
+Name: Campaign Targeting Type, dtype: object 1
+['Manual']
+好词产生的广告来自手动广告
+这个手动广告不包含这个好词的exact
+这个手动广告不包含这个好词的phrase
+Stoi_keyword= number cookie cutter set
+Pr3-Biscuitcutter-Set6
+315    Manual
+Name: Campaign Targeting Type, dtype: object 1
+['Manual']
+好词产生的广告来自手动广告
+这个手动广告不包含这个好词的exact
+这个手动广告不包含这个好词的phrase
+Stoi_keyword= round cookie cutter 7cm
+Pr3-Biscuitcutter-Set6
+315    Manual
+Name: Campaign Targeting Type, dtype: object 1
+['Manual']
+好词产生的广告来自手动广告
+这个手动广告不包含这个好词的exact
+这个手动广告不包含这个好词的phrase
+Stoi_keyword= round cookie cutters set
+Pr3-Biscuitcutter-Set6
+315    Manual
+Name: Campaign Targeting Type, dtype: object 1
+['Manual']
+好词产生的广告来自手动广告
+这个手动广告不包含这个好词的exact
+这个手动广告不包含这个好词的phrase
+Stoi_keyword= straight round cookie cutter
+Pr3-Biscuitcutter-Set6
+315    Manual
+Name: Campaign Targeting Type, dtype: object 1
+['Manual']
+好词产生的广告来自手动广告
+这个手动广告不包含这个好词的exact
+这个手动广告不包含这个好词的phrase
+Stoi_keyword= christmas cookie cutter
+Pr3-Cutterset4
+105    Manual
+Name: Campaign Targeting Type, dtype: object 1
+['Manual']
+好词产生的广告来自手动广告
+这个手动广告不包含这个好词的exact
+这个手动广告不包含这个好词的phrase
+Stoi_keyword= christmas cookie cutters
+Pr3-Cutterset4
+105    Manual
+Name: Campaign Targeting Type, dtype: object 1
+['Manual']
+好词产生的广告来自手动广告
+这个手动广告不包含这个好词的exact
+这个手动广告不包含这个好词的phrase
+Stoi_keyword= circle cookie cutter
+Pr3-Cutterset4
+105    Manual
+Name: Campaign Targeting Type, dtype: object 1
+['Manual']
+好词产生的广告来自手动广告
+这个手动广告不包含这个好词的exact
+这个手动广告不包含这个好词的phrase
+Stoi_keyword= circle cookie cutters
+Pr3-Cutterset4
+105    Manual
+Name: Campaign Targeting Type, dtype: object 1
+['Manual']
+好词产生的广告来自手动广告
+这个手动广告不包含这个好词的exact
+这个手动广告不包含这个好词的phrase
+Stoi_keyword= cookie cutter
+Pr3-Cutterset4
+105    Manual
+Name: Campaign Targeting Type, dtype: object 1
+['Manual']
+好词产生的广告来自手动广告
+这个手动广告不包含这个好词的exact
+这个手动广告不包含这个好词的phrase
+Stoi_keyword= cookie cutter organizer
+Pr3-Cutterset4
+105    Manual
+Name: Campaign Targeting Type, dtype: object 1
+['Manual']
+好词产生的广告来自手动广告
+这个手动广告不包含这个好词的exact
+这个手动广告不包含这个好词的phrase
+Stoi_keyword= cookie cutters
+Pr3-Cutterset4
+105    Manual
+Name: Campaign Targeting Type, dtype: object 1
+['Manual']
+好词产生的广告来自手动广告
+这个手动广告包含有这个好词的exact
+这个手动广告包含有这个好词的phrase
+Stoi_keyword= cookie cutters shapes
+Pr3-Cutterset4
+105    Manual
+Name: Campaign Targeting Type, dtype: object 1
+['Manual']
+好词产生的广告来自手动广告
+这个手动广告不包含这个好词的exact
+这个手动广告不包含这个好词的phrase
+Stoi_keyword= cookie cutters shapes round
+Pr3-Cutterset4
+105    Manual
+Name: Campaign Targeting Type, dtype: object 1
+['Manual']
+好词产生的广告来自手动广告
+这个手动广告不包含这个好词的exact
+这个手动广告不包含这个好词的phrase
+Stoi_keyword= cookie cutters with handles
+Pr3-Cutterset4
+105    Manual
+Name: Campaign Targeting Type, dtype: object 1
+['Manual']
+好词产生的广告来自手动广告
+这个手动广告不包含这个好词的exact
+这个手动广告不包含这个好词的phrase
+Stoi_keyword= crinkle cookie cutter
+Pr3-Cutterset4
+105    Manual
+Name: Campaign Targeting Type, dtype: object 1
+['Manual']
+好词产生的广告来自手动广告
+这个手动广告不包含这个好词的exact
+这个手动广告不包含这个好词的phrase
+Stoi_keyword= fluted cookie cutter
+Pr3-Cutterset4
+105    Manual
+Name: Campaign Targeting Type, dtype: object 1
+['Manual']
+好词产生的广告来自手动广告
+这个手动广告不包含这个好词的exact
+这个手动广告不包含这个好词的phrase
+Stoi_keyword= fluted cookie+cutters
+Pr3-Cutterset4
+105    Manual
+Name: Campaign Targeting Type, dtype: object 1
+['Manual']
+好词产生的广告来自手动广告
+这个手动广告不包含这个好词的exact
+这个手动广告不包含这个好词的phrase
+Stoi_keyword= fluted round cookie cutters, circle
+Pr3-Cutterset4
+105    Manual
+Name: Campaign Targeting Type, dtype: object 1
+['Manual']
+好词产生的广告来自手动广告
+这个手动广告不包含这个好词的exact
+这个手动广告不包含这个好词的phrase
+Stoi_keyword= jam cookie cutter
+Pr3-Cutterset4
+105    Manual
+Name: Campaign Targeting Type, dtype: object 1
+['Manual']
+好词产生的广告来自手动广告
+这个手动广告不包含这个好词的exact
+这个手动广告不包含这个好词的phrase
+Stoi_keyword= kookia round cookie cutters
+Pr3-Cutterset4
+105    Manual
+Name: Campaign Targeting Type, dtype: object 1
+['Manual']
+好词产生的广告来自手动广告
+这个手动广告不包含这个好词的exact
+这个手动广告不包含这个好词的phrase
+Stoi_keyword= metal cookie cutters
+Pr3-Cutterset4
+105    Manual
+Name: Campaign Targeting Type, dtype: object 1
+['Manual']
+好词产生的广告来自手动广告
+这个手动广告不包含这个好词的exact
+这个手动广告不包含这个好词的phrase
+Stoi_keyword= round scalloped cookie cutters
+Pr3-Cutterset4
+105    Manual
+Name: Campaign Targeting Type, dtype: object 1
+['Manual']
+好词产生的广告来自手动广告
+这个手动广告不包含这个好词的exact
+这个手动广告不包含这个好词的phrase
+Stoi_keyword= scalloped cookie cutter
+Pr3-Cutterset4
+105    Manual
+Name: Campaign Targeting Type, dtype: object 1
+['Manual']
+好词产生的广告来自手动广告
+这个手动广告不包含这个好词的exact
+这个手动广告不包含这个好词的phrase
+Stoi_keyword= scalloped cookie cutter round
+Pr3-Cutterset4
+105    Manual
+Name: Campaign Targeting Type, dtype: object 1
+['Manual']
+好词产生的广告来自手动广告
+这个手动广告不包含这个好词的exact
+这个手动广告不包含这个好词的phrase
+Stoi_keyword= scalloped cookie cutters round
+Pr3-Cutterset4
+105    Manual
+Name: Campaign Targeting Type, dtype: object 1
+['Manual']
+好词产生的广告来自手动广告
+这个手动广告不包含这个好词的exact
+这个手动广告不包含这个好词的phrase
+Stoi_keyword= scone cutter
+Pr3-Cutterset4
+105    Manual
+Name: Campaign Targeting Type, dtype: object 1
+['Manual']
+好词产生的广告来自手动广告
+这个手动广告包含有这个好词的exact
+这个手动广告包含有这个好词的phrase
+Stoi_keyword= shortbread cookie cutter
+Pr3-Cutterset4
+105    Manual
+Name: Campaign Targeting Type, dtype: object 1
+['Manual']
+好词产生的广告来自手动广告
+这个手动广告不包含这个好词的exact
+这个手动广告不包含这个好词的phrase
+Stoi_keyword= small cookie cutters
+Pr3-Cutterset4
+105    Manual
+Name: Campaign Targeting Type, dtype: object 1
+['Manual']
+好词产生的广告来自手动广告
+这个手动广告不包含这个好词的exact
+这个手动广告不包含这个好词的phrase
+Stoi_keyword= small round cookie cutter
+Pr3-Cutterset4
+105    Manual
+Name: Campaign Targeting Type, dtype: object 1
+['Manual']
+好词产生的广告来自手动广告
+这个手动广告不包含这个好词的exact
+这个手动广告不包含这个好词的phrase
+Stoi_keyword= 2” biscuit cutter
+Pr3-Cutterwithcan
+426    Manual
+Name: Campaign Targeting Type, dtype: object 1
+['Manual']
+好词产生的广告来自手动广告
+这个手动广告不包含这个好词的exact
+这个手动广告不包含这个好词的phrase
+Stoi_keyword= baykookia stainless steel biscuit cutters
+Pr3-Cutterwithcan
+426    Manual
+Name: Campaign Targeting Type, dtype: object 1
+['Manual']
+好词产生的广告来自手动广告
+这个手动广告不包含这个好词的exact
+这个手动广告不包含这个好词的phrase
+Stoi_keyword= biscuit cutter
+Pr3-Cutterwithcan
+426    Manual
+Name: Campaign Targeting Type, dtype: object 1
+['Manual']
+好词产生的广告来自手动广告
+这个手动广告包含有这个好词的exact
+这个手动广告包含有这个好词的phrase
+Stoi_keyword= biscuit cutter with handle
+Pr3-Cutterwithcan
+426    Manual
+Name: Campaign Targeting Type, dtype: object 1
+['Manual']
+好词产生的广告来自手动广告
+这个手动广告不包含这个好词的exact
+这个手动广告不包含这个好词的phrase
+Stoi_keyword= biscuit cutters
+Pr3-Cutterwithcan
+426    Manual
+Name: Campaign Targeting Type, dtype: object 1
+['Manual']
+好词产生的广告来自手动广告
+这个手动广告包含有这个好词的exact
+这个手动广告不包含这个好词的phrase
+Stoi_keyword= circle cookie cutter set
+Pr3-Cutterwithcan
+426    Manual
+Name: Campaign Targeting Type, dtype: object 1
+['Manual']
+好词产生的广告来自手动广告
+这个手动广告包含有这个好词的exact
+这个手动广告包含有这个好词的phrase
+Stoi_keyword= cookie cutter sets
+Pr3-Cutterwithcan
+426    Manual
+Name: Campaign Targeting Type, dtype: object 1
+['Manual']
+好词产生的广告来自手动广告
+这个手动广告不包含这个好词的exact
+这个手动广告不包含这个好词的phrase
+Stoi_keyword= cookie cutter with handle
+Pr3-Cutterwithcan
+426    Manual
+Name: Campaign Targeting Type, dtype: object 1
+['Manual']
+好词产生的广告来自手动广告
+这个手动广告包含有这个好词的exact
+这个手动广告包含有这个好词的phrase
+Stoi_keyword= cookie cutters round set
+Pr3-Cutterwithcan
+426    Manual
+Name: Campaign Targeting Type, dtype: object 1
+['Manual']
+好词产生的广告来自手动广告
+这个手动广告不包含这个好词的exact
+这个手动广告不包含这个好词的phrase
+Stoi_keyword= cookies cutter set
+Pr3-Cutterwithcan
+426    Manual
+Name: Campaign Targeting Type, dtype: object 1
+['Manual']
+好词产生的广告来自手动广告
+这个手动广告包含有这个好词的exact
+这个手动广告包含有这个好词的phrase
+Stoi_keyword= dog biscuit cookie cutters
+Pr3-Cutterwithcan
+426    Manual
+Name: Campaign Targeting Type, dtype: object 1
+['Manual']
+好词产生的广告来自手动广告
+这个手动广告不包含这个好词的exact
+这个手动广告不包含这个好词的phrase
+Stoi_keyword= old fashion round cookie cutters
+Pr3-Cutterwithcan
+426    Manual
+Name: Campaign Targeting Type, dtype: object 1
+['Manual']
+好词产生的广告来自手动广告
+这个手动广告不包含这个好词的exact
+这个手动广告不包含这个好词的phrase
+Stoi_keyword= round cookie cutters
+Pr3-Cutterwithcan
+426    Manual
+Name: Campaign Targeting Type, dtype: object 1
+['Manual']
+好词产生的广告来自手动广告
+这个手动广告包含有这个好词的exact
+这个手动广告不包含这个好词的phrase
+Stoi_keyword= scone cutter
+Pr3-Cutterwithcan
+426    Manual
+Name: Campaign Targeting Type, dtype: object 1
+['Manual']
+好词产生的广告来自手动广告
+这个手动广告包含有这个好词的exact
+这个手动广告包含有这个好词的phrase
+Stoi_keyword= scone cutters
+Pr3-Cutterwithcan
+426    Manual
+Name: Campaign Targeting Type, dtype: object 1
+['Manual']
+好词产生的广告来自手动广告
+这个手动广告不包含这个好词的exact
+这个手动广告不包含这个好词的phrase
+Stoi_keyword= square biscuit cutter
+Pr3-Cutterwithcan
+426    Manual
+Name: Campaign Targeting Type, dtype: object 1
+['Manual']
+好词产生的广告来自手动广告
+这个手动广告不包含这个好词的exact
+这个手动广告不包含这个好词的phrase
+Stoi_keyword= stainless steel biscuit cutters
+Pr3-Cutterwithcan
+426    Manual
+Name: Campaign Targeting Type, dtype: object 1
+['Manual']
+好词产生的广告来自手动广告
+这个手动广告不包含这个好词的exact
+这个手动广告不包含这个好词的phrase
+Stoi_keyword= tea biscuit cutter
+Pr3-Cutterwithcan
+426    Manual
+Name: Campaign Targeting Type, dtype: object 1
+['Manual']
+好词产生的广告来自手动广告
+这个手动广告不包含这个好词的exact
+这个手动广告不包含这个好词的phrase
+Stoi_keyword= 2 inch biscuit cutter
+Pr3-set6cookiecutters
+0    Manual
+Name: Campaign Targeting Type, dtype: object 1
+['Manual']
+好词产生的广告来自手动广告
+这个手动广告不包含这个好词的exact
+这个手动广告不包含这个好词的phrase
+Stoi_keyword= 3 inch biscuit cutter
+Pr3-set6cookiecutters
+0    Manual
+Name: Campaign Targeting Type, dtype: object 1
+['Manual']
+好词产生的广告来自手动广告
+这个手动广告不包含这个好词的exact
+这个手动广告不包含这个好词的phrase
+Stoi_keyword= biscuit cutter 1
+Pr3-set6cookiecutters
+0    Manual
+Name: Campaign Targeting Type, dtype: object 1
+['Manual']
+好词产生的广告来自手动广告
+这个手动广告不包含这个好词的exact
+这个手动广告不包含这个好词的phrase
+Stoi_keyword= biscuit cutter set
+Pr3-set6cookiecutters
+0    Manual
+Name: Campaign Targeting Type, dtype: object 1
+['Manual']
+好词产生的广告来自手动广告
+这个手动广告包含有这个好词的exact
+这个手动广告不包含这个好词的phrase
+Stoi_keyword= biscuit cutters round 2.5 inch
+Pr3-set6cookiecutters
+0    Manual
+Name: Campaign Targeting Type, dtype: object 1
+['Manual']
+好词产生的广告来自手动广告
+这个手动广告不包含这个好词的exact
+这个手动广告不包含这个好词的phrase
+Stoi_keyword= cookie-cutters
+Pr3-set6cookiecutters
+0    Manual
+Name: Campaign Targeting Type, dtype: object 1
+['Manual']
+好词产生的广告来自手动广告
+这个手动广告不包含这个好词的exact
+这个手动广告不包含这个好词的phrase
+Stoi_keyword= norpro biscuit cutters
+Pr3-set6cookiecutters
+0    Manual
+Name: Campaign Targeting Type, dtype: object 1
+['Manual']
+好词产生的广告来自手动广告
+这个手动广告不包含这个好词的exact
+这个手动广告不包含这个好词的phrase
+Stoi_keyword= round biscuit cutter 3"
+Pr3-set6cookiecutters
+0    Manual
+Name: Campaign Targeting Type, dtype: object 1
+['Manual']
+好词产生的广告来自手动广告
+这个手动广告不包含这个好词的exact
+这个手动广告不包含这个好词的phrase
+Stoi_keyword= round cookie cutter metal
+Pr3-set6cookiecutters
+0    Manual
+Name: Campaign Targeting Type, dtype: object 1
+['Manual']
+好词产生的广告来自手动广告
+这个手动广告不包含这个好词的exact
+这个手动广告不包含这个好词的phrase
+Stoi_keyword= scone cutter round
+Pr3-set6cookiecutters
+0    Manual
+Name: Campaign Targeting Type, dtype: object 1
+['Manual']
+好词产生的广告来自手动广告
+这个手动广告不包含这个好词的exact
+这个手动广告不包含这个好词的phrase
+Stoi_keyword= biscuit cutters round
+Pr3-广泛词
+546    Manual
+Name: Campaign Targeting Type, dtype: object 1
+['Manual']
+好词产生的广告来自手动广告
+这个手动广告不包含这个好词的exact
+这个手动广告不包含这个好词的phrase
+Stoi_keyword= cookie cutters circle
+Pr3-广泛词
+546    Manual
+Name: Campaign Targeting Type, dtype: object 1
+['Manual']
+好词产生的广告来自手动广告
+这个手动广告包含有这个好词的exact
+这个手动广告不包含这个好词的phrase
+Stoi_keyword= cracker cutter
+Pr3-广泛词
+546    Manual
+Name: Campaign Targeting Type, dtype: object 1
+['Manual']
+好词产生的广告来自手动广告
+这个手动广告包含有这个好词的exact
+这个手动广告不包含这个好词的phrase
+Stoi_keyword= round cookie cutter
+Pr3-广泛词
+546    Manual
+Name: Campaign Targeting Type, dtype: object 1
+['Manual']
+好词产生的广告来自手动广告
+这个手动广告包含有这个好词的exact
+这个手动广告不包含这个好词的phrase
+Stoi_keyword= pastry roller
+Rolling Pin-Metal 0623
+943    Auto
+Name: Campaign Targeting Type, dtype: object 1
+['Auto']
+这个好词来自自动广告 Rolling Pin-Metal 0623
+好词对应的广告从自动广告产生
+SKUlist ['i20191115-Rolling Pin-Metal']
+选的SKU i20191115-Rolling Pin-Metal
+好词对应的SKU：bulkfile_Campaign_SKUMax2 i20191115-Rolling Pin-Metal
+bulkfile全部campaign list ['rollingpinauto', 'rollingpin', 'Rolling Pin-Metal 0623']
+bulkfileSKU_Manual_Campaign_List ['rollingpin']
+遍历手动Campaign
+本次List循环没有pr4广告,继续循环
+pr4number 0
+没有pr4，生成一个
+Stoi_keyword= rolling pin
+Rolling Pin-Metal 0623
+943    Auto
+Name: Campaign Targeting Type, dtype: object 1
+['Auto']
+这个好词来自自动广告 Rolling Pin-Metal 0623
+好词对应的广告从自动广告产生
+SKUlist ['i20191115-Rolling Pin-Metal']
+选的SKU i20191115-Rolling Pin-Metal
+好词对应的SKU：bulkfile_Campaign_SKUMax2 i20191115-Rolling Pin-Metal
+bulkfile全部campaign list ['rollingpinauto', 'rollingpin', 'Rolling Pin-Metal 0623']
+bulkfileSKU_Manual_Campaign_List ['rollingpin']
+遍历手动Campaign
+本次List循环没有pr4广告,继续循环
+pr4number 0
+没有pr4，生成一个
+Stoi_keyword= b000095rbr
+Roundthermo
+361    Auto
+Name: Campaign Targeting Type, dtype: object 1
+['Auto']
+这个好词来自自动广告 Roundthermo
+好词对应的广告从自动广告产生
+SKUlist ['iX20190427-thermo-1']
+选的SKU iX20190427-thermo-1
+好词对应的SKU：bulkfile_Campaign_SKUMax2 iX20190427-thermo-1
+bulkfile全部campaign list ['Pr3-Round-thermometer', 'Roundthermo']
+bulkfileSKU_Manual_Campaign_List ['Pr3-Round-thermometer']
+遍历手动Campaign
+本次List循环没有pr4广告,继续循环
+pr4number 0
+没有pr4，生成一个
+Stoi_keyword= b083bmmqv9
+Roundthermo
+361    Auto
+Name: Campaign Targeting Type, dtype: object 1
+['Auto']
+这个好词来自自动广告 Roundthermo
+好词对应的广告从自动广告产生
+SKUlist ['iX20190427-thermo-1']
+选的SKU iX20190427-thermo-1
+好词对应的SKU：bulkfile_Campaign_SKUMax2 iX20190427-thermo-1
+bulkfile全部campaign list ['Pr3-Round-thermometer', 'Roundthermo']
+bulkfileSKU_Manual_Campaign_List ['Pr3-Round-thermometer']
+遍历手动Campaign
+本次List循环没有pr4广告,继续循环
+pr4number 0
+没有pr4，生成一个
+Stoi_keyword= oven thermometer leave in
+Roundthermo
+361    Auto
+Name: Campaign Targeting Type, dtype: object 1
+['Auto']
+这个好词来自自动广告 Roundthermo
+好词对应的广告从自动广告产生
+SKUlist ['iX20190427-thermo-1']
+选的SKU iX20190427-thermo-1
+好词对应的SKU：bulkfile_Campaign_SKUMax2 iX20190427-thermo-1
+bulkfile全部campaign list ['Pr3-Round-thermometer', 'Roundthermo']
+bulkfileSKU_Manual_Campaign_List ['Pr3-Round-thermometer']
+遍历手动Campaign
+本次List循环没有pr4广告,继续循环
+pr4number 0
+没有pr4，生成一个
+Stoi_keyword= baking tray
+baguette pan
+658    Manual
+Name: Campaign Targeting Type, dtype: object 1
+['Manual']
+好词产生的广告来自手动广告
+这个手动广告包含有这个好词的exact
+这个手动广告不包含这个好词的phrase
+Stoi_keyword= b0000ddvqa
+biscuit cutter 0623
+259    Auto
+Name: Campaign Targeting Type, dtype: object 1
+['Auto']
+这个好词来自自动广告 biscuit cutter 0623
+好词对应的广告从自动广告产生
+SKUlist ['1Z-BKWL-PGYF']
+选的SKU 1Z-BKWL-PGYF
+好词对应的SKU：bulkfile_Campaign_SKUMax2 1Z-BKWL-PGYF
+bulkfile全部campaign list ['Pr3-Cutterset4', 'biscuit cutter 0623', 'Pr3-广泛词', '圆形波纹四件套自动']
+bulkfileSKU_Manual_Campaign_List ['Pr3-Cutterset4', 'Pr3-广泛词']
+遍历手动Campaign
+遍历手动Campaign
+本次List循环没有pr4广告,继续循环
+pr4number 0
+没有pr4，生成一个
+Stoi_keyword= b0000vlex6
+biscuit cutter 0623
+259    Auto
+Name: Campaign Targeting Type, dtype: object 1
+['Auto']
+这个好词来自自动广告 biscuit cutter 0623
+好词对应的广告从自动广告产生
+SKUlist ['1Z-BKWL-PGYF']
+选的SKU 1Z-BKWL-PGYF
+好词对应的SKU：bulkfile_Campaign_SKUMax2 1Z-BKWL-PGYF
+bulkfile全部campaign list ['Pr3-Cutterset4', 'biscuit cutter 0623', 'Pr3-广泛词', '圆形波纹四件套自动']
+bulkfileSKU_Manual_Campaign_List ['Pr3-Cutterset4', 'Pr3-广泛词']
+遍历手动Campaign
+遍历手动Campaign
+本次List循环没有pr4广告,继续循环
+pr4number 0
+没有pr4，生成一个
+Stoi_keyword= b06zyq78b9
+biscuit cutter 0623
+259    Auto
+Name: Campaign Targeting Type, dtype: object 1
+['Auto']
+这个好词来自自动广告 biscuit cutter 0623
+好词对应的广告从自动广告产生
+SKUlist ['1Z-BKWL-PGYF']
+选的SKU 1Z-BKWL-PGYF
+好词对应的SKU：bulkfile_Campaign_SKUMax2 1Z-BKWL-PGYF
+bulkfile全部campaign list ['Pr3-Cutterset4', 'biscuit cutter 0623', 'Pr3-广泛词', '圆形波纹四件套自动']
+bulkfileSKU_Manual_Campaign_List ['Pr3-Cutterset4', 'Pr3-广泛词']
+遍历手动Campaign
+遍历手动Campaign
+本次List循环没有pr4广告,继续循环
+pr4number 0
+没有pr4，生成一个
+Stoi_keyword= b06zys4clc
+biscuit cutter 0623
+259    Auto
+Name: Campaign Targeting Type, dtype: object 1
+['Auto']
+这个好词来自自动广告 biscuit cutter 0623
+好词对应的广告从自动广告产生
+SKUlist ['1Z-BKWL-PGYF']
+选的SKU 1Z-BKWL-PGYF
+好词对应的SKU：bulkfile_Campaign_SKUMax2 1Z-BKWL-PGYF
+bulkfile全部campaign list ['Pr3-Cutterset4', 'biscuit cutter 0623', 'Pr3-广泛词', '圆形波纹四件套自动']
+bulkfileSKU_Manual_Campaign_List ['Pr3-Cutterset4', 'Pr3-广泛词']
+遍历手动Campaign
+遍历手动Campaign
+本次List循环没有pr4广告,继续循环
+pr4number 0
+没有pr4，生成一个
+Stoi_keyword= b074v7ymz9
+biscuit cutter 0623
+259    Auto
+Name: Campaign Targeting Type, dtype: object 1
+['Auto']
+这个好词来自自动广告 biscuit cutter 0623
+好词对应的广告从自动广告产生
+SKUlist ['1Z-BKWL-PGYF']
+选的SKU 1Z-BKWL-PGYF
+好词对应的SKU：bulkfile_Campaign_SKUMax2 1Z-BKWL-PGYF
+bulkfile全部campaign list ['Pr3-Cutterset4', 'biscuit cutter 0623', 'Pr3-广泛词', '圆形波纹四件套自动']
+bulkfileSKU_Manual_Campaign_List ['Pr3-Cutterset4', 'Pr3-广泛词']
+遍历手动Campaign
+遍历手动Campaign
+本次List循环没有pr4广告,继续循环
+pr4number 0
+没有pr4，生成一个
+Stoi_keyword= b07bszn21d
+biscuit cutter 0623
+259    Auto
+Name: Campaign Targeting Type, dtype: object 1
+['Auto']
+这个好词来自自动广告 biscuit cutter 0623
+好词对应的广告从自动广告产生
+SKUlist ['1Z-BKWL-PGYF']
+选的SKU 1Z-BKWL-PGYF
+好词对应的SKU：bulkfile_Campaign_SKUMax2 1Z-BKWL-PGYF
+bulkfile全部campaign list ['Pr3-Cutterset4', 'biscuit cutter 0623', 'Pr3-广泛词', '圆形波纹四件套自动']
+bulkfileSKU_Manual_Campaign_List ['Pr3-Cutterset4', 'Pr3-广泛词']
+遍历手动Campaign
+遍历手动Campaign
+本次List循环没有pr4广告,继续循环
+pr4number 0
+没有pr4，生成一个
+Stoi_keyword= b07r5g38b6
+biscuit cutter 0623
+259    Auto
+Name: Campaign Targeting Type, dtype: object 1
+['Auto']
+这个好词来自自动广告 biscuit cutter 0623
+好词对应的广告从自动广告产生
+SKUlist ['1Z-BKWL-PGYF']
+选的SKU 1Z-BKWL-PGYF
+好词对应的SKU：bulkfile_Campaign_SKUMax2 1Z-BKWL-PGYF
+bulkfile全部campaign list ['Pr3-Cutterset4', 'biscuit cutter 0623', 'Pr3-广泛词', '圆形波纹四件套自动']
+bulkfileSKU_Manual_Campaign_List ['Pr3-Cutterset4', 'Pr3-广泛词']
+遍历手动Campaign
+遍历手动Campaign
+本次List循环没有pr4广告,继续循环
+pr4number 0
+没有pr4，生成一个
+Stoi_keyword= b0833w68nw
+biscuit cutter 0623
+259    Auto
+Name: Campaign Targeting Type, dtype: object 1
+['Auto']
+这个好词来自自动广告 biscuit cutter 0623
+好词对应的广告从自动广告产生
+SKUlist ['1Z-BKWL-PGYF']
+选的SKU 1Z-BKWL-PGYF
+好词对应的SKU：bulkfile_Campaign_SKUMax2 1Z-BKWL-PGYF
+bulkfile全部campaign list ['Pr3-Cutterset4', 'biscuit cutter 0623', 'Pr3-广泛词', '圆形波纹四件套自动']
+bulkfileSKU_Manual_Campaign_List ['Pr3-Cutterset4', 'Pr3-广泛词']
+遍历手动Campaign
+遍历手动Campaign
+本次List循环没有pr4广告,继续循环
+pr4number 0
+没有pr4，生成一个
+Stoi_keyword= b089zxxxbr
+biscuit cutter 0623
+259    Auto
+Name: Campaign Targeting Type, dtype: object 1
+['Auto']
+这个好词来自自动广告 biscuit cutter 0623
+好词对应的广告从自动广告产生
+SKUlist ['1Z-BKWL-PGYF']
+选的SKU 1Z-BKWL-PGYF
+好词对应的SKU：bulkfile_Campaign_SKUMax2 1Z-BKWL-PGYF
+bulkfile全部campaign list ['Pr3-Cutterset4', 'biscuit cutter 0623', 'Pr3-广泛词', '圆形波纹四件套自动']
+bulkfileSKU_Manual_Campaign_List ['Pr3-Cutterset4', 'Pr3-广泛词']
+遍历手动Campaign
+遍历手动Campaign
+本次List循环没有pr4广告,继续循环
+pr4number 0
+没有pr4，生成一个
+Stoi_keyword= b08bfxk879
+biscuit cutter 0623
+259    Auto
+Name: Campaign Targeting Type, dtype: object 1
+['Auto']
+这个好词来自自动广告 biscuit cutter 0623
+好词对应的广告从自动广告产生
+SKUlist ['1Z-BKWL-PGYF']
+选的SKU 1Z-BKWL-PGYF
+好词对应的SKU：bulkfile_Campaign_SKUMax2 1Z-BKWL-PGYF
+bulkfile全部campaign list ['Pr3-Cutterset4', 'biscuit cutter 0623', 'Pr3-广泛词', '圆形波纹四件套自动']
+bulkfileSKU_Manual_Campaign_List ['Pr3-Cutterset4', 'Pr3-广泛词']
+遍历手动Campaign
+遍历手动Campaign
+本次List循环没有pr4广告,继续循环
+pr4number 0
+没有pr4，生成一个
+Stoi_keyword= b08gpbrdv5
+biscuit cutter 0623
+259    Auto
+Name: Campaign Targeting Type, dtype: object 1
+['Auto']
+这个好词来自自动广告 biscuit cutter 0623
+好词对应的广告从自动广告产生
+SKUlist ['1Z-BKWL-PGYF']
+选的SKU 1Z-BKWL-PGYF
+好词对应的SKU：bulkfile_Campaign_SKUMax2 1Z-BKWL-PGYF
+bulkfile全部campaign list ['Pr3-Cutterset4', 'biscuit cutter 0623', 'Pr3-广泛词', '圆形波纹四件套自动']
+bulkfileSKU_Manual_Campaign_List ['Pr3-Cutterset4', 'Pr3-广泛词']
+遍历手动Campaign
+遍历手动Campaign
+本次List循环没有pr4广告,继续循环
+pr4number 0
+没有pr4，生成一个
+Stoi_keyword= b08pvc6b9t
+biscuit cutter 0623
+259    Auto
+Name: Campaign Targeting Type, dtype: object 1
+['Auto']
+这个好词来自自动广告 biscuit cutter 0623
+好词对应的广告从自动广告产生
+SKUlist ['1Z-BKWL-PGYF']
+选的SKU 1Z-BKWL-PGYF
+好词对应的SKU：bulkfile_Campaign_SKUMax2 1Z-BKWL-PGYF
+bulkfile全部campaign list ['Pr3-Cutterset4', 'biscuit cutter 0623', 'Pr3-广泛词', '圆形波纹四件套自动']
+bulkfileSKU_Manual_Campaign_List ['Pr3-Cutterset4', 'Pr3-广泛词']
+遍历手动Campaign
+遍历手动Campaign
+本次List循环没有pr4广告,继续循环
+pr4number 0
+没有pr4，生成一个
+Stoi_keyword= b08qmmzdt8
+biscuit cutter 0623
+259    Auto
+Name: Campaign Targeting Type, dtype: object 1
+['Auto']
+这个好词来自自动广告 biscuit cutter 0623
+好词对应的广告从自动广告产生
+SKUlist ['1Z-BKWL-PGYF']
+选的SKU 1Z-BKWL-PGYF
+好词对应的SKU：bulkfile_Campaign_SKUMax2 1Z-BKWL-PGYF
+bulkfile全部campaign list ['Pr3-Cutterset4', 'biscuit cutter 0623', 'Pr3-广泛词', '圆形波纹四件套自动']
+bulkfileSKU_Manual_Campaign_List ['Pr3-Cutterset4', 'Pr3-广泛词']
+遍历手动Campaign
+遍历手动Campaign
+本次List循环没有pr4广告,继续循环
+pr4number 0
+没有pr4，生成一个
+Stoi_keyword= b08slft7pq
+biscuit cutter 0623
+259    Auto
+Name: Campaign Targeting Type, dtype: object 1
+['Auto']
+这个好词来自自动广告 biscuit cutter 0623
+好词对应的广告从自动广告产生
+SKUlist ['1Z-BKWL-PGYF']
+选的SKU 1Z-BKWL-PGYF
+好词对应的SKU：bulkfile_Campaign_SKUMax2 1Z-BKWL-PGYF
+bulkfile全部campaign list ['Pr3-Cutterset4', 'biscuit cutter 0623', 'Pr3-广泛词', '圆形波纹四件套自动']
+bulkfileSKU_Manual_Campaign_List ['Pr3-Cutterset4', 'Pr3-广泛词']
+遍历手动Campaign
+遍历手动Campaign
+本次List循环没有pr4广告,继续循环
+pr4number 0
+没有pr4，生成一个
+Stoi_keyword= b08vdfkv9v
+biscuit cutter 0623
+259    Auto
+Name: Campaign Targeting Type, dtype: object 1
+['Auto']
+这个好词来自自动广告 biscuit cutter 0623
+好词对应的广告从自动广告产生
+SKUlist ['1Z-BKWL-PGYF']
+选的SKU 1Z-BKWL-PGYF
+好词对应的SKU：bulkfile_Campaign_SKUMax2 1Z-BKWL-PGYF
+bulkfile全部campaign list ['Pr3-Cutterset4', 'biscuit cutter 0623', 'Pr3-广泛词', '圆形波纹四件套自动']
+bulkfileSKU_Manual_Campaign_List ['Pr3-Cutterset4', 'Pr3-广泛词']
+遍历手动Campaign
+遍历手动Campaign
+本次List循环没有pr4广告,继续循环
+pr4number 0
+没有pr4，生成一个
+Stoi_keyword= b08x6zhjzs
+biscuit cutter 0623
+259    Auto
+Name: Campaign Targeting Type, dtype: object 1
+['Auto']
+这个好词来自自动广告 biscuit cutter 0623
+好词对应的广告从自动广告产生
+SKUlist ['1Z-BKWL-PGYF']
+选的SKU 1Z-BKWL-PGYF
+好词对应的SKU：bulkfile_Campaign_SKUMax2 1Z-BKWL-PGYF
+bulkfile全部campaign list ['Pr3-Cutterset4', 'biscuit cutter 0623', 'Pr3-广泛词', '圆形波纹四件套自动']
+bulkfileSKU_Manual_Campaign_List ['Pr3-Cutterset4', 'Pr3-广泛词']
+遍历手动Campaign
+遍历手动Campaign
+本次List循环没有pr4广告,继续循环
+pr4number 0
+没有pr4，生成一个
+Stoi_keyword= cookie cutter sets
+biscuit cutter 0623
+259    Auto
+Name: Campaign Targeting Type, dtype: object 1
+['Auto']
+这个好词来自自动广告 biscuit cutter 0623
+好词对应的广告从自动广告产生
+SKUlist ['1Z-BKWL-PGYF']
+选的SKU 1Z-BKWL-PGYF
+好词对应的SKU：bulkfile_Campaign_SKUMax2 1Z-BKWL-PGYF
+bulkfile全部campaign list ['Pr3-Cutterset4', 'biscuit cutter 0623', 'Pr3-广泛词', '圆形波纹四件套自动']
+bulkfileSKU_Manual_Campaign_List ['Pr3-Cutterset4', 'Pr3-广泛词']
+遍历手动Campaign
+遍历手动Campaign
+本次List循环没有pr4广告,继续循环
+pr4number 0
+没有pr4，生成一个
+Stoi_keyword= cookie round cutters
+biscuit cutter 0623
+259    Auto
+Name: Campaign Targeting Type, dtype: object 1
+['Auto']
+这个好词来自自动广告 biscuit cutter 0623
+好词对应的广告从自动广告产生
+SKUlist ['1Z-BKWL-PGYF']
+选的SKU 1Z-BKWL-PGYF
+好词对应的SKU：bulkfile_Campaign_SKUMax2 1Z-BKWL-PGYF
+bulkfile全部campaign list ['Pr3-Cutterset4', 'biscuit cutter 0623', 'Pr3-广泛词', '圆形波纹四件套自动']
+bulkfileSKU_Manual_Campaign_List ['Pr3-Cutterset4', 'Pr3-广泛词']
+遍历手动Campaign
+遍历手动Campaign
+本次List循环没有pr4广告,继续循环
+pr4number 0
+没有pr4，生成一个
+Stoi_keyword= fluted cutter
+biscuit cutter 0623
+259    Auto
+Name: Campaign Targeting Type, dtype: object 1
+['Auto']
+这个好词来自自动广告 biscuit cutter 0623
+好词对应的广告从自动广告产生
+SKUlist ['1Z-BKWL-PGYF']
+选的SKU 1Z-BKWL-PGYF
+好词对应的SKU：bulkfile_Campaign_SKUMax2 1Z-BKWL-PGYF
+bulkfile全部campaign list ['Pr3-Cutterset4', 'biscuit cutter 0623', 'Pr3-广泛词', '圆形波纹四件套自动']
+bulkfileSKU_Manual_Campaign_List ['Pr3-Cutterset4', 'Pr3-广泛词']
+遍历手动Campaign
+遍历手动Campaign
+本次List循环没有pr4广告,继续循环
+pr4number 0
+没有pr4，生成一个
+Stoi_keyword= fluted edge cutter
+biscuit cutter 0623
+259    Auto
+Name: Campaign Targeting Type, dtype: object 1
+['Auto']
+这个好词来自自动广告 biscuit cutter 0623
+好词对应的广告从自动广告产生
+SKUlist ['1Z-BKWL-PGYF']
+选的SKU 1Z-BKWL-PGYF
+好词对应的SKU：bulkfile_Campaign_SKUMax2 1Z-BKWL-PGYF
+bulkfile全部campaign list ['Pr3-Cutterset4', 'biscuit cutter 0623', 'Pr3-广泛词', '圆形波纹四件套自动']
+bulkfileSKU_Manual_Campaign_List ['Pr3-Cutterset4', 'Pr3-广泛词']
+遍历手动Campaign
+遍历手动Campaign
+本次List循环没有pr4广告,继续循环
+pr4number 0
+没有pr4，生成一个
+Stoi_keyword= round cookie cutter
+biscuit cutter 0623
+259    Auto
+Name: Campaign Targeting Type, dtype: object 1
+['Auto']
+这个好词来自自动广告 biscuit cutter 0623
+好词对应的广告从自动广告产生
+SKUlist ['1Z-BKWL-PGYF']
+选的SKU 1Z-BKWL-PGYF
+好词对应的SKU：bulkfile_Campaign_SKUMax2 1Z-BKWL-PGYF
+bulkfile全部campaign list ['Pr3-Cutterset4', 'biscuit cutter 0623', 'Pr3-广泛词', '圆形波纹四件套自动']
+bulkfileSKU_Manual_Campaign_List ['Pr3-Cutterset4', 'Pr3-广泛词']
+遍历手动Campaign
+遍历手动Campaign
+本次List循环没有pr4广告,继续循环
+pr4number 0
+没有pr4，生成一个
+Stoi_keyword= b0000vlp4y
+pr2-asin
+683    Manual
+Name: Campaign Targeting Type, dtype: object 1
+['Manual']
+好词产生的广告来自手动广告
+这个手动广告不包含这个好词的exact
+这个手动广告不包含这个好词的phrase
+Stoi_keyword= b07bszn21d
+pr2-asin
+683    Manual
+Name: Campaign Targeting Type, dtype: object 1
+['Manual']
+好词产生的广告来自手动广告
+这个手动广告不包含这个好词的exact
+这个手动广告不包含这个好词的phrase
+Stoi_keyword= b07r1rk6xr
+pr2-asin
+683    Manual
+Name: Campaign Targeting Type, dtype: object 1
+['Manual']
+好词产生的广告来自手动广告
+这个手动广告不包含这个好词的exact
+这个手动广告不包含这个好词的phrase
+Stoi_keyword= b09921m4fg
+pr2-asin
+683    Manual
+Name: Campaign Targeting Type, dtype: object 1
+['Manual']
+好词产生的广告来自手动广告
+这个手动广告不包含这个好词的exact
+这个手动广告不包含这个好词的phrase
+Stoi_keyword= biscuit cutter set
+pr3-5cuttersnew
+404    Manual
+Name: Campaign Targeting Type, dtype: object 1
+['Manual']
+好词产生的广告来自手动广告
+这个手动广告不包含这个好词的exact
+这个手动广告不包含这个好词的phrase
+Stoi_keyword= biscuit cutters
+pr3-5cuttersnew
+404    Manual
+Name: Campaign Targeting Type, dtype: object 1
+['Manual']
+好词产生的广告来自手动广告
+这个手动广告不包含这个好词的exact
+这个手动广告不包含这个好词的phrase
+Stoi_keyword= black biscuit cutters
+pr3-5cuttersnew
+404    Manual
+Name: Campaign Targeting Type, dtype: object 1
+['Manual']
+好词产生的广告来自手动广告
+这个手动广告不包含这个好词的exact
+这个手动广告不包含这个好词的phrase
+Stoi_keyword= dough roller
+rollingpin
+190    Manual
+Name: Campaign Targeting Type, dtype: object 1
+['Manual']
+好词产生的广告来自手动广告
+这个手动广告包含有这个好词的exact
+这个手动广告包含有这个好词的phrase
+Stoi_keyword= rolling pin baking
+rollingpin
+190    Manual
+Name: Campaign Targeting Type, dtype: object 1
+['Manual']
+好词产生的广告来自手动广告
+这个手动广告包含有这个好词的exact
+这个手动广告包含有这个好词的phrase
+Stoi_keyword= b0009u5o7u
+圆形平口五件套自动
+248    Auto
+Name: Campaign Targeting Type, dtype: object 1
+['Auto']
+这个好词来自自动广告 圆形平口五件套自动
+好词对应的广告从自动广告产生
+SKUlist ['20191128-CookieDoughSet', '39-T34B-A4VJ']
+选的SKU 20191128-CookieDoughSet
+好词对应的SKU：bulkfile_Campaign_SKUMax2 20191128-CookieDoughSet
+bulkfile全部campaign list ['baking tool', '圆形平口五件套自动', 'CUTTERSET', 'DOUGHTOOLSET']
+bulkfileSKU_Manual_Campaign_List ['baking tool', 'DOUGHTOOLSET']
+遍历手动Campaign
+遍历手动Campaign
+本次List循环没有pr4广告,继续循环
+pr4number 0
+没有pr4，生成一个
+Stoi_keyword= b0833w68nw
+圆形平口五件套自动
+248    Auto
+Name: Campaign Targeting Type, dtype: object 1
+['Auto']
+这个好词来自自动广告 圆形平口五件套自动
+好词对应的广告从自动广告产生
+SKUlist ['20191128-CookieDoughSet', '39-T34B-A4VJ']
+选的SKU 20191128-CookieDoughSet
+好词对应的SKU：bulkfile_Campaign_SKUMax2 20191128-CookieDoughSet
+bulkfile全部campaign list ['baking tool', '圆形平口五件套自动', 'CUTTERSET', 'DOUGHTOOLSET']
+bulkfileSKU_Manual_Campaign_List ['baking tool', 'DOUGHTOOLSET']
+遍历手动Campaign
+遍历手动Campaign
+本次List循环没有pr4广告,继续循环
+pr4number 0
+没有pr4，生成一个
+Stoi_keyword= 1½ inch biscuit cutter,
+圆形波纹五件套手动
+721    Manual
+Name: Campaign Targeting Type, dtype: object 1
+['Manual']
+好词产生的广告来自手动广告
+这个手动广告不包含这个好词的exact
+这个手动广告不包含这个好词的phrase
+Stoi_keyword= 2 3/4 inch biscuit cutter
+圆形波纹五件套手动
+721    Manual
+Name: Campaign Targeting Type, dtype: object 1
+['Manual']
+好词产生的广告来自手动广告
+这个手动广告不包含这个好词的exact
+这个手动广告不包含这个好词的phrase
+Stoi_keyword= 3 in biscuit cutter
+圆形波纹五件套手动
+721    Manual
+Name: Campaign Targeting Type, dtype: object 1
+['Manual']
+好词产生的广告来自手动广告
+这个手动广告不包含这个好词的exact
+这个手动广告不包含这个好词的phrase
+Stoi_keyword= 3 inch biscuit cutter
+圆形波纹五件套手动
+721    Manual
+Name: Campaign Targeting Type, dtype: object 1
+['Manual']
+好词产生的广告来自手动广告
+这个手动广告不包含这个好词的exact
+这个手动广告不包含这个好词的phrase
+Stoi_keyword= biscuit cutter 3 inch
+圆形波纹五件套手动
+721    Manual
+Name: Campaign Targeting Type, dtype: object 1
+['Manual']
+好词产生的广告来自手动广告
+这个手动广告不包含这个好词的exact
+这个手动广告不包含这个好词的phrase
+Stoi_keyword= biscuit cutter 5 inch
+圆形波纹五件套手动
+721    Manual
+Name: Campaign Targeting Type, dtype: object 1
+['Manual']
+好词产生的广告来自手动广告
+这个手动广告不包含这个好词的exact
+这个手动广告不包含这个好词的phrase
+Stoi_keyword= biscuit cutter serrated
+圆形波纹五件套手动
+721    Manual
+Name: Campaign Targeting Type, dtype: object 1
+['Manual']
+好词产生的广告来自手动广告
+这个手动广告不包含这个好词的exact
+这个手动广告不包含这个好词的phrase
+Stoi_keyword= biscuit cutter set
+圆形波纹五件套手动
+721    Manual
+Name: Campaign Targeting Type, dtype: object 1
+['Manual']
+好词产生的广告来自手动广告
+这个手动广告不包含这个好词的exact
+这个手动广告不包含这个好词的phrase
+Stoi_keyword= biscuit cutter set 5
+圆形波纹五件套手动
+721    Manual
+Name: Campaign Targeting Type, dtype: object 1
+['Manual']
+好词产生的广告来自手动广告
+这个手动广告不包含这个好词的exact
+这个手动广告不包含这个好词的phrase
+Stoi_keyword= biscuit cutter set kookia
+圆形波纹五件套手动
+721    Manual
+Name: Campaign Targeting Type, dtype: object 1
+['Manual']
+好词产生的广告来自手动广告
+这个手动广告不包含这个好词的exact
+这个手动广告不包含这个好词的phrase
+Stoi_keyword= biscuit cutter tool
+圆形波纹五件套手动
+721    Manual
+Name: Campaign Targeting Type, dtype: object 1
+['Manual']
+好词产生的广告来自手动广告
+这个手动广告不包含这个好词的exact
+这个手动广告不包含这个好词的phrase
+Stoi_keyword= british biscuit cutters
+圆形波纹五件套手动
+721    Manual
+Name: Campaign Targeting Type, dtype: object 1
+['Manual']
+好词产生的广告来自手动广告
+这个手动广告不包含这个好词的exact
+这个手动广告不包含这个好词的phrase
+Stoi_keyword= circle biscuit cutter
+圆形波纹五件套手动
+721    Manual
+Name: Campaign Targeting Type, dtype: object 1
+['Manual']
+好词产生的广告来自手动广告
+这个手动广告不包含这个好词的exact
+这个手动广告不包含这个好词的phrase
+Stoi_keyword= cookia biscuits cutters
+圆形波纹五件套手动
+721    Manual
+Name: Campaign Targeting Type, dtype: object 1
+['Manual']
+好词产生的广告来自手动广告
+这个手动广告不包含这个好词的exact
+这个手动广告不包含这个好词的phrase
+Stoi_keyword= cookie cutters round made in america
+圆形波纹五件套手动
+721    Manual
+Name: Campaign Targeting Type, dtype: object 1
+['Manual']
+好词产生的广告来自手动广告
+这个手动广告不包含这个好词的exact
+这个手动广告不包含这个好词的phrase
+Stoi_keyword= copper biscuit cutters
+圆形波纹五件套手动
+721    Manual
+Name: Campaign Targeting Type, dtype: object 1
+['Manual']
+好词产生的广告来自手动广告
+这个手动广告不包含这个好词的exact
+这个手动广告不包含这个好词的phrase
+Stoi_keyword= donut and biscuit cutters
+圆形波纹五件套手动
+721    Manual
+Name: Campaign Targeting Type, dtype: object 1
+['Manual']
+好词产生的广告来自手动广告
+这个手动广告不包含这个好词的exact
+这个手动广告不包含这个好词的phrase
+Stoi_keyword= fluted biscuit cutters
+圆形波纹五件套手动
+721    Manual
+Name: Campaign Targeting Type, dtype: object 1
+['Manual']
+好词产生的广告来自手动广告
+这个手动广告不包含这个好词的exact
+这个手动广告不包含这个好词的phrase
+Stoi_keyword= fluted cookie cutter
+圆形波纹五件套手动
+721    Manual
+Name: Campaign Targeting Type, dtype: object 1
+['Manual']
+好词产生的广告来自手动广告
+这个手动广告不包含这个好词的exact
+这个手动广告不包含这个好词的phrase
+Stoi_keyword= hot biscuits cutter
+圆形波纹五件套手动
+721    Manual
+Name: Campaign Targeting Type, dtype: object 1
+['Manual']
+好词产生的广告来自手动广告
+这个手动广告不包含这个好词的exact
+这个手动广告不包含这个好词的phrase
+Stoi_keyword= hulisen biscuit cutter
+圆形波纹五件套手动
+721    Manual
+Name: Campaign Targeting Type, dtype: object 1
+['Manual']
+好词产生的广告来自手动广告
+这个手动广告包含有这个好词的exact
+这个手动广告包含有这个好词的phrase
+Stoi_keyword= hulisen biscuit cutter set flanged
+圆形波纹五件套手动
+721    Manual
+Name: Campaign Targeting Type, dtype: object 1
+['Manual']
+好词产生的广告来自手动广告
+这个手动广告不包含这个好词的exact
+这个手动广告不包含这个好词的phrase
+Stoi_keyword= kookia biscuit cutter
+圆形波纹五件套手动
+721    Manual
+Name: Campaign Targeting Type, dtype: object 1
+['Manual']
+好词产生的广告来自手动广告
+这个手动广告不包含这个好词的exact
+这个手动广告不包含这个好词的phrase
+Stoi_keyword= kwikset biscuit cutter
+圆形波纹五件套手动
+721    Manual
+Name: Campaign Targeting Type, dtype: object 1
+['Manual']
+好词产生的广告来自手动广告
+这个手动广告不包含这个好词的exact
+这个手动广告不包含这个好词的phrase
+Stoi_keyword= large biscuit cutter with handles
+圆形波纹五件套手动
+721    Manual
+Name: Campaign Targeting Type, dtype: object 1
+['Manual']
+好词产生的广告来自手动广告
+这个手动广告不包含这个好词的exact
+这个手动广告不包含这个好词的phrase
+Stoi_keyword= large round cookie cutter
+圆形波纹五件套手动
+721    Manual
+Name: Campaign Targeting Type, dtype: object 1
+['Manual']
+好词产生的广告来自手动广告
+这个手动广告包含有这个好词的exact
+这个手动广告包含有这个好词的phrase
+Stoi_keyword= metal cookie/biscuit cutters
+圆形波纹五件套手动
+721    Manual
+Name: Campaign Targeting Type, dtype: object 1
+['Manual']
+好词产生的广告来自手动广告
+这个手动广告不包含这个好词的exact
+这个手动广告不包含这个好词的phrase
+Stoi_keyword= mhy kitchen biscuit cutters
+圆形波纹五件套手动
+721    Manual
+Name: Campaign Targeting Type, dtype: object 1
+['Manual']
+好词产生的广告来自手动广告
+这个手动广告不包含这个好词的exact
+这个手动广告不包含这个好词的phrase
+Stoi_keyword= pastry biscuit cutter
+圆形波纹五件套手动
+721    Manual
+Name: Campaign Targeting Type, dtype: object 1
+['Manual']
+好词产生的广告来自手动广告
+这个手动广告不包含这个好词的exact
+这个手动广告不包含这个好词的phrase
+Stoi_keyword= round biscuit cutter
+圆形波纹五件套手动
+721    Manual
+Name: Campaign Targeting Type, dtype: object 1
+['Manual']
+好词产生的广告来自手动广告
+这个手动广告不包含这个好词的exact
+这个手动广告包含有这个好词的phrase
+Stoi_keyword= round cookie cutter 1.8 inch diameter
+圆形波纹五件套手动
+721    Manual
+Name: Campaign Targeting Type, dtype: object 1
+['Manual']
+好词产生的广告来自手动广告
+这个手动广告不包含这个好词的exact
+这个手动广告不包含这个好词的phrase
+Stoi_keyword= round cookie cutter 5 inches
+圆形波纹五件套手动
+721    Manual
+Name: Campaign Targeting Type, dtype: object 1
+['Manual']
+好词产生的广告来自手动广告
+这个手动广告包含有这个好词的exact
+这个手动广告不包含这个好词的phrase
+Stoi_keyword= round cookie cutter metal
+圆形波纹五件套手动
+721    Manual
+Name: Campaign Targeting Type, dtype: object 1
+['Manual']
+好词产生的广告来自手动广告
+这个手动广告包含有这个好词的exact
+这个手动广告不包含这个好词的phrase
+Stoi_keyword= round cookie cutter set
+圆形波纹五件套手动
+721    Manual
+Name: Campaign Targeting Type, dtype: object 1
+['Manual']
+好词产生的广告来自手动广告
+这个手动广告不包含这个好词的exact
+这个手动广告不包含这个好词的phrase
+Stoi_keyword= round scalloped cookie cutters
+圆形波纹五件套手动
+721    Manual
+Name: Campaign Targeting Type, dtype: object 1
+['Manual']
+好词产生的广告来自手动广告
+这个手动广告不包含这个好词的exact
+这个手动广告不包含这个好词的phrase
+Stoi_keyword= round serrated biscuit cutter
+圆形波纹五件套手动
+721    Manual
+Name: Campaign Targeting Type, dtype: object 1
+['Manual']
+好词产生的广告来自手动广告
+这个手动广告不包含这个好词的exact
+这个手动广告不包含这个好词的phrase
+Stoi_keyword= scone cutter
+圆形波纹五件套手动
+721    Manual
+Name: Campaign Targeting Type, dtype: object 1
+['Manual']
+好词产生的广告来自手动广告
+这个手动广告包含有这个好词的exact
+这个手动广告不包含这个好词的phrase
+Stoi_keyword= scone cutters for baking
+圆形波纹五件套手动
+721    Manual
+Name: Campaign Targeting Type, dtype: object 1
+['Manual']
+好词产生的广告来自手动广告
+这个手动广告不包含这个好词的exact
+这个手动广告不包含这个好词的phrase
+Stoi_keyword= scone cutters mini
+圆形波纹五件套手动
+721    Manual
+Name: Campaign Targeting Type, dtype: object 1
+['Manual']
+好词产生的广告来自手动广告
+这个手动广告不包含这个好词的exact
+这个手动广告不包含这个好词的phrase
+Stoi_keyword= square biscuit cutter
+圆形波纹五件套手动
+721    Manual
+Name: Campaign Targeting Type, dtype: object 1
+['Manual']
+好词产生的广告来自手动广告
+这个手动广告不包含这个好词的exact
+这个手动广告不包含这个好词的phrase
+Stoi_keyword= stainless steel biscuit cutters circle
+圆形波纹五件套手动
+721    Manual
+Name: Campaign Targeting Type, dtype: object 1
+['Manual']
+好词产生的广告来自手动广告
+这个手动广告不包含这个好词的exact
+这个手动广告不包含这个好词的phrase
+Stoi_keyword= tall biscuit cutters
+圆形波纹五件套手动
+721    Manual
+Name: Campaign Targeting Type, dtype: object 1
+['Manual']
+好词产生的广告来自手动广告
+这个手动广告不包含这个好词的exact
+这个手动广告不包含这个好词的phrase
+Stoi_keyword= tea biscuits cutters
+圆形波纹五件套手动
+721    Manual
+Name: Campaign Targeting Type, dtype: object 1
+['Manual']
+好词产生的广告来自手动广告
+这个手动广告不包含这个好词的exact
+这个手动广告不包含这个好词的phrase
+Stoi_keyword= two side round cookie cutters,biscuit cutters a
+圆形波纹五件套手动
+721    Manual
+Name: Campaign Targeting Type, dtype: object 1
+['Manual']
+好词产生的广告来自手动广告
+这个手动广告不包含这个好词的exact
+这个手动广告不包含这个好词的phrase
+Stoi_keyword= scone cutter
+广告活动 - 2020-08-28 02:58:47
+669    Manual
+Name: Campaign Targeting Type, dtype: object 1
+['Manual']
+好词产生的广告来自手动广告
+这个手动广告不包含这个好词的exact
+这个手动广告包含有这个好词的phrase
+Stoi_keyword= dago oven mitts
+烘焙手套
+953    Manual
+Name: Campaign Targeting Type, dtype: object 1
+['Manual']
+好词产生的广告来自手动广告
+这个手动广告不包含这个好词的exact
+这个手动广告不包含这个好词的phrase
+Stoi_keyword= heat resistant mat
+烘焙手套
+953    Manual
+Name: Campaign Targeting Type, dtype: object 1
+['Manual']
+好词产生的广告来自手动广告
+这个手动广告不包含这个好词的exact
+这个手动广告不包含这个好词的phrase
+Stoi_keyword= pink oven mitts
+烘焙手套
+953    Manual
+Name: Campaign Targeting Type, dtype: object 1
+['Manual']
+好词产生的广告来自手动广告
+这个手动广告不包含这个好词的exact
+这个手动广告不包含这个好词的phrase
+Stoi_keyword= red pot holders
+烘焙手套
+953    Manual
+Name: Campaign Targeting Type, dtype: object 1
+['Manual']
+好词产生的广告来自手动广告
+这个手动广告不包含这个好词的exact
+这个手动广告不包含这个好词的phrase
+Stoi_keyword= silicone and cotton double layer oven mitts
+烘焙手套
+953    Manual
+Name: Campaign Targeting Type, dtype: object 1
+['Manual']
+好词产生的广告来自手动广告
+这个手动广告不包含这个好词的exact
+这个手动广告不包含这个好词的phrase
+Stoi_keyword= b00ybzregi
+熊猫烘焙手套自动
+816    Auto
+Name: Campaign Targeting Type, dtype: object 1
+['Auto']
+这个好词来自自动广告 熊猫烘焙手套自动
+好词对应的广告从自动广告产生
+SKUlist ['i20190824-Oven Mitts-Pack2', 'i20190928-Oven Mitts', 'i20191010-oven mitts-panda', 'i20191024-Oven Mitts-Panda-NEW']
+选的SKU i20190824-Oven Mitts-Pack2
+好词对应的SKU：bulkfile_Campaign_SKUMax2 i20190824-Oven Mitts-Pack2
+bulkfile全部campaign list ['熊猫烘焙手套自动']
+bulkfileSKU_Manual_Campaign_List []
+本次List循环没有pr4广告,继续循环
+pr4number 0
+没有pr4，生成一个
+Stoi_keyword= b071f9gsb1
+熊猫烘焙手套自动
+816    Auto
+Name: Campaign Targeting Type, dtype: object 1
+['Auto']
+这个好词来自自动广告 熊猫烘焙手套自动
+好词对应的广告从自动广告产生
+SKUlist ['i20190824-Oven Mitts-Pack2', 'i20190928-Oven Mitts', 'i20191010-oven mitts-panda', 'i20191024-Oven Mitts-Panda-NEW']
+选的SKU i20190824-Oven Mitts-Pack2
+好词对应的SKU：bulkfile_Campaign_SKUMax2 i20190824-Oven Mitts-Pack2
+bulkfile全部campaign list ['熊猫烘焙手套自动']
+bulkfileSKU_Manual_Campaign_List []
+本次List循环没有pr4广告,继续循环
+pr4number 0
+没有pr4，生成一个
+Stoi_keyword= b07dqb17k1
+熊猫烘焙手套自动
+816    Auto
+Name: Campaign Targeting Type, dtype: object 1
+['Auto']
+这个好词来自自动广告 熊猫烘焙手套自动
+好词对应的广告从自动广告产生
+SKUlist ['i20190824-Oven Mitts-Pack2', 'i20190928-Oven Mitts', 'i20191010-oven mitts-panda', 'i20191024-Oven Mitts-Panda-NEW']
+选的SKU i20190824-Oven Mitts-Pack2
+好词对应的SKU：bulkfile_Campaign_SKUMax2 i20190824-Oven Mitts-Pack2
+bulkfile全部campaign list ['熊猫烘焙手套自动']
+bulkfileSKU_Manual_Campaign_List []
+本次List循环没有pr4广告,继续循环
+pr4number 0
+没有pr4，生成一个
+Stoi_keyword= b07f37zy1q
+熊猫烘焙手套自动
+816    Auto
+Name: Campaign Targeting Type, dtype: object 1
+['Auto']
+这个好词来自自动广告 熊猫烘焙手套自动
+好词对应的广告从自动广告产生
+SKUlist ['i20190824-Oven Mitts-Pack2', 'i20190928-Oven Mitts', 'i20191010-oven mitts-panda', 'i20191024-Oven Mitts-Panda-NEW']
+选的SKU i20190824-Oven Mitts-Pack2
+好词对应的SKU：bulkfile_Campaign_SKUMax2 i20190824-Oven Mitts-Pack2
+bulkfile全部campaign list ['熊猫烘焙手套自动']
+bulkfileSKU_Manual_Campaign_List []
+本次List循环没有pr4广告,继续循环
+pr4number 0
+没有pr4，生成一个
+Stoi_keyword= b07rk4bcgd
+熊猫烘焙手套自动
+816    Auto
+Name: Campaign Targeting Type, dtype: object 1
+['Auto']
+这个好词来自自动广告 熊猫烘焙手套自动
+好词对应的广告从自动广告产生
+SKUlist ['i20190824-Oven Mitts-Pack2', 'i20190928-Oven Mitts', 'i20191010-oven mitts-panda', 'i20191024-Oven Mitts-Panda-NEW']
+选的SKU i20190824-Oven Mitts-Pack2
+好词对应的SKU：bulkfile_Campaign_SKUMax2 i20190824-Oven Mitts-Pack2
+bulkfile全部campaign list ['熊猫烘焙手套自动']
+bulkfileSKU_Manual_Campaign_List []
+本次List循环没有pr4广告,继续循环
+pr4number 0
+没有pr4，生成一个
+Stoi_keyword= b07wyfwyml
+熊猫烘焙手套自动
+816    Auto
+Name: Campaign Targeting Type, dtype: object 1
+['Auto']
+这个好词来自自动广告 熊猫烘焙手套自动
+好词对应的广告从自动广告产生
+SKUlist ['i20190824-Oven Mitts-Pack2', 'i20190928-Oven Mitts', 'i20191010-oven mitts-panda', 'i20191024-Oven Mitts-Panda-NEW']
+选的SKU i20190824-Oven Mitts-Pack2
+好词对应的SKU：bulkfile_Campaign_SKUMax2 i20190824-Oven Mitts-Pack2
+bulkfile全部campaign list ['熊猫烘焙手套自动']
+bulkfileSKU_Manual_Campaign_List []
+本次List循环没有pr4广告,继续循环
+pr4number 0
+没有pr4，生成一个
+Stoi_keyword= b08cz87gbg
+熊猫烘焙手套自动
+816    Auto
+Name: Campaign Targeting Type, dtype: object 1
+['Auto']
+这个好词来自自动广告 熊猫烘焙手套自动
+好词对应的广告从自动广告产生
+SKUlist ['i20190824-Oven Mitts-Pack2', 'i20190928-Oven Mitts', 'i20191010-oven mitts-panda', 'i20191024-Oven Mitts-Panda-NEW']
+选的SKU i20190824-Oven Mitts-Pack2
+好词对应的SKU：bulkfile_Campaign_SKUMax2 i20190824-Oven Mitts-Pack2
+bulkfile全部campaign list ['熊猫烘焙手套自动']
+bulkfileSKU_Manual_Campaign_List []
+本次List循环没有pr4广告,继续循环
+pr4number 0
+没有pr4，生成一个
+Stoi_keyword= b09bjf1nn4
+熊猫烘焙手套自动
+816    Auto
+Name: Campaign Targeting Type, dtype: object 1
+['Auto']
+这个好词来自自动广告 熊猫烘焙手套自动
+好词对应的广告从自动广告产生
+SKUlist ['i20190824-Oven Mitts-Pack2', 'i20190928-Oven Mitts', 'i20191010-oven mitts-panda', 'i20191024-Oven Mitts-Panda-NEW']
+选的SKU i20190824-Oven Mitts-Pack2
+好词对应的SKU：bulkfile_Campaign_SKUMax2 i20190824-Oven Mitts-Pack2
+bulkfile全部campaign list ['熊猫烘焙手套自动']
+bulkfileSKU_Manual_Campaign_List []
+本次List循环没有pr4广告,继续循环
+pr4number 0
+没有pr4，生成一个
+Stoi_keyword= b09qkpj8zr
+熊猫烘焙手套自动
+816    Auto
+Name: Campaign Targeting Type, dtype: object 1
+['Auto']
+这个好词来自自动广告 熊猫烘焙手套自动
+好词对应的广告从自动广告产生
+SKUlist ['i20190824-Oven Mitts-Pack2', 'i20190928-Oven Mitts', 'i20191010-oven mitts-panda', 'i20191024-Oven Mitts-Panda-NEW']
+选的SKU i20190824-Oven Mitts-Pack2
+好词对应的SKU：bulkfile_Campaign_SKUMax2 i20190824-Oven Mitts-Pack2
+bulkfile全部campaign list ['熊猫烘焙手套自动']
+bulkfileSKU_Manual_Campaign_List []
+本次List循环没有pr4广告,继续循环
+pr4number 0
+没有pr4，生成一个
+Stoi_keyword= cooking mittens
+熊猫烘焙手套自动
+816    Auto
+Name: Campaign Targeting Type, dtype: object 1
+['Auto']
+这个好词来自自动广告 熊猫烘焙手套自动
+好词对应的广告从自动广告产生
+SKUlist ['i20190824-Oven Mitts-Pack2', 'i20190928-Oven Mitts', 'i20191010-oven mitts-panda', 'i20191024-Oven Mitts-Panda-NEW']
+选的SKU i20190824-Oven Mitts-Pack2
+好词对应的SKU：bulkfile_Campaign_SKUMax2 i20190824-Oven Mitts-Pack2
+bulkfile全部campaign list ['熊猫烘焙手套自动']
+bulkfileSKU_Manual_Campaign_List []
+本次List循环没有pr4广告,继续循环
+pr4number 0
+没有pr4，生成一个
+Stoi_keyword= mitten for oven
+熊猫烘焙手套自动
+816    Auto
+Name: Campaign Targeting Type, dtype: object 1
+['Auto']
+这个好词来自自动广告 熊猫烘焙手套自动
+好词对应的广告从自动广告产生
+SKUlist ['i20190824-Oven Mitts-Pack2', 'i20190928-Oven Mitts', 'i20191010-oven mitts-panda', 'i20191024-Oven Mitts-Panda-NEW']
+选的SKU i20190824-Oven Mitts-Pack2
+好词对应的SKU：bulkfile_Campaign_SKUMax2 i20190824-Oven Mitts-Pack2
+bulkfile全部campaign list ['熊猫烘焙手套自动']
+bulkfileSKU_Manual_Campaign_List []
+本次List循环没有pr4广告,继续循环
+pr4number 0
+没有pr4，生成一个
+Stoi_keyword= oven gloves
+熊猫烘焙手套自动
+816    Auto
+Name: Campaign Targeting Type, dtype: object 1
+['Auto']
+这个好词来自自动广告 熊猫烘焙手套自动
+好词对应的广告从自动广告产生
+SKUlist ['i20190824-Oven Mitts-Pack2', 'i20190928-Oven Mitts', 'i20191010-oven mitts-panda', 'i20191024-Oven Mitts-Panda-NEW']
+选的SKU i20190824-Oven Mitts-Pack2
+好词对应的SKU：bulkfile_Campaign_SKUMax2 i20190824-Oven Mitts-Pack2
+bulkfile全部campaign list ['熊猫烘焙手套自动']
+bulkfileSKU_Manual_Campaign_List []
+本次List循环没有pr4广告,继续循环
+pr4number 0
+没有pr4，生成一个
+Stoi_keyword= oven mitts kids
+熊猫烘焙手套自动
+816    Auto
+Name: Campaign Targeting Type, dtype: object 1
+['Auto']
+这个好词来自自动广告 熊猫烘焙手套自动
+好词对应的广告从自动广告产生
+SKUlist ['i20190824-Oven Mitts-Pack2', 'i20190928-Oven Mitts', 'i20191010-oven mitts-panda', 'i20191024-Oven Mitts-Panda-NEW']
+选的SKU i20190824-Oven Mitts-Pack2
+好词对应的SKU：bulkfile_Campaign_SKUMax2 i20190824-Oven Mitts-Pack2
+bulkfile全部campaign list ['熊猫烘焙手套自动']
+bulkfileSKU_Manual_Campaign_List []
+本次List循环没有pr4广告,继续循环
+pr4number 0
+没有pr4，生成一个
+没有NEW-DEBulkfile文件
+没有NEW-DeBulkfile文件
+没有NEW-ESBulkfile文件
+没有NEW-FRBulkfile文件
+没有NEW-ITBulkfile文件
+没有NEW-JPBulkfile文件
+没有NEW-MXBulkfile文件
+没有NEW-UKBulkfile文件
+没有NEW-USBulkfile文件
+没有New-CABulkfile文件
+没有New-JPBulkfile文件
+没有New-UKBulkfile文件
+没有New-USBulkfile文件
+没有USBulkfile文件
+>>> 
