@@ -5,8 +5,12 @@ import pandas as pd
 from datetime import datetime, timedelta
 from datetime import datetime, date
 import numpy as np
-
-
+import re
+#变量设置：首先进行变量设置，包括数据库路径，关键词点击量阈值，考察关键词数据周数范围，关键词Top数量
+clicktemp=9    #点击量阈值
+weekscope=105   #考察关键词数据周数范围
+topnumber=20  #关键词Top数量
+conversationrate_set=0.03 #转化率阈值
 #获取数据库
 conn = sqlite3.connect('D:/运营/sqlite/AmazonData.db')
 
@@ -15,24 +19,24 @@ last_saturday = today - timedelta(days=(today.weekday() + 2) % 7)
 print(last_saturday)
 
 # 计算27周前的日期
-weeks_ago_27 = last_saturday - timedelta(weeks=100)
+weeks_ago_27 = last_saturday - timedelta(weeks=weekscope)
 print(weeks_ago_27)
 
 # 修改查询，添加日期条件
-df = pd.read_sql_query(f'SELECT * FROM "Bulkfiles" WHERE 日期 >= "{weeks_ago_27}"', conn)
+df_SummaryCountry = pd.read_sql_query(f'SELECT * FROM "Bulkfiles" WHERE 日期 >= "{weeks_ago_27}"', conn)
 
 
-df = df[df['日期'].notna()]
+df_SummaryCountry = df_SummaryCountry[df_SummaryCountry['日期'].notna()]
 
-df=df.drop_duplicates()
+df_SummaryCountry=df_SummaryCountry.drop_duplicates()
 
 
 
-df['Spend'] = df['Spend'].astype(float)
-df["Max Bid"] = df["Max Bid"].astype(float)
-df['Sales'] = df['Sales'].astype(float)
+df_SummaryCountry['Spend'] = df_SummaryCountry['Spend'].astype(float)
+df_SummaryCountry["Max Bid"] = df_SummaryCountry["Max Bid"].astype(float)
+df_SummaryCountry['Sales'] = df_SummaryCountry['Sales'].astype(float)
 
-df['日期'] = pd.to_datetime(df['日期'])
+df_SummaryCountry['日期'] = pd.to_datetime(df_SummaryCountry['日期'])
 
 
 def find_last_saturday():
@@ -46,9 +50,9 @@ def update_week_numbers(df):
     df['周数'] = ((last_saturday - df['日期']).dt.days // 7) + 1
     return df
 
-updated_df = update_week_numbers(df)
+updated_df = update_week_numbers(df_SummaryCountry)
 
-updated_df= updated_df[updated_df["周数"]<100]
+updated_df= updated_df[updated_df["周数"]<weekscope]
 
 #df['周数'] = ((df['日期'] - latest_date) / np.timedelta64(1, 'W')).astype(int) + 1  #上次的写法
 updated_df = updated_df.drop(["Campaign Status", "Ad Group Status", "Status"], axis=1)
@@ -72,8 +76,6 @@ pivot_df.loc[(pivot_df['Clicks'] >= 10) & ((pivot_df['转化率'] >= 0.1)&(pivot
 pivot_df.loc[(pivot_df['Clicks'] >=20) & ((pivot_df['转化率'] >= 0.05)&(pivot_df['转化率']< 0.1)), "标签"]   = '差Targeting-挑选'             
 pivot_df.loc[(pivot_df['Clicks'] >=20) & (pivot_df['转化率'] < 0.05), '标签'] = '差Targeting-淘汰'
 
-
-
  
 
 Allbulkpath='D:\\运营\\2生成过程表\\'
@@ -88,7 +90,7 @@ spend_summary = spend_summary.loc[spend_summary.groupby(["Country","Campaign", "
 # 将结果重命名为 "主要SKU"
 spend_summary = spend_summary.rename(columns={"SKU": "主要SKU"})
 
-# 将结果合并到原始数据集，创建一个新列 "主要SKU"
+# 将结果合并到周BUlkFIle原始数据表，创建一个新列 "主要SKU"
 pivot_df = pivot_df.merge(spend_summary[["Country","Campaign", "Ad Group", "主要SKU"]], on=["Country","Campaign", "Ad Group"], how="left")
 
 print(pivot_df)
@@ -115,16 +117,22 @@ pivot_df.to_excel(Allbulkpath+'周bulk数据testSummary2.xlsx',index=False)
 # 筛选符合条件的行
 #pivot_df_filtered = pivot_df[(pivot_df['Clicks'] > 10) & (pivot_df['Campaign Status'] == 'enabled') & 
                  #(pivot_df['Ad Group Status'] == 'enabled') & (pivot_df['Status'] == 'enabled')]
-pivot_df_filtered = pivot_df[pivot_df['Clicks'] > 9]
+pivot_df_filtered = pivot_df[pivot_df['Clicks'] > clicktemp]
 # 计算每个国家每个主要SKU的转化率，并按照转化率排序
 
 #pivot_df_filtered['Conversion Rate'] = df_filtered['Orders'] / df_filtered['Clicks']
 pivot_df_grouped = pivot_df_filtered.groupby(['Country', '主要SKU'], as_index=False).apply(lambda x: x.sort_values('转化率', ascending=False)).reset_index(drop=True)
 print(pivot_df_grouped)
  
-# 取出每个国家每个主要SKU转化率排名前5的行，生成一个新的 dataframe
-pivot_df_top= pivot_df_grouped.groupby(['Country', '主要SKU']).head(10).reset_index(drop=True)
-#pivot_df_top5 = pivot_df_grouped.groupby(['Country', '主要SKU']), '主要SKU']).head(5)
+#取出前topnumner行 而且转化率>0.03的行
+#pivot_df_top = pivot_df_grouped.groupby(['Country', '主要SKU']).head(topnumber).reset_index(drop=True)
+pivot_df_top= pivot_df_grouped[pivot_df_grouped["转化率"]>conversationrate_set].groupby(['Country', '主要SKU']).head(topnumber).reset_index(drop=True)
+#
+
+
+
+pivot_df_top= pivot_df_grouped.groupby(['Country', '主要SKU']).head(topnumber).reset_index(drop=True)
+#pivot_df_top5 = pivot_df_grouped.groupby(['Country', '主要SKU']), '主要SKU']).head(topnumber).reset_index(drop=True
  
 pivot_df_top.to_excel(Allbulkpath+'周bulk数据testSummary3.xlsx',index=False)
 
@@ -157,7 +165,9 @@ for country in countries:
 
     # 读取当前国家的Bulk文件
     amazon_bulk_df = pd.read_excel(bulk_file,sheet_name="Sponsored Products Campaigns")
-
+    amazon_bulk_df.loc[amazon_bulk_df["Keyword or Product Targeting"].notnull()&amazon_bulk_df["Clicks"]>0,"1Week转化率"]=amazon_bulk_df["Orders"]/amazon_bulk_df["Clicks"]
+    #amazon_bulk_df 1week转化率=0，if clicks=0 
+    
     # 筛选当前国家的选词表格数据
     country_keywords_df = keywords_df[keywords_df['Country'] == country].drop(columns=['Country'])
     
@@ -218,7 +228,41 @@ for country in countries:
     output_file = os.path.join("updated_bulk_files"+"20230413", f"{country}_updated_bulk_file.xlsx")
     os.makedirs(os.path.dirname(output_file), exist_ok=True)
 
-    
+    #pandas读取D:\\运营\\3数据分析结果\\国家汇总.xlsx
+    df_SummaryCountry = pd.read_excel(r'D:\\运营\\3数据分析结果\\国家汇总.xlsx', sheet_name='ProductActions')
+    #选取SKU 列和StockALL 列，以及COUNTRY 列等于country的行
+    print(df_SummaryCountry.columns)
+
+  
+    #
+
+    df_SummaryCountry = df_SummaryCountry[df_SummaryCountry['COUNTRY'] == country][['SKU', 'STOCKALL']]
+
+    df_SummaryCountry['SKU'] = df_SummaryCountry['SKU'].dropna().astype(str)
+    df_SummaryCountry.to_excel(r'D:\\运营\\'+country+"df_SummaryCountry.xlsx")
+   
+#获取merged_df 主要SKU 列的唯一值list
+    merged_df['主要SKU'] = merged_df['主要SKU'].dropna()
+    merged_df = merged_df[~merged_df['主要SKU'].astype(str).str.match(r'^\d{1,4}$')]
+    sku_list = merged_df['主要SKU'].unique().tolist()
+    for sku in sku_list:
+        print(sku)
+        strsku=str(sku)
+        print(strsku)
+        row_in_df = df_SummaryCountry.loc[df_SummaryCountry['SKU'].str.contains(str(sku))]
+   
+        if not row_in_df.empty:
+            stockall_value = row_in_df['STOCKALL'].iloc[0]
+            print("Stockall ",stockall_value)
+
+            merged_df.loc[merged_df['主要SKU']==sku, 'STOCKALL'] = stockall_value
+            #PRINT(merged_df.loc[merged_df['主要SKU']==sku, 'STOCKALL'])
+            print(merged_df.loc[merged_df['主要SKU']==sku, 'STOCKALL'])
+
+
+    merged_df = merged_df[merged_df['STOCKALL'] > 20& merged_df["转化率"]>conversationrate_set]
+
+
     merged_df.to_excel(output_file, index=False)
 
 

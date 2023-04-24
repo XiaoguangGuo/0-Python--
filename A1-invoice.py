@@ -148,6 +148,11 @@ for row in range(1, sheet.max_row + 1):
                             break
                         dimensions_row += 1
 
+                    if "US" in country  or "NEW-US" in country:
+                        weight = round(weight * 0.45359237, 2)
+                        length = round(length * 2.54, 2)
+                        width = round(width * 2.54, 2)
+                        height = round(height * 2.54, 2)
                     shipment_data["Shipment ID"].append(shipment_id)
                     
                     shipment_data["Box ID"].append(box_id)
@@ -212,22 +217,31 @@ products_df['SKU'] = products_df['SKU'].fillna('')
 other_df = shipment_data
  
 # 遍历 other_df 的 SKU 列，在 products_df 的产品 SKU 列中找到包含对应值的单元格，将这一行对应的信息合并到 other_df 中
+import re
 for index, row in other_df.iterrows():
-    for sku in row['SKU'].split():
-        matching_rows = products_df[products_df['SKU'].str.contains(sku)]
-        if not matching_rows.empty:
-            matching_row = matching_rows.iloc[0]
+    original_sku = row['SKU']
+    for _, product_row in products_df.iterrows():
+        sku_string = product_row['SKU']
+        sku_list = re.split(r'\n', sku_string)
+        
+        if original_sku in sku_list:
+            matching_row = product_row
+            print(f"Original SKU: {original_sku}")  # 调试输出
+            print(f"Matching SKU: {matching_row['SKU']}")  # 调试输出
+
             for col_name in ['产品简化名', '英文产品名称', '中文产品名称', '单个产品申报价值USD', "HSCODE",
                              'Brand(品牌)*', 'Model（型号）*', '中文材质',
                              'Purpose(用途)*', '是否带电', 'PICTURES（图片）*',
                              '产品销售链接', '内部名称', '产品销售价格', '英文材质',
-                             '英文用途',"带磁","是否含液体","是否危险品"]:
-
+                             '英文用途', "带磁", "是否含液体", "是否危险品"]:
                 other_df.at[index, col_name] = matching_row[col_name]
-            other_df.at[index, 'SKU'] = matching_row['SKU']
+            other_df.at[index, 'SKU'] = original_sku
+            break  # 跳出内部循环，继续处理 other_df 的下一行
             
  
 print(other_df.columns)
+#输出other_df至excel，路径D:\\运营\invoice\\other_df.xlsx
+
 
 # 修改箱尺寸列
 other_df["箱尺寸"] = other_df["Length"].astype(str) + "*" + other_df["Width"].astype(str) + "*" + other_df["Height"].astype(str)
