@@ -7,37 +7,51 @@ import pandas as pd
 import shutil
 import datetime
 from datetime import date
-
+import re
+#处理新站的产品分析表
+#输入最新日期
 newdate=input('输入最新日期y-m-d：新站汇总到周日',) #输入最新一周的日期
 maxtime=datetime.datetime.strptime(newdate,'%Y-%m-%d')
 print(maxtime)
 maxtimeday=datetime.datetime.strptime(newdate,'%Y-%m-%d').date()
 print(maxtimeday)
-
+#产品分析表读取和处理
 Product_Analyzepath = r'D:\\运营\\1数据源\\Product_Analyze产品分析\\'
 print(Product_Analyzepath)
 All_Product_Analyzefile=pd.read_excel(r'D:\\运营\2生成过程表\\All_Product_Analyzefile.xlsx',sheet_name=0)
+
 for Product_Analyzefile in os.listdir(Product_Analyzepath):
-    print(Product_Analyzefile)
-#遍历数据文件
-    datestr=os.path.basename(Product_Analyzefile).split("_")[2]
+
+#遍历数据文件，加日期列加周数列
+   
+
+ 
+    pattern = r"\d{4}-\d{1,2}-\d{1,2}~(\d{4}-\d{1,2}-\d{1,2})"
+
+
+    match = re.search(pattern, Product_Analyzefile)
+
+    if match:
+        datestr = match.group(1)
+        print(datestr)
+    else:
+        print("Date not found in filename")
     Product_Analyzefile_DF=pd.read_excel(Product_Analyzepath +str(Product_Analyzefile)).assign(日期=datestr[0:10])
     
     All_Product_Analyzefile["周数"]=1
     All_Product_Analyzefile=All_Product_Analyzefile.append(Product_Analyzefile_DF,ignore_index=True)
-         
-    shutil.move(Product_Analyzepath + str(Product_Analyzefile), 'D:/运营/HistoricalData/Product_Analyzefile')
+    #移动到历史文件夹     
+    shutil.move(Product_Analyzepath + str(Product_Analyzefile), r'D:/运营/HistoricalData/Product_Analyzefile/'+str(Product_Analyzefile))
+    print("已处理文件"+str(Product_Analyzefile))
 
 
 All_Product_Analyzefile_Weeks=All_Product_Analyzefile[["ASIN","店铺","站点","MSKU"]].drop_duplicates()
 All_Product_Analyzefile['日期'] = pd.to_datetime(All_Product_Analyzefile['日期'])
 print(All_Product_Analyzefile[['日期']])
-
+#赋予周数
 All_Product_Analyzefile['周数']=(maxtime-All_Product_Analyzefile['日期']).dt.days//7+1
     
-
-
-#max_week=All_Product_Analyzefile["周数"].max()
+#获取11周的数据转换成周为横列的表格
 max_week=11
 print(max_week)
 
@@ -48,23 +62,20 @@ for i in range(1,max_week):
 
     if i==1:
 
-        All_Product_Analyzefile_Weeks_i=All_Product_Analyzefile_Weeks_i[["ASIN","店铺","站点",'MSKU',"FBA可售","可售天数预估","标签","销量","销售额",'广告点击量','广告花费','广告订单量','毛利润']]
+        All_Product_Analyzefile_Weeks_i=All_Product_Analyzefile_Weeks_i[["ASIN","店铺","站点","FBA可售","可售天数预估","标签","销量","销售额",'广告点击量','广告花费','广告订单量','毛利润']]
         All_Product_Analyzefile_Weeks_i.rename(columns = {'销量':'销量'+str(i),'销售额':'销售额'+str(i),  '广告点击量':'广告点击量'+str(i),'广告花费':'广告'+str(i),'广告订单量':'广告订单'+str(i),'毛利润':'毛利润'+str(i)}, inplace = True)
     else:
-        All_Product_Analyzefile_Weeks_i=All_Product_Analyzefile_Weeks_i[["ASIN","店铺","站点",'MSKU',"销量","销售额",'广告点击量','广告花费','广告订单量','毛利润']]
+        All_Product_Analyzefile_Weeks_i=All_Product_Analyzefile_Weeks_i[["ASIN","店铺","站点","销量","销售额",'广告点击量','广告花费','广告订单量','毛利润']]
         All_Product_Analyzefile_Weeks_i.rename(columns = {'销量':'销量'+str(i),'销售额':'销售额'+str(i),  '广告点击量':'广告点击量'+str(i),'广告花费':'广告'+str(i),'广告订单量':'广告订单'+str(i),'毛利润':'毛利润'+str(i)}, inplace = True)
     
 
     #合并
-
-    All_Product_Analyzefile_Weeks=pd.merge(All_Product_Analyzefile_Weeks,All_Product_Analyzefile_Weeks_i,on=["ASIN","店铺","站点","MSKU"] ,how="left")
+    #SKU列合并来自第一周的报表
+    All_Product_Analyzefile_Weeks=pd.merge(All_Product_Analyzefile_Weeks,All_Product_Analyzefile_Weeks_i,on=["ASIN","店铺","站点"] ,how="left")
     
     All_Product_Analyzefile_Weeks=All_Product_Analyzefile_Weeks.drop_duplicates()
     #All_Product_Analyzefile_Weeks=All_Product_Analyzefile_Weeks.dropna(axis=0,subset=['MSKU'])
-#writer=pd.ExcelWriter(r'D:\\运营\\2生成过程表\\All_Product_Analyzefile.xlsx')
 
-#All_Product_Analyzefile.to_excel(writer,"All_Product_Analyzefile")
-#All_Product_Analyzefile_Weeks.to_excel(writer,"All_Product_Analyzefile_Weeks")
 
                                  
 All_Product_Analyzefile.to_excel(r'D:\\运营\\2生成过程表\\All_Product_Analyzefile.xlsx',sheet_name="sheet1",startrow=0,header=True,index=False)
@@ -86,23 +97,11 @@ import pandas as pd
 import shutil
 import datetime
 
-
+#汇率
 exchangerate_20221217={"GV-US":1,"GV-CA":1.3701,"NEW-UK":0.8223,"NEW-JP":136.6790,"NEW-CA":1.3701,"NEW-IT":0.9457,"NEW-DE":0.9457,"NEW-ES":0.9457,"NEW-FR":0.9457,"NEW-US":1,"HM-US":1,"GV-MX":19.774,"NEW-MX":19.774}
-
+#读取老站plan数据和新站数据
 plan1=pd.read_excel(r'D:\运营\2生成过程表\2023plan\plan.xlsx',sheet_name=0)
 All_Product_Analyzefile=pd.read_excel(r'D:\运营\2生成过程表\All_Product_Analyzefile.xlsx',sheet_name=0)
-#####：以下为草稿
-#################am_gv=plan["销售额"].sum()am_sailingstar=All_Product_Analyzefile[[""销售额"],"周数"=1].sum()
-#AM=am_gv+am_sailingstar
-
-
-#Plan_gv_group=plan.groupby(["Country"],"xiaoshou").agg.("sum")
-#All_Product_Analyzefile_group=All_Product_Analyzefile.(["Country"],"xiaoshou").agg.("sum")
-
-
-
-#####：草稿结束
-
 
 #筛选出老站计划近10周的销售额，订单数和广告额，广告订单数
 plan1=plan1.drop_duplicates()
@@ -111,13 +110,6 @@ plan1["广告订单1"]=0
 plan1["毛利润"]=0
 
 plan1.rename(columns = {'COUNTRY':'站点','1':'销量1','2':'销量2','3':'销量3','4':'销量4','4':'销量4','5':'销量5','6':'销量6','7':'销量7','8':'销量8','9':'销量9','10':'销量10'},inplace=True)
-
-
-print(plan1)
-
-
-
-
 
 plan1=plan1.groupby("站点").agg("sum")
 
@@ -163,28 +155,11 @@ AllCountry_Weeks.loc[(AllCountry_Weeks["广告2"]==0),"上周广告销售比"]=0
 
 AllCountry_Weeks=AllCountry_Weeks.reindex(columns=["本周销量增长","本周广告增长","本周广告销售比变化","本周广告销售比","上周广告销售比","销量1","销量2","销量3","销量4","销量5","销量6","销量7","销量8","销量9","销量10","销售额1","销售额2","销售额3","销售额4","销售额5","销售额6","销售额7","销售额8","销售额9","销售额10","广告1","广告2","广告3","广告4","广告5","广告6","广告7","广告8","广告9","广告10", "广告订单1","广告订单2","广告订单3","广告订单4","广告订单5","广告订单6","广告订单7","广告订单8","广告订单9","广告订单10"])
 
-
+#读取旧的国家汇总表
 ProductsAnalyze=pd.read_excel(r'D:\\运营\\3数据分析结果\\'+ "国家汇总.xlsx", engine="openpyxl",sheet_name=1)
 
-ProductsAnalyze=ProductsAnalyze[["COUNTRY","SKU","日销售目标","周销售目标","大类","小类","手动标签"]]
+ProductsAnalyze=ProductsAnalyze[["COUNTRY","SKU","日销售目标","周销售目标","大类","小类","手动标签","操作记录","处理优先级"]]
  
-
-
-#两个报表合并
-#Allcountry=conact(Plan_gv_group,)
-
-#再groupby
-
-#变成”国家“”第一周订单数“，“第一周金额””“第一周广告金额”“广告订单数”第n周订单数“，“第一周金额””“第一周广告金额”“广告订单数”
-
-##########################################################################################################################################################################
-######################################################################################################
-
-
-# -*- coding:utf-8 –*-
-import os
-import pandas as pd
-import shutil
 
 # -*- coding:utf-8 –*-
 import os
@@ -225,7 +200,7 @@ SailingstarPlan=SailingstarPlan.loc[~SailingstarPlan["COUNTRY"].isnull()]
 plan=pd.concat([plan,SailingstarPlan],ignore_index=True)
 plan["SKU"].astype(str)
 
-
+#将从旧国家汇总表中读取的数据合并到plan中
 plan=pd.merge(plan,ProductsAnalyze,how="left",on=["COUNTRY","SKU"])
 plan["目标差"]=plan["1"]-plan["周销售目标"]
 
@@ -349,7 +324,6 @@ for plan_country in plan_country_List:
   #################################################以上有问题#################################################################       
 
 
-shutil.move(r'D:\\运营\3数据分析结果\\国家汇总.xlsx', r'D:/运营/HistoricalData/国家汇总/'+"国家汇总"+str(date.today())+".xlsx")
 
                                 
 print(plan["广告1in美元"])
@@ -449,17 +423,56 @@ for country1 in plan["COUNTRY"].drop_duplicates().to_list():
     plan.loc[plan["COUNTRY"]==country1,"广告金额占比"]=plan["广告1"]/Country_Ad_Selling_Sum_sku_country_sum
     plan.loc[plan["COUNTRY"]==country1,"库存占比"]=plan["STOCKALL"]/Country_Stockall_sum_STOCKALL
     plan.loc[plan["COUNTRY"]==country1,"库存金额占比"]=plan["STOCKALL"]/Country_Stockall_sum_TotalAmount
+#将旧的国家汇总表.xlsx 改名为"国家汇总表"+当前日期.xlsx
+import os
 
-#SailingstarPlan=
+import datetime
+import time
+Nowtime=datetime.datetime.now().strftime('%Y%m%d')
 
+src_file = r'D:\\运营\\3数据分析结果\\国家汇总.xlsx'
+dst_file = r'D:\\运营\\3数据分析结果\\国家汇总'+Nowtime+'.xlsx'
+
+# 检查目标文件是否已经存在
+
+if os.path.exists(dst_file):
+    # 如果存在，则删除它
+    os.remove(dst_file)
+
+# 重命名源文件
+os.rename(src_file, dst_file)
+ 
 
 writer2=pd.ExcelWriter(r'D:\\运营\\3数据分析结果\\'+ "国家汇总.xlsx")
 
 
+
 AllCountry_Weeks.to_excel(writer2,"CountriesSummary")
 
-
 plan.to_excel(writer2,"ProductActions")
+
+
+# 读取源文件的规则和操作记录
+df_rules = pd.read_excel(dst_file, sheet_name='规则')
+df_records = pd.read_excel(dst_file, sheet_name='操作记录')
+
+# 创建一个新的ExcelWriter对象，将要写入的文件路径指定为国家汇总表
+
+
+# 将源文件的规则和操作记录写入国家汇总表
+df_rules.to_excel(writer2, sheet_name='规则', index=False)
+df_records.to_excel(writer2, sheet_name='操作记录', index=False)
+
+# 读取其他文件并将其内容写入国家汇总表
+df_campaign_summary = pd.read_excel(r'D:\\运营\\2生成过程表\\CampaignSKU_Summary_biaotou.xlsx', sheet_name='sheet1')
+df_search_term_summary = pd.read_excel(r'D:\\运营\\2生成过程表\\Search_Term_Summary.xlsx', sheet_name='SeachTermWeekSum_Weeks')
+
+df_campaign_summary.to_excel(writer2, sheet_name='sku-campaign汇总', index=False)
+df_search_term_summary.to_excel(writer2, sheet_name='SearchTerm汇总', index=False)
+
+# 保存并关闭ExcelWriter对象
+
+
 writer2.close()
  
 

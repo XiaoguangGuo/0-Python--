@@ -185,13 +185,14 @@ for file in os.listdir(data_path):
     if not "BusinessReport" in file:
         continue
 
-    if not re.match(r"^(US|CA|MX)_\d{4}-\d{1,2}-\d{1,2}_\S+\.csv$",file):
+    if not re.match(r'^(US|CA|MX)_\d{4}-\d{1,2}-\d{1,2}_[\w\(\)\s-]+\.csv$',file):
         print(f"Invalid filename: {file}")
         input("修改文件名")
         continue
 
     #旧的不要了if "BusinessReport" in file and file.endswith(".csv"):
     shutil.copy(os.path.join(data_path, file), sales_path)
+
 
 
 

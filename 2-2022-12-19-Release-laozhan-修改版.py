@@ -383,6 +383,7 @@ Intransit_mx.rename(columns = {'Merchant SKU':"SKU",'ASIN':"Asin"}, inplace = Tr
 
 Sales_All=pd.concat([Sales_US,Sales_CA,Sales_MX])
 Sales_All.to_excel(r'D:\运营\2生成过程表\2023plan\Sales_all.xlsx')
+
 Stock_All=pd.concat([Stock_US,Stock_CA,Stock_MX])
 Intransit_All=pd.concat([Intransit_us,Intransit_ca,Intransit_mx])       
 
@@ -440,6 +441,9 @@ for i in range(1,max_week):
 
 
 PlanAll=pd.merge(SKUAll,Sales_Weeks,how="left", on=["COUNTRY","SKU","Asin"])
+
+PlanAll.to_excel(r'D:\运营\2生成过程表\2023plan\PlanAllnew.xlsx' ,index=False)
+
 
 PlanAll=pd.merge(PlanAll,Stock_All,how="left", on=["COUNTRY","SKU","Asin"])
 
@@ -608,8 +612,9 @@ PlanAll["Adjusted-Week15"]=PlanAll["ZZ2"]*0.7*15+PlanAll["For第15周销售的�
 
 
 
-CampaignSKU_Summary=pd.read_excel(r'D:运营/2生成过程表/周bulk数据Summary.xlsx',sheet_name="SKU-WEEK")
+CampaignSKU_Summary=pd.read_excel(r'D:\运营\2生成过程表\周bulk数据Summary.xlsx',sheet_name="SKU-WEEK")
 CampaignSKU_Summary.rename(columns = {'Country':'COUNTRY'}, inplace = True)
+
 
 
 
@@ -632,7 +637,11 @@ for i in range(1,11):
 PlanAll["GGZZ1"]=PlanAll["广告1"]-PlanAll["广告2"]
 PlanAll["BILI1"]=PlanAll["广告1"]/PlanAll["1"]
 PlanAll=PlanAll.drop_duplicates()
-PlanAll=PlanAll[["COUNTRY","SKU","Asin","Title","大类","小类","Price",	"SELLING10","STOCKALL","TotalAmount","Zhouzhuan10","GGZZ1","BILI1","ZZ1","ZZ2","1","2","3","4","5","6","7","8","9","10","广告1","广告2","广告3","广告4","广告5","广告6","广告7","广告8","广告9","广告10","Fufillable","Reserved","afn-inbound-working-quantity","afn-inbound-shipped-quantity","Receiving","第1周入库","第2周入库","第3周入库","第4周入库","第5周入库","第6周入库","第7周入库","第8周入库","第9周入库","第10周入库","For第2周销售的到货需求","For第3周销售的到货需求","For第4周销售的到货需求","For第5周销售的到货需求","For第6周销售的到货需求","For第7周销售的到货需求","For第8周销售的到货需求","For第9周销售的到货需求",
+PlanAll=PlanAll[["COUNTRY","SKU","Asin","Title","大类","小类","Price",	
+                 "SELLING10","STOCKALL","TotalAmount","Zhouzhuan10","GGZZ1","BILI1",
+                 "ZZ1","ZZ2","1","2","3","4","5","6","7","8","9","10",
+                 "广告1","广告2","广告3","广告4","广告5","广告6","广告7","广告8",
+                 "广告9","广告10","Fufillable","Reserved","afn-inbound-working-quantity","afn-inbound-shipped-quantity","Receiving","第1周入库","第2周入库","第3周入库","第4周入库","第5周入库","第6周入库","第7周入库","第8周入库","第9周入库","第10周入库","For第2周销售的到货需求","For第3周销售的到货需求","For第4周销售的到货需求","For第5周销售的到货需求","For第6周销售的到货需求","For第7周销售的到货需求","For第8周销售的到货需求","For第9周销售的到货需求",
                  "For第10周销售的到货需求","For第11周销售的到货需求","For第12周销售的到货需求","For第13周销售的到货需求","For第14周销售的到货需求","For第15周销售的到货需求","Adjusted-Week2","Adjusted-Week3","Adjusted-Week4","Adjusted-Week5","Adjusted-Week6","Adjusted-Week7","Adjusted-Week8","Adjusted-Week9","Adjusted-Week10","Adjusted-Week11","Adjusted-Week12","Adjusted-Week13","Adjusted-Week14","Adjusted-Week15","广告Clicks1","广告Orders1"	,"广告Clicks2","广告Orders2","广告Clicks3","广告Orders3","广告Clicks4","广告Orders4","广告Clicks5","广告Orders5","广告Clicks6","广告Orders6","广告Clicks7","广告Orders7","广告Clicks8","广告Orders8","广告Clicks9","广告Orders9","广告Clicks10","广告Orders10"]]
 
 PlanAll.to_excel(r'D:\运营\2生成过程表\2023plan\plan.xlsx' ,index=False)       

@@ -235,15 +235,6 @@ import shutil
 
 Allbulk=updated_df[updated_df["周数"]<27]
 
- 
-
-
-
-
-
-
-
-
 AllbulkCampaign=Allbulk[Allbulk['Record Type']=="Campaign"].groupby(["Country","Campaign","Campaign Targeting Type"],as_index=False)[['Impressions','Clicks','Spend','Orders','Total Units','Sales']].agg('sum')
 AllbulkCampaign["zhuanhualv"]=AllbulkCampaign['Orders']/AllbulkCampaign['Clicks']
 AllbulkCampaign_List=AllbulkCampaign["Campaign"].drop_duplicates().to_list()
