@@ -41,8 +41,16 @@ def process_spend_summary(BulkFile_df):
 
 #输出Campaign和主要SKU的对应表（如果有国家就包含国家）
  def process_spend_summary(pivot_df):
-    # 检查是否有 "Country" 列
-    has_country = "Country" in pivot_df.columns
+    # 检查是否有 "Country" 列/或者"COUNTRY"列
+    
+
+ 
+    #如果有COUNTRY列，将其改为Country
+    if "COUNTRY" in pivot_df.columns:
+        pivot_df.rename(columns={"COUNTRY": "Country"}, inplace=True)
+        has_country = "Country" in pivot_df.columns
+
+
 
     if not has_country:
         print("没有国家列")
