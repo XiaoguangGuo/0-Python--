@@ -127,32 +127,38 @@ pivot_df = pivot_df[pivot_df["主要SKU"].notna()]
 
 #计算相关性
 #遍历pivot_df中除Country，主要sku，Campaign Name Ad Group Name的各列， 计算这一列与Units Ordered"列的的相关系数。 并把结果做成一个列名为"Country","主要SKU","Campaign Name","Ad Group Name",所计算的列名和"相关系数"的dataframe
-import pandas as pd
 import numpy as np
 
 def calculate_correlations(sales_column, df, *exclude_columns):
     # 从 DataFrame 中删除不需要计算相关性的列
     cols_to_calculate_corr = [col for col in df.columns if col not in exclude_columns + (sales_column,)]
 
-    # 初始化结果 DataFrame
-    result_df = pd.DataFrame(columns=list(exclude_columns) + ['计算相关性的列名', '相关系数'])
-
     # 分组计算相关性
     grouped_df = df.groupby(list(exclude_columns))
 
-    for group, group_df in grouped_df:
-        for col in cols_to_calculate_corr:
-            # 计算相关系数
-            correlation = group_df[sales_column].corr(group_df[col])
+    # 初始化结果 DataFrame
+    result_df = pd.DataFrame(columns=list(exclude_columns) + ['计算相关性的列名', '相关系数'])
 
-            # 将相关系数添加到结果 DataFrame
-            if not isinstance(group, tuple):
-                group = (group,)
-            temp_data = {key: value for key, value in zip(exclude_columns, group)}
-            temp_data.update({'计算相关性的列名': col, '相关系数': correlation})
-            temp_df = pd.DataFrame(temp_data, index=[0])
-            
-            result_df = pd.concat([result_df, temp_df], ignore_index=True)
+    for group, group_df in grouped_df:
+        # 将需要计算相关系数的列转换为数组
+        data = group_df[cols_to_calculate_corr].values.T
+
+        # 计算相关系数矩阵
+        corr_matrix = np.corrcoef(data)
+
+        # 提取所需的系数
+        for i, col in enumerate(cols_to_calculate_corr):
+            for j, other_col in enumerate(cols_to_calculate_corr[i+1:]):
+                correlation = corr_matrix[i, j+i+1]
+
+                # 将相关系数添加到结果 DataFrame
+                if not isinstance(group, tuple):
+                    group = (group,)
+                temp_data = {key: value for key, value in zip(exclude_columns, group)}
+                temp_data.update({'计算相关性的列名': f'{col} - {other_col}', '相关系数': correlation})
+                temp_df = pd.DataFrame(temp_data, index=[0])
+                
+                result_df = pd.concat([result_df, temp_df], ignore_index=True)
 
     return result_df
 
