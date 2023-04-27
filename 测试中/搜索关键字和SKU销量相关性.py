@@ -1,6 +1,7 @@
 import pandas as pd
 import sqlite3
 from datetime import datetime, timedelta
+import numpy as np
 
 def find_last_saturday():
     today = datetime.now()
@@ -135,45 +136,52 @@ pivot_df = merged_dataforpivot.pivot_table(index=["Country", "Campaign Name", "A
 
 #将sales_df合并到pivot_df中，按国家，SKU，周数为索引，sum of sales为值，创建一个新的dataframe
 pivot_df = pd.merge(pivot_df, sales_df, on=["Country", "主要SKU", "周数"], how="left")
-pivot_df.to_excel(r'D:\运营\2生成过程表\pivot_df.xlsx')
+
 pivot_df = pivot_df[pivot_df["主要SKU"].notna()]
- 
-
-
-#计算相关性
-#遍历pivot_df中除Country，主要sku，Campaign Name Ad Group Name的各列， 计算这一列与Units Ordered"列的的相关系数。 并把结果做成一个列名为"Country","主要SKU","Campaign Name","Ad Group Name",所计算的列名和"相关系数"的dataframe
-import numpy as np
+pivot_df.to_excel(r'D:\运营\2生成过程表\pivot_df.xlsx')
+input('请按回车键继续：')
 
 def calculate_correlations(df):
-    # 按 Country, Campaign, Ad Group, Keyword or Product Targeting, Match Type, 主要SKU 对数据分组
-    group_columns = ['Country', 'Campaign Name', 'Ad Group Name', 'Customer Search Term', 'Match Type', '主要SKU']
-    grouped_df = df.groupby(group_columns)
+    # 列出需要排除的列名
+    exclude_columns = ['Country', 'Campaign Name', 'Ad Group Name', '主要SKU', '周数', 'Units Ordered']
+
+    # 找出search term列名
+    search_term_cols = list(set(df.columns) - set(exclude_columns))
+
+    # 按照分组计算相关系数
+    grouped_df = df.groupby(['Country', 'Campaign Name',  'Ad Group Name', '主要SKU'])
 
     # 初始化结果 DataFrame
-    result_df = pd.DataFrame(columns=['Country', 'Campaign Name', 'Ad Group Name', 'Customer Search Term', 'Match Type', '主要SKU', 'Unit Ordered', 'Spend', '相关系数'])
+    result_df = pd.DataFrame(columns=['Country', 'Campaign Name', 'Ad Group Name', '主要SKU', 'search term 列名', '相关系数'])
 
-    # 遍历每个分组，计算相关性并将结果添加到结果 DataFrame 中
     for group, group_df in grouped_df:
+        # 将需要计算相关系数的列转换为数组
+        data = group_df[search_term_cols].values.T
+
+        # 找到不为0的列
+        nonzero_cols = np.array(search_term_cols)[np.sum(group_df[search_term_cols], axis=0) != 0]
         
-        # 只计算存在 Spend 和 Unit Ordered 列的分组
-        if 'Spend' in group_df.columns and 'Unit Ordered' in group_df.columns:
-            # 计算相关系数
-            correlation = group_df['Spend'].corr(group_df['Unit Ordered'])
+        # 计算相关系数矩阵
+        corr_matrix = np.corrcoef(data[:, np.isin(search_term_cols, nonzero_cols)])
 
-            # 将相关系数添加到结果 DataFrame
-            temp_data = {key: value for key, value in zip(group_columns, group)}
-            temp_data.update({'Unit Ordered': group_df['Unit Ordered'].iloc[0],
-                               'Spend': group_df['Spend'].iloc[0],
-                               '相关系数': correlation})
-            temp_df = pd.DataFrame(temp_data, index=[0])
-            result_df = pd.concat([result_df, temp_df], ignore_index=True)
+        # 提取所需的系数
+        for i, col in enumerate(nonzero_cols):
+            for j, other_col in enumerate(nonzero_cols[i+1:]):
+                correlation = corr_matrix[i, j+i+1]
 
-    return result_df[['Country', '主要SKU', 'Campaign', 'Keyword or Product Targeting', 'Ad Group',
-                      'Match Type', 'Unit Ordered', 'Spend', '相关系数']]
+                # 将相关系数添加到结果 DataFrame
+                temp_data = {key: value for key, value in zip(['Country', 'Campaign', 'Name', 'Ad Group Name', '主要SKU'], group)}
+                temp_data.update({'search term 列名': f'{col} - {other_col}', '相关系数': correlation})
+                temp_df = pd.DataFrame(temp_data, index=[0])
+
+                result_df = pd.concat([result_df, temp_df], ignore_index=True)
+
+    return result_df
 
 
 # 调用函数并输出结果
-result_df = calculate_correlations('Units Ordered', pivot_df, 'Country', '主要SKU', 'Campaign Name', 'Ad Group Name')
+pivot_df.columns = pivot_df.columns.astype(str)
+result_df = calculate_correlations(pivot_df)
 print(result_df)
 #输出结果到excel
 result_df.to_excel(r'D:\运营\2生成过程表\关键词相关性.xlsx')
