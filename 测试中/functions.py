@@ -254,3 +254,32 @@ def calculate_correlations(df):
 
     return result_df[['Country', '主要SKU', 'Campaign', 'Keyword or Product Targeting', 'Ad Group',
                       'Match Type', 'Unit Ordered', 'Spend', '相关系数']]
+
+
+
+#计算SKU-Campaign的相关系数和销量之间的相关系数。
+def correlations_SKU_Campaign(df):
+    # 按 Country, Campaign, Ad Group, Keyword or Product Targeting, Match Type, 主要SKU 对数据分组
+    group_columns = ['Country', 'Campaign', 'SKU']
+    grouped_df = df.groupby(group_columns)
+
+    # 初始化结果 DataFrame
+    result_df = pd.DataFrame(columns=['Country', 'SKU', 'Campaign',  'Spend', 'Unit Ordered', '相关系数'])
+
+    # 遍历每个分组，计算相关性并将结果添加到结果 DataFrame 中
+    for group, group_df in grouped_df:
+        # 只计算存在 Spend 和 Unit Ordered 列的分组
+        if 'Spend' in group_df.columns and 'Unit Ordered' in group_df.columns:
+            # 计算相关系数
+            correlation = group_df['Spend'].corr(group_df['Unit Ordered'])
+
+            # 将相关系数添加到结果 DataFrame
+            temp_data = {key: value for key, value in zip(group_columns, group)}
+            temp_data.update({'Unit Ordered': group_df['Unit Ordered'].iloc[0],
+                               'Spend': group_df['Spend'].iloc[0],
+                               '相关系数': correlation})
+            temp_df = pd.DataFrame(temp_data, index=[0])
+            result_df = pd.concat([result_df, temp_df], ignore_index=True)
+
+    return result_df[['Country', '主要SKU', 'Campaign',  'Spend', 'Unit Ordered','相关系数']]
+                       
