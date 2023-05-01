@@ -282,4 +282,19 @@ def correlations_SKU_Campaign(df):
             result_df = pd.concat([result_df, temp_df], ignore_index=True)
 
     return result_df[['Country', '主要SKU', 'Campaign',  'Spend', 'Unit Ordered','相关系数']]
+
+
+
+#第二种查找主要SKU的函数
+def get_top_skus(df):
+    if 'Country' in df.columns:
+        groupby_cols = ['Country', 'Campaign']
+    else:
+        groupby_cols = ['Campaign']
+    top_skus = []
+    for name, group in df.groupby(groupby_cols):
+        top_sku = group.groupby('SKU').agg({'Spend': 'sum'}).nlargest(1, 'Spend').index[0]
+        top_skus.append((name, top_sku))
+    return top_skus
+
                        

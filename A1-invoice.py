@@ -4,6 +4,7 @@ from openpyxl import load_workbook
 import datetime
 import os
 import shutil
+import re
 
 
 # 请输入国家名
@@ -211,11 +212,47 @@ else:
  
 # 读取产品信息表格
 products_df = pd.read_excel(r'D:\\运营\invoice\\发票基础信息表.xlsx')
-products_df['SKU'] = products_df['SKU'].fillna('')
+
 
 # 读取另一个 DataFrame
 other_df = shipment_data
- 
+other_df['SKU'] = other_df['SKU'].astype(str)
+all_skus = []
+#遍历 other_df 的 SKU列的unique值，在 products_df 的产品 SKU 列中查找是否有对应值，如果没有，则print出来找不到的sku，并input任意键继续。
+for value in products_df['SKU']:
+    # 跳过空值
+    if pd.isna(value):
+        continue
+
+    # 如果值是整数类型，将其转换为字符串
+    if isinstance(value, int):
+        value = str(value)
+
+    # 使用正则表达式以换行符（'\n'）或空格（' '）对值进行分割
+    skus = re.split('\n| ', value)
+    all_skus.extend(skus)
+
+# 去除 all_skus 列表中的重复值
+all_skus_unique = list(set(all_skus))
+print(all_skus_unique)
+input("按任意键继续...")
+
+# 去除 all_skus 列表中的重复值
+
+
+# 检查 other_df 的 SKU 的唯一值是否在 all_skus_unique 列表中
+for sku in other_df['SKU'].unique():
+    if sku not in all_skus_unique:
+        print(f"{sku} 不在 products_df 的 SKU 列中")
+#如果遍历结束则打印“遍历结束”并输入任何键继续
+print("遍历结束，如果更新过，请保存并关闭发票基础信息表")
+input("按任意键继续...")
+
+       
+#重新读取产品信息表格
+# 读取产品信息表格
+products_df = pd.read_excel(r'D:\\运营\invoice\\发票基础信息表.xlsx')
+products_df['SKU'] = products_df['SKU'].fillna('')   
 # 遍历 other_df 的 SKU 列，在 products_df 的产品 SKU 列中找到包含对应值的单元格，将这一行对应的信息合并到 other_df 中
 import re
 for index, row in other_df.iterrows():
