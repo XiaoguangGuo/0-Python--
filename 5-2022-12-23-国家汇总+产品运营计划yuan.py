@@ -88,7 +88,7 @@ All_Product_Analyzefile_Weeks.to_excel(r'D:\\运营\\2生成过程表\\All_Produ
 
 
 
-#######################################################################################################################################################################################################################################################
+###########################################以下为读取老站Plan数据############################################################################################################################################################################################################
 
 
 # -*- coding:utf-8 –*-
@@ -158,7 +158,7 @@ AllCountry_Weeks=AllCountry_Weeks.reindex(columns=["本周销量增长","本周�
 #读取旧的国家汇总表
 ProductsAnalyze=pd.read_excel(r'D:\\运营\\3数据分析结果\\'+ "国家汇总.xlsx", engine="openpyxl",sheet_name=1)
 
-ProductsAnalyze=ProductsAnalyze[["COUNTRY","SKU","日销售目标","周销售目标","大类","小类","手动标签","操作记录","处理优先级"]]
+ProductsAnalyze=ProductsAnalyze[["COUNTRY","SKU","日销售目标","周销售目标","大类","小类","手动标签","SKU操作记录","策略","处理优先级"]]
  
 
 # -*- coding:utf-8 –*-
@@ -203,6 +203,11 @@ plan["SKU"].astype(str)
 #将从旧国家汇总表中读取的数据合并到plan中
 plan=pd.merge(plan,ProductsAnalyze,how="left",on=["COUNTRY","SKU"])
 plan["目标差"]=plan["1"]-plan["周销售目标"]
+plan["STOCKALL"]=plan["STOCKALL"].fillna(0)
+plan["计算销售日目标"]=plan["STOCKALL"]/45
+#对plan["计算销售日目标"]向上取整
+
+plan["计算销售日目标"]=plan["计算销售日目标"].apply(lambda x:round(x+0.5))
 
 CampaignWeek1=pd.read_excel(r'D:\运营\2生成过程表\周Bulk数据Summary.xlsx',sheet_name="SKU-Campaign-WEEK")
 CampaignWeek1=CampaignWeek1[CampaignWeek1["周数"]==1]
@@ -252,6 +257,15 @@ for plan_country in plan_country_List:
     print(plan["Exchangerate"])
 
 plan["广告1in美元"]=plan["广告1"]/plan["Exchangerate"]
+#计算1，2，3，4，5，6，7，8，9，10 列 和 广告1，广告2 广告3，广告4，广告5，广告6， 广告7，广告8，广告9，广告10列的CORRELATION
+
+def row_correlation(row, columns1, columns2):
+    return row[columns1].corr(row[columns2])
+columns1 = [str(i) for i in range(1, 11)]  # ['1', '2', '3', ..., '10']
+columns2 = [f'广告{i}' for i in range(1, 11)]  # ['广告1', '广告2', '广告3', ..., '广告10']
+
+plan["correlation10"] = plan.apply(lambda row: row_correlation(row, columns1, columns2), axis=1)
+
 
 for plan_country in plan_country_List:
 
@@ -345,7 +359,7 @@ def process_plan_data(plan):
     plan.loc[((plan["COUNTRY"]=="US")|(plan["COUNTRY"]=="CA"))&( plan["BILI1"]<0.3 ),"皮质层标签"] = plan["皮质层标签"].astype(str)+" 广告花费占比小"
 #4周广告费比上四周订单超过2美元就是长期效果差
 
-plan.loc[((plan["COUNTRY"]=="US")|(plan["COUNTRY"]=="CA"))&(((plan["1"]+plan["2"]+plan["3"]+plan["4"])>0) & ((plan["广告1"]+plan["广告2"]+plan["广告3"]+plan["广告4"])/(plan["1"]+plan["2"]+plan["3"]+plan["4"])>2)),"皮质层标签" ] = plan["皮质层标签"].astype(str)+" 长期广告效果差"
+    plan.loc[((plan["COUNTRY"]=="US")|(plan["COUNTRY"]=="CA"))&(((plan["1"]+plan["2"]+plan["3"]+plan["4"])>0) & ((plan["广告1"]+plan["广告2"]+plan["广告3"]+plan["广告4"])/(plan["1"]+plan["2"]+plan["3"]+plan["4"])>2)),"皮质层标签" ] = plan["皮质层标签"].astype(str)+" 长期广告效果差"
 
 #墨西哥广告超过40比索是效果差
 
@@ -355,6 +369,7 @@ plan.loc[((plan["COUNTRY"]=="US")|(plan["COUNTRY"]=="CA"))&(((plan["1"]+plan["2"
     plan["广告2浪费金额"]=(plan["广告2"]/plan["Exchangerate"])-plan["2"]
     plan["广告3浪费金额"]=(plan["广告1"]/plan["Exchangerate"])-plan["3"]
     plan["广告4浪费金额"]=(plan["广告2"]/plan["Exchangerate"])-plan["4"]
+    plan["连续4周广告浪费金额"]=plan["广告1浪费金额"]+plan["广告2浪费金额"]+plan["广告3浪费金额"]+plan["广告4浪费金额"]
 
 #plan.loc[ ((plan["广告1in美元"]-plan["1"])/(plan["广告1in美元"])>0.7),"皮质层标签"] = plan["皮质层标签"].where (plan["广告1in美元"]>0).astype(str)+"广告浪费比例大于70%"
 #plan.loc[plan["广告1in美元"]>0,"广告1浪费比例"]=(plan["广告1in美元"]-plan["1"])/(plan["广告1in美元"])
@@ -363,7 +378,7 @@ plan.loc[((plan["COUNTRY"]=="US")|(plan["COUNTRY"]=="CA"))&(((plan["1"]+plan["2"
 
     plan.loc[(plan["COUNTRY"]=="MX")&(((plan["1"]+plan["2"]+plan["3"]+plan["4"])>0) & ((plan["广告1"]+plan["广告2"]+plan["广告3"]+plan["广告4"])/(plan["1"]+plan["2"]+plan["3"]+plan["4"])>40)),"皮质层标签" ] = plan["皮质层标签"].astype(str)+" 长期广告效果差"
 
-    lan.loc[(plan["广告1"]>0) &(plan["1"]==0),"皮质层标签"] = plan["皮质层标签"].astype(str)+" 本周广告效果差"
+    plan.loc[(plan["广告1"]>0) &(plan["1"]==0),"皮质层标签"] = plan["皮质层标签"].astype(str)+" 本周广告效果差"
 
 #All_Product_Analyzefile_LABEL=All_Product_Analyzefile[(All_Product_Analyzefile["销量"]<2)&(All_Product_Analyzefile["FBA可售"]>=50)&(All_Product_Analyzefile["周数"]==1)]
     plan.loc[(plan["1"]<1),"皮质层标签"] = plan["皮质层标签"].astype(str)+" 本周无销量"
@@ -429,6 +444,25 @@ for country1 in plan["COUNTRY"].drop_duplicates().to_list():
     plan.loc[plan["COUNTRY"]==country1,"广告金额占比"]=plan["广告1"]/Country_Ad_Selling_Sum_sku_country_sum
     plan.loc[plan["COUNTRY"]==country1,"库存占比"]=plan["STOCKALL"]/Country_Stockall_sum_STOCKALL
     plan.loc[plan["COUNTRY"]==country1,"库存金额占比"]=plan["STOCKALL"]/Country_Stockall_sum_TotalAmount
+
+def get_rows_above_80_percent(group, column, suffix):
+    group = group.sort_values(column, ascending=False)
+    total_sum = group[column].sum()
+    group[f'cumulative_sum{suffix}'] = group[column].cumsum()
+    group[f'above_80_percent{suffix}'] = group[f'cumulative_sum{suffix}'] / total_sum > 0.8
+    return group
+
+grouped = plan.groupby('COUNTRY')
+
+result_1 = grouped.apply(lambda group: get_rows_above_80_percent(group, '1', '_x')).reset_index(drop=True)
+result_2 = grouped.apply(lambda group: get_rows_above_80_percent(group, '广告1', '_y')).reset_index(drop=True)
+
+plan = pd.concat([result_1, result_2], axis=1)
+
+plan['销量1前80%'] = plan['above_80_percent_x'].apply(lambda x: 'Y' if x else '')
+plan['广告1前80%'] = plan['above_80_percent_y'].apply(lambda x: 'Y' if x else '')
+
+plan = plan.drop(columns=['cumulative_sum_x', 'above_80_percent_x', 'cumulative_sum_y', 'above_80_percent_y'])
 #将旧的国家汇总表.xlsx 改名为"国家汇总表"+当前日期.xlsx
 import os
 

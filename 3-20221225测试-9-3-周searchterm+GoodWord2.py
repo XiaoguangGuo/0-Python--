@@ -17,7 +17,7 @@ f_name = os.listdir(filePath)
 
 SeartchtermAll=pd.read_excel(r'D:\\运营\\2生成过程表\\Sponsored Products Search term report.xlsx')
 SeartchtermAll["COUNTRY"]=SeartchtermAll["COUNTRY"].str.upper()
-
+today = datetime.datetime.today().strftime('%Y-%m-%d')
 for seartchtermfile in f_name:
 
 
@@ -30,7 +30,8 @@ for seartchtermfile in f_name:
         DFseartchtermfile.rename(columns={'Total Return on Advertising Spend (ROAS)':'Total Return on Advertising Spend (RoAS)'},inplace=True)
 
     SeartchtermAll=pd.concat([SeartchtermAll,DFseartchtermfile])
-    shutil.move(filePath+"\\"+str(seartchtermfile), r'D:\\运营\\HistoricalData\\广告周数据')
+    shutil.move(filePath+"\\"+str(seartchtermfile), r'D:\\运营\\HistoricalData\\广告周数据'+str(today)+str(seartchtermfile))
+                
 
     
 SeartchtermAll["周数"]=(maxtime-SeartchtermAll["Date"]).dt.days//7+1
@@ -56,15 +57,13 @@ SeartchtermAll.to_excel(r'D:\\运营\\2生成过程表\\Sponsored Products Searc
 
 # -*- coding:utf-8 –*-
 
-import pandas as pd
-import os
-
-import datetime 
 
 import numpy as np
 
 input("检查zongbiao后回车")
 
+Campaign_SKU=pd.read_excel(r'D:\\运营\\2生成过程表\\周Bulk数据Summary.xlsx',sheet_name="SKUMax-Campaign")
+filtered_campaign_sku = Campaign_SKU[Campaign_SKU['Campaign-SKU_Spend_ranking'] == 1]
 
 
 SearchTermAll=pd.read_excel(r'D:\\运营\\2生成过程表\\Sponsored Products Search term report.xlsx')
@@ -76,7 +75,7 @@ SearchTermAll["Customer Search Term"].astype(str)
 
 All_Campaign_SearchTerm=SearchTermAll.groupby(["COUNTRY","Campaign Name", "Customer Search Term"],as_index=False)[["Impressions","Clicks","Spend","7 Day Total Sales ","7 Day Total Orders (#)"]].agg("sum")
 
-#AllbulkCampaignKeywordWEEK=Allbulk.groupby(["Country","Campaign","Keyword or Product Targeting","Ad Group","周数"],as_index=False)[['Impressions','Clicks','Spend','Orders','Total Units','Sales']].agg("sum")
+
 
 
 
@@ -89,7 +88,7 @@ All_Campaign_SearchTerm.loc[(All_Campaign_SearchTerm["转化率"]>=0.25)&(All_Ca
 All_Campaign_SearchTerm.loc[(All_Campaign_SearchTerm["转化率"]<0.05)&(All_Campaign_SearchTerm["Clicks"]>=15),"转化率好坏"]="差词"
 
 
-All_Campaign_SearchTerm=pd.merge(All_Campaign_SearchTerm,Campaign_SKU,how="left",left_on=["COUNTRY","Campaign Name"],right_on=["Country","Campaign"])
+All_Campaign_SearchTerm=pd.merge(All_Campaign_SearchTerm,filtered_campaign_sku ,how="left",left_on=["COUNTRY","Campaign Name"],right_on=["Country","Campaign"])
 
 GoodWord=All_Campaign_SearchTerm[All_Campaign_SearchTerm["转化率好坏"]=="好词"].groupby(["COUNTRY","SKU"],as_index=False)["转化率好坏"].agg("count")
 
@@ -121,15 +120,13 @@ for i in range(1, max_week):
 
 
 
-Campaign_SKU=pd.read_excel(r'D:\\运营\\2生成过程表\\周Bulk数据Summary.xlsx',sheet_name="SKUMax-Campaign")
-filtered_campaign_sku = Campaign_SKU[Campaign_SKU['Campaign-SKU_Spend_ranking'] == 1]
 
 # 选择要合并的列
 columns_to_merge = ['Country', 'Campaign', 'SKU']
 
 # 使用指定的列名将筛选后的 Campaign_SKU 数据集与 SeachTermWeekSum_Biaotou 数据集合并
 merged_data_biaotou = pd.merge(SeachTermWeekSum_Biaotou, filtered_campaign_sku[columns_to_merge],
-                       on=['Country', 'Campaign'], how='left')
+                       left_on=['COUNTRY', 'Campaign Name'],right_on=['Country','Campaign'], how='left')
 
 # 将 SKU 列移动到 Country 和 Campaign 之后
 cols = list(merged_data_biaotou.columns)

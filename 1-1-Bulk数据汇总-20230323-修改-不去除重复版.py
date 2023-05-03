@@ -1,23 +1,15 @@
+
+# -*- coding:utf-8 –*-
 import sqlite3
 import pandas as pd
 from datetime import datetime, timedelta
 
-# -*- coding:utf-8 –*-
 import os
-import pandas as pd
+
 import shutil
 
-# -*- coding:utf-8 –*-
-import os
-import pandas as pd
-import shutil
- 
-
-#pd.set_option('display.max_rows', None)
-# 读取 Excel 文件
 
 
-#将周Bulk广告数据文件夹下的数据加到数据库。
 
 
 #指定来源文件
@@ -27,16 +19,10 @@ conn = sqlite3.connect('D:/运营/sqlite/AmazonData.db')
 
 for bulkdatafile in os.listdir(bulkdatafilepath):
     print(bulkdatafile)  
-    #datadate=bulkdatafile.split('-')[4]
-    #print(datadate)
-    #datatimedatetime=datetime.datetime.strptime(datadate,'%Y%m%d')
-    #print(datatimedatetime)                                            
-    #delta=(maxtime-datatimedatetime).days//7+1
-    #print(delta)
-    
     sourcedata=pd.read_excel(bulkdatafilepath+str(bulkdatafile),engine="openpyxl",sheet_name=1).assign(Country=os.path.basename(bulkdatafile).split('_')[0], 日期=os.path.basename(bulkdatafile).split('-')[4])
      
     columnlist=["Campaign Daily Budget","Max Bid","Spend","Sales" ]
+
 #将逗号变成点
     sourcedata[columnlist]=sourcedata[columnlist].replace(',','.',regex=True).astype(float)
     sourcedata["ACoS"]=sourcedata["ACoS"].replace(',','.',regex=True)

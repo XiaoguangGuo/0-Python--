@@ -47,11 +47,11 @@ input_weeks = input("请输入考察周数，直接回车为默认52周：")#输
 input_weeks = int(input_weeks) if input_weeks else 52
 
 Bulkfiles_DF = update_bulkfiles_week_numbers(r'D:\运营\sqlite\AmazonData.db', input_weeks)#获取数据并加周数
-Bulkfiles_DF = Bulkfiles_DF.loc[Bulkfiles_DF['SKU'].notnull(), ['Country', 'SKU', 'Campaign', 'Spend', '周数']]#筛选列
+Bulkfiles_DF = Bulkfiles_DF.loc[Bulkfiles_DF['SKU'].notnull(), ['Country', 'SKU', 'Campaign', 'Spend','Clicks','Orders', '周数']]#筛选列
 
 Bulkfiles_DF=Bulkfiles_DF[Bulkfiles_DF['周数']<(input_weeks-1)]#筛选周数
 
-
+#
 Sales_DF = pd.read_excel(r'D:\运营\2生成过程表\周销售数据总表.xlsx', sheet_name='Sheet1')#读取周销售数据总表
 Sales_DF = update_week_numbers(Sales_DF)#加周数
 Sales_DF = Sales_DF.loc[Sales_DF['SKU'].notnull(), ['Country', 'SKU', 'Units Ordered', '周数']]#筛选列
@@ -63,7 +63,7 @@ Bulkfiles_DF2=Bulkfiles_DF
 
 
 #对广告数据按Country，Campaign和SKU汇总
-Bulkfiles_DF = Bulkfiles_DF.groupby(['Country', 'Campaign', 'SKU', '周数']).agg({'Spend': 'sum'}).reset_index()
+Bulkfiles_DF = Bulkfiles_DF.groupby(['Country', 'Campaign', 'SKU', '周数']).agg({'Spend': 'sum','Clicks':'sum','Orders':'sum'}).reset_index()
 #将汇总的带Campaign列的广告数据 与 Sales_DF 合并
 Bulkfiles_DF = pd.merge(Bulkfiles_DF, Sales_DF, how='outer', on=['Country', 'SKU', '周数']).fillna(0)#合并两个表
 

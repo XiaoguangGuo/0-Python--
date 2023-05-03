@@ -5,7 +5,7 @@ src_dir_path_inventory=r'D:\运营\\1数据源\\计划数据\老站\当日库存
 
 key =['US','CA','MX']
 t=key[0]
-print(t)
+
 #获取原来库存文件的列名
 data_inventory_US=pd.read_excel(r'D:\运营\2019plan\当日Amazon库存.xlsx')
 data_inventory_CA=pd.read_excel(r'D:\运营\2019plan\Canada当前Amazon库存.xlsx')
