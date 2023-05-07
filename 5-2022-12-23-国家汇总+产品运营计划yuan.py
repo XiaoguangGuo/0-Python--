@@ -449,7 +449,7 @@ def get_rows_above_80_percent(group, column, suffix):
     group = group.sort_values(column, ascending=False)
     total_sum = group[column].sum()
     group[f'cumulative_sum{suffix}'] = group[column].cumsum()
-    group[f'above_80_percent{suffix}'] = group[f'cumulative_sum{suffix}'] / total_sum > 0.8
+    group[f'above_80_percent{suffix}'] = group[f'cumulative_sum{suffix}'] / total_sum<= 0.8
     return group
 
 grouped = plan.groupby('COUNTRY')

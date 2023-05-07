@@ -1,6 +1,29 @@
 # -*- coding:utf-8 –*-
 import os
 import pandas as pd
+from datetime import datetime, timedelta
+
+
+def find_last_saturday():
+    today = datetime.now()
+    last_saturday = today - timedelta(days=today.weekday() + 2)
+    return last_saturday
+#将df中的日期列转换为周数并添加周数列
+def update_week_numbers(df):
+
+
+    last_saturday = find_last_saturday()
+    print(last_saturday)
+
+    # 检查输入 DataFrame 的列名中哪一个表示日期
+    date_column = "日期" if "日期" in df.columns else "Date"
+
+    df[date_column] = pd.to_datetime(df[date_column])
+    df['周数'] = ((last_saturday - df[date_column]).dt.days // 7) + 1
+    return df
+
+
+
 src_dir_path_inventory=r'D:\运营\\1数据源\\计划数据\老站\当日库存'
 
 key =['US','CA','MX']
@@ -106,136 +129,100 @@ print(os.listdir(src_dir_path_sales))
 key =['US','CA','MX']
 #设置需要搜索的国家名字
 
-# 以后做函数来简化程序def data_csv_open(file)
-# def sourcesales_totargetsales(path,listofcountry,target_excel)未来做
+
+#读取D:\运营\2生成过程表\周销售数据总表.xlsx"
+
+
+def process_sales_data(country, target_file_path, src_dir_path_sales):
+    print(f"开始处理 {country} 数据")
+
+    # 读取目标文件
+    target_data = pd.read_excel(target_file_path)
+    
+    # 获取目标文件列名
+    target_columns = target_data.columns.tolist()
+
+    for file in os.listdir(src_dir_path_sales):
+        file_first_part = file.split("_")[0]
+
+      
+
+        found_keyword=False
+        if country in file_first_part:
+            found_keyword=True
+            file_path = os.path.join(src_dir_path_sales, file)
+            data_csv_sales = pd.read_csv(file_path).assign(日期=os.path.basename(file).split('_')[1])
+            data_csv_sales['日期'] = pd.to_datetime(data_csv_sales['日期'])
+            data_csv_sales['周数'] = ""
+            target_data = pd.concat([target_data, data_csv_sales], ignore_index=True)
+
+            maxtime = find_last_saturday()
+            target_data['周数'] = (maxtime - target_data['日期']).dt.days // 7 + 1
+            target_data.to_excel(target_file_path, sheet_name="Sheet1", startrow=0, header=True, index=False)
+            print(f"{country} 销售数据更新完成")
+            break
+        
+    if not found_keyword:
+        print(f"没找到：{country} 销售数据")
+       
+
+src_dir_path_sales = r'D:\\运营\\1数据源\\计划数据\\老站\\销售数据\\'
+process_sales_data("US", r"D:\运营\2019plan\周销售数据.xlsx", src_dir_path_sales)
+process_sales_data("CA", r"D:\运营\2019plan\Canada周销售数据.xlsx", src_dir_path_sales)
+process_sales_data("MX", r"D:\运营\2019plan\Mexico周销售数据.xlsx", src_dir_path_sales)   
+
+
+
+
+all_sales_df=pd.read_excel(r'D:\运营\2生成过程表\周销售数据总表.xlsx',sheet_name="Sheet1")
+
 
 
 for file in os.listdir(src_dir_path_sales):
-     
-    data_sales_US=pd.read_excel(r'D:\运营\2019plan\周销售数据.xlsx')
-    data_sales_CA=pd.read_excel(r'D:\运营\2019plan\Canada周销售数据.xlsx')
-    data_sales_MX=pd.read_excel(r'D:\运营\2019plan\Mexico周销售数据.xlsx')
+        file_first_part = file.split("_")[0]
+        for keyword in key:
+            if keyword in file_first_part :
 
-    #读取 D:\运营\2生成过程表\周销售数据总表.xlsx
-    all_sales_df=pd.read_excel(r'D:\运营\2生成过程表\周销售数据总表.xlsx')
+                file_path = os.path.join(src_dir_path_sales, file)
+                data_csv_sales = pd.read_csv(file_path).assign(日期=os.path.basename(file).split('_')[1])
+                data_csv_sales['日期'] = pd.to_datetime(data_csv_sales['日期'])
+                data_csv_sales["Country"]="GV"+"-"+str(keyword)
+                if keyword=="CA":
+                    data_csv_sales=data_csv_sales.rename(columns = {
+    "Sessions – Total – B2B": "Sessions - Total - B2B",
+    "Session percentage - Total": "Session Percentage - Total",
+    "Session Percentage – Total – B2B": "Session Percentage - Total - B2B",
+    "Page views - Total": "Page Views - Total",
+    "Page Views – Total – B2B": "Page Views - Total - B2B",
+    "Page views percentage - Total": "Page Views Percentage - Total",
+    "Page Views Percentage – Total – B2B": "Page Views Percentage - Total - B2B",
+    "Featured Offer (Buy Box) Percentage – B2B": "Featured Offer (Buy Box) Percentage - B2B",
+    "Units ordered": "Units Ordered",
+    "Units ordered – B2B": "Units Ordered - B2B",
+    "Unit session percentage": "Unit Session Percentage",
+    "Units session percentage – B2B": "Unit Session Percentage - B2B",
+    "Ordered product sales": "Ordered Product Sales",
+    "Ordered product sales – B2B": "Ordered Product Sales - B2B",
+    "Total order items": "Total Order Items",
+    "Total order items – B2B": "Total Order Items - B2B"})
 
-#未来可以做一个文件名列表包含文件名和sheet名
-    salescolumns_US=data_sales_US.columns.tolist()
-    salescolumns_CA=data_sales_CA.columns.tolist()
-    salescolumns_MX=data_sales_MX.columns.tolist()
-    salescolumns_all=all_sales_df.columns.tolist()
-#取得目标文件的dataframe和列名
+                #judge if the columns of data_csv_sales is a subset of all_sales_df
+                if set(data_csv_sales.columns).issubset(set(all_sales_df.columns)):
 
-    if key[0] in file:
-        print("开始处理US数据")
-    
-   
-   
-        data_csv_sales =pd.read_csv(r'D:\\运营\\1数据源\计划数据\\老站\\销售数据\\'+ str(file)).assign(日期=os.path.basename(file).split('_')[1])
-    #读取源数据加日期 把文件名中的日期写进来
-        data_csv_sales['日期'] = pd.to_datetime(data_csv_sales['日期'])
-        print(data_csv_sales['日期'])
-        data_csv_sales['周数']=""
-            
-        print(data_csv_sales)
-      
-        ru=data_sales_US.columns.size-data_csv_sales.columns.size 
-        
-        if ru==0:
-        #如果列数相同
-            data_csv_sales.columns=salescolumns_US
-            data_sales_US=data_sales_US.append(data_csv_sales,ignore_index=True)
-        #做append将源数据合并到目标文件
-            maxtime=pd.to_datetime(data_sales_US["日期"].max())
-        #查目标文件的最晚日期
-            print("最晚时间",maxtime)
-            data_sales_US ['周数']=(maxtime-data_sales_US['日期']).dt.days//7+1
-        #周数写到目标文件
-        #在导出之前加周数
-            data_sales_US.to_excel(r'D:\运营\2019plan\周销售数据.xlsx', sheet_name="Sheet1",startrow=0,header=True,index=False)
-            print("US销售数据更新完成")
-        else:
-            print("US销售数据未导出，请修改目标文件以保证列数相同")
-            print("列数新下载数据文件和目标文件分别为：",data_csv_sales.columns.size,data_sales_CA.columns.size)
-              
-
-              
-    # CA
-    
-    elif key[1] in file:
+                    all_sales_df = all_sales_df.reset_index(drop=True)
+                    data_csv_sales = data_csv_sales.reset_index(drop=True)
+                    print(data_csv_sales.columns)
+                    input("请检查列名是否正确，按回车键继续")
+                    all_sales_df = pd.concat([all_sales_df,data_csv_sales],axis=0,ignore_index=True)
+                    break
+                else:
+                    print("列名有不符合的，需要修改")
+                    input("请修改列名后按回车键继续")
+                    
+all_sales_df=update_week_numbers(all_sales_df)
+print(all_sales_df)        
+all_sales_df.to_excel(r'D:\运营\2生成过程表\周销售数据总表.xlsx', sheet_name="Sheet1", startrow=0, header=True, index=False)
  
-    
-   
-   
-        data_csv_sales =pd.read_csv(r'D:\\运营\\1数据源\\计划数据\\老站\\销售数据\\'+ str(file),encoding="Latin1").assign(日期=os.path.basename(file).split('_')[1])
-    #读取源数据加日期 把文件名中的日期写进来
-        data_csv_sales['日期'] = pd.to_datetime(data_csv_sales['日期'])
-        print(data_csv_sales['日期'])
-        data_csv_sales['周数']=""
-            
-        print(data_csv_sales)
-   
-       
-    
-        
-   
-            
-        ru=data_sales_CA.columns.size-data_csv_sales.columns.size 
-        
-        if ru==0:
-        #如果列数相同
-            data_csv_sales.columns=salescolumns_CA
-            data_sales_CA=data_sales_CA.append(data_csv_sales,ignore_index=True)
-        #做append将源数据合并到目标文件
-            maxtime=pd.to_datetime(data_sales_CA["日期"].max())
-        #查目标文件的最晚日期
-            print("最晚时间",maxtime)
-            data_sales_CA ['周数']=(maxtime-data_sales_CA['日期']).dt.days//7+1
-        #周数写到目标文件
-        #在导出之前加周数
-            data_sales_CA.to_excel(r'D:\运营\2019plan\Canada周销售数据.xlsx', sheet_name="Sheet1",startrow=0,header=True,index=False)
-            print("CA销售数据更新完成")
-        else:
-            print("CA销售数据未导出，请修改目标文件以保证列数相同")
-            print("列数新下载数据文件和目标文件分别为：",data_csv_sales.columns.size,data_sales_CA.columns.size)
-              
-    # MX
-
-    elif key[2] in file:
-        print("开始处理MX数据")
-        # 不需要的 data_csv3 = pd.read_table(r'D:\\运营\\1数据源\\计划数据\\老站\\销售数据\\'+ str(file))
-    # 打开原文件的dataframe
-     
-
-   
-        data_csv_sales =pd.read_csv(r'D:\\运营\\1数据源\\计划数据\\老站\\销售数据\\'+ str(file)).assign(日期=os.path.basename(file).split('_')[1])
-    #加日期把文件名中的日期写进来
-        data_csv_sales['日期'] = pd.to_datetime(data_csv_sales['日期'])
-        print(data_csv_sales['日期'])
-       
-        data_csv_sales['周数']=""
-  
-    #加周数
-        ru=data_csv_sales.columns.size-data_sales_MX.columns.size
-        if ru==0:
-    #给列名赋值确保可以
-            data_csv_sales.columns=salescolumns_MX
-    #做append
-            data_sales_MX=data_sales_MX.append(data_csv_sales,ignore_index=True)
-            maxtime=pd.to_datetime(data_sales_MX["日期"].max())
-            print(maxtime)
-            data_sales_MX['周数']=(maxtime-data_sales_MX['日期']).dt.days//7+1
-            data_sales_MX.to_excel(r'D:\运营\2019plan\Mexico周销售数据.xlsx', sheet_name="Sheet1",startrow=0,header=True,index=False)
-            print("MX销售数据更新完成")
-        else:
-            print("请修改目标文件，以保证列数相同")
-            print("列数新下载数据文件和目标文件分别为：",data_csv_sales.columns.size,data_sales_MX.columns.size) 
-    else:
-        print("什么销售文件都没有")
-    
-
-    
-    
 # 复制TSV在途库存
 
 src_dir_path_shipped=r'D:\运营\1数据源\计划数据\老站\在途库存'

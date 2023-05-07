@@ -64,8 +64,8 @@ countrylist1=["NEW-JP","NEW-IT","GV-MX","NEW-MX","NEW-FR","NEW-DE","NEW-ES"]
 bulkfilecountrylist=[]#国家空列表
 for bulkoperationfile in os.listdir(bulkoperationfilespath):
     clickatempt=10
-    clickenough1=12
-    clickenough2=16#暂停条件为新站扶持国家,订单数<点击/16
+    clickenough1=20
+    clickenough2=20#暂停条件为新站扶持国家,订单数<点击/16
 
 
 
