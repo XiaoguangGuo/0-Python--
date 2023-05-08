@@ -44,8 +44,43 @@ all_sales_df = pd.merge(all_sales_df, all_advertise_df, how='left', left_on=['Co
 #all_salses_df rename
 all_sales_df.rename(columns={'(Child) ASIN':'ASIN','Country':'站点','Sessions - Total':'Sessions','Units Ordered':'销量','Ordered Product Sales':'销售额','Clicks':'广告点击量','Total Units':'广告订单','Sales':'广告销售额'},inplace=True)
 all_sales_df["店铺"]=all_sales_df["站点"]
+all_sales_df["MSKU"]=all_sales_df["SKU"]
 #把all_sales_df concat到Product_Analyzefile_df
 Product_Analyzefile_df = pd.concat([Product_Analyzefile_df,all_sales_df],axis=0,ignore_index=True) 
+#获取ASIN列和MSKU的对照表
+ASIN-SKU=Product_Analyzefile_df[["Country","ASIN","MSKU"]].unique()
+#按Country和Asin分组后MSKU列不同行的字符串合并，用逗号拼接。形成新的MSKU列，然后drop掉MSKU列，去重。
+ 
+
+# 定义一个函数，用于合并和去重MSKU
+def merge_and_deduplicate(mskus):
+    unique_mskus = set()
+    for msku in mskus:
+        # 分割逗号分隔的字符串，并将结果添加到集合中
+        unique_mskus.update(msku.split(','))
+    return ','.join(unique_mskus)
+
+# 使用groupby和apply方法合并和去重MSKU
+ASIN-SKU_unique = ASIN-SKU.groupby(['站点', 'ASIN'])['MSKU'].apply(merge_and_deduplicate).reset_index()
+ASIN-SKU_unique.columns = ['站点', 'ASIN', 'MNSKU']
+
+ 
+
+def merge_and_expand_msku(df):
+    df['MSKU'] = df['MSKU'].apply(lambda x: set(x.split(',')))
+    merged_df = df.groupby(['站点', 'ASIN'])['MSKU'].apply(lambda x: set.union(*x)).reset_index()
+    expanded_df = merged_df.explode('MSKU').reset_index(drop=True)
+    return expanded_df
+
+ASIN-SKU_multiple = merge_and_expand_msku(ASIN-SKU)
+
+
+
+
+
+
+
+
 Product_Analyzefile_df=Product_Analyzefile_df[Product_Analyzefile_df["周数"]<=52]
 #输出Product_Analyzefile_df到D:\运营\2生成过程表\TESTAll_Product_Analyzefilebeforepivot.xlsx
 Product_Analyzefile_df.to_excel(r'D:\运营\2生成过程表\TESTAll_Product_Analyzefilebeforepivot.xlsx')
@@ -66,6 +101,9 @@ new_columns = [(col[0] + str(col[1])) for col in Product_Analyzefile_df_pivot.co
 # Reset the index and set new column names
 Product_Analyzefile_df_pivot.reset_index(inplace=True)
 Product_Analyzefile_df_pivot.columns = ['ASIN', '店铺', '站点'] + new_columns
+
+
+
 ###########################################################3333
 def calculate_consecutive_weeks(df):
     def consecutive_weeks(group):
@@ -109,7 +147,8 @@ result_df=calculate_consecutive_weeks(Product_Analyzefile_df)
 #merge
 Product_Analyzefile_df_pivot = pd.merge(Product_Analyzefile_df_pivot, result_df, how='left', left_on=['ASIN', '店铺', '站点'], right_on=['ASIN', '店铺', '站点'])
 
-
+#将ASIN-SKU_unique中的MNSKU匹配到Product_Analyzefile_df_pivot中，按COuntry对应站点，ASIN对应ASIN的方式匹配
+Product_Analyzefile_df_pivot = pd.merge(Product_Analyzefile_df_pivot, ASIN-SKU_unique, how='left', left_on=['站点', 'ASIN'], right_on=['站点', 'ASIN'])
 
 
 #输出到D:\运营\2生成过程表\TESTAll_Product_Analyzefile.xlsx

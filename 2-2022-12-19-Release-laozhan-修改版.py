@@ -367,6 +367,8 @@ Intransit_ca.rename(columns = {'Merchant SKU':"SKU",'ASIN':"Asin"}, inplace = Tr
          
 Sales_MX=pd.read_excel(r'D:\运营\2019plan\Mexico周销售数据.xlsx')
 Sales_MX["COUNTRY"]="GV-MX"
+
+
 Stock_MX=pd.read_excel(r'D:\运营\2019plan\Mexico当日Amazon库存.xlsx')
 Stock_MX.rename(columns = {'sku':"SKU",'asin':"Asin"}, inplace = True)
 Stock_MX.rename(columns = {'sku':"SKU",'asin':"Asin","afn-fulfillable-quantity":"Fufillable","afn-inbound-receiving-quantity":"Receiving","afn-reserved-quantity":"Reserved"}, inplace = True)
@@ -387,6 +389,8 @@ Intransit_mx.rename(columns = {'Merchant SKU':"SKU",'ASIN':"Asin"}, inplace = Tr
 
 
 Sales_All=pd.concat([Sales_US,Sales_CA,Sales_MX])
+
+
 Sales_All.to_excel(r'D:\运营\2生成过程表\2023plan\Sales_all.xlsx')
 
 Stock_All=pd.concat([Stock_US,Stock_CA,Stock_MX])
