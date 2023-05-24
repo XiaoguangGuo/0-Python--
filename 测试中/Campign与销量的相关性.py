@@ -15,7 +15,7 @@ def update_week_numbers(df):
     return df
 
 # 通过键盘输入选取国家
-selected_country = input("Please input the country: ")
+selected_country = input("Please input the Country: ")
  
 #
 conn = sqlite3.connect('D:\运营\sqlite\AmazonData.db')

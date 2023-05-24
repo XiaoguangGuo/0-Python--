@@ -13,18 +13,18 @@ input ("首先檢查三個在途計劃表,確認沒問題之後點回車")
 #讀取2019計劃的銷售表
 Sales_US=pd.read_excel(r'D:\2019plan\周销售数据.xlsx')
 
-Sales_US["COUNTRY"]="GV-US"
+Sales_US["Country"]="GV-US"
 Sales_US.rename(columns = {'(Child) ASIN':"Asin"}, inplace = True)
                 
 Stock_US=pd.read_excel(r'D:\2019plan\当日Amazon库存.xlsx')
 Stock_US.rename(columns = {'sku':"SKU",'asin':"Asin","afn-fulfillable-quantity":"Fufillable","afn-inbound-receiving-quantity":"Receiving","afn-reserved-quantity":"Reserved"}, inplace = True)
-Stock_US["COUNTRY"]="GV-US"
-Stock_US=Stock_US[["COUNTRY","Asin","SKU","Fufillable","Reserved","afn-inbound-working-quantity","afn-inbound-shipped-quantity","Receiving"]]
+Stock_US["Country"]="GV-US"
+Stock_US=Stock_US[["Country","Asin","SKU","Fufillable","Reserved","afn-inbound-working-quantity","afn-inbound-shipped-quantity","Receiving"]]
 
 
 Intransit_us=pd.read_excel(r'D:\2019plan\在途库存.xlsx')
 
-Intransit_us["COUNTRY"]="GV-US"
+Intransit_us["Country"]="GV-US"
  
 Intransit_us.rename(columns = {'Merchant SKU':"SKU",'ASIN':"Asin"}, inplace = True)
 
@@ -32,28 +32,28 @@ Intransit_us.rename(columns = {'Merchant SKU':"SKU",'ASIN':"Asin"}, inplace = Tr
 #输出成excel表
 
 Sales_CA=pd.read_excel(r'D:\2019plan\Canada周销售数据.xlsx')
-Sales_CA["COUNTRY"]="GV-CA"
+Sales_CA["Country"]="GV-CA"
 Sales_CA.rename(columns = {'(Child) ASIN':"Asin","Units ordered":"Units Ordered"}, inplace = True)
 
                 
 Stock_CA=pd.read_excel(r'D:\2019plan\Canada当前Amazon库存.xlsx')
-Stock_CA["COUNTRY"]="GV-CA"
+Stock_CA["Country"]="GV-CA"
 Stock_CA.rename(columns = {'sku':"SKU",'asin':"Asin","afn-fulfillable-quantity":"Fufillable","afn-inbound-receiving-quantity":"Receiving","afn-reserved-quantity":"Reserved"}, inplace = True)
-Stock_CA=Stock_CA[["COUNTRY","Asin","SKU","Fufillable","Reserved","afn-inbound-working-quantity","afn-inbound-shipped-quantity","Receiving"]]
+Stock_CA=Stock_CA[["Country","Asin","SKU","Fufillable","Reserved","afn-inbound-working-quantity","afn-inbound-shipped-quantity","Receiving"]]
 
 
 Intransit_ca=pd.read_excel(r'D:\2019plan\Canada在途库存.xlsx')
-Intransit_ca["COUNTRY"]="GV-MX"
+Intransit_ca["Country"]="GV-MX"
 Intransit_ca.rename(columns = {'Merchant SKU':"SKU",'ASIN':"Asin"}, inplace = True)
 
          
 Sales_MX=pd.read_excel(r'D:\2019plan\Mexico周销售数据.xlsx')
-Sales_MX["COUNTRY"]="GV-MX"
+Sales_MX["Country"]="GV-MX"
 Stock_MX=pd.read_excel(r'D:\2019plan\Mexico当日Amazon库存.xlsx')
 Stock_MX.rename(columns = {'sku':"SKU",'asin':"Asin"}, inplace = True)
 Stock_MX.rename(columns = {'sku':"SKU",'asin':"Asin","afn-fulfillable-quantity":"Fufillable","afn-inbound-receiving-quantity":"Receiving","afn-reserved-quantity":"Reserved"}, inplace = True)
-Stock_MX["COUNTRY"]="GV-MX"
-Stock_MX=Stock_MX[["COUNTRY","Asin","SKU","Fufillable","Reserved","afn-inbound-working-quantity","afn-inbound-shipped-quantity","Receiving"]]                
+Stock_MX["Country"]="GV-MX"
+Stock_MX=Stock_MX[["Country","Asin","SKU","Fufillable","Reserved","afn-inbound-working-quantity","afn-inbound-shipped-quantity","Receiving"]]                
 
 
 
@@ -61,7 +61,7 @@ Stock_MX=Stock_MX[["COUNTRY","Asin","SKU","Fufillable","Reserved","afn-inbound-w
 
 
 Intransit_mx=pd.read_excel(r'D:\2019plan\Mexico在途库存.xlsx')
-Intransit_mx["COUNTRY"]="GV-MX"
+Intransit_mx["Country"]="GV-MX"
 
                 
 Intransit_mx.rename(columns = {'Merchant SKU':"SKU",'ASIN':"Asin"}, inplace = True) 
@@ -74,8 +74,8 @@ Stock_All=pd.concat([Stock_US,Stock_CA,Stock_MX])
 Intransit_All=pd.concat([Intransit_us,Intransit_ca,Intransit_mx])       
 
  
-SKUAll_1=Stock_All[["COUNTRY","Asin","SKU"]].drop_duplicates()
-SKUAll_2=Sales_All[["COUNTRY","Asin","SKU"]].drop_duplicates()
+SKUAll_1=Stock_All[["Country","Asin","SKU"]].drop_duplicates()
+SKUAll_2=Sales_All[["Country","Asin","SKU"]].drop_duplicates()
 SKUAll=pd.concat([SKUAll_1,SKUAll_2])
 
 
@@ -90,14 +90,14 @@ for i in range(1,max_week):
 
     if i==1:
 
-        Sales_Weeks_i=Sales_Weeks_i[["COUNTRY","Asin","Title","SKU","Units Ordered"]]
+        Sales_Weeks_i=Sales_Weeks_i[["Country","Asin","Title","SKU","Units Ordered"]]
 
         Sales_Weeks_i.rename(columns = {"Units Ordered":str(i)}, inplace = True)
 
         print(Sales_Weeks_i)
        
     else:
-        Sales_Weeks_i=Sales_Weeks_i[["COUNTRY","Asin","SKU","Units Ordered"]]
+        Sales_Weeks_i=Sales_Weeks_i[["Country","Asin","SKU","Units Ordered"]]
         print(Sales_Weeks_i)
        
         print(i)
@@ -106,36 +106,36 @@ for i in range(1,max_week):
 
     #合并
 
-    Sales_Weeks=pd.merge(Sales_Weeks,Sales_Weeks_i,on=["COUNTRY","Asin","SKU"] ,how="left")
+    Sales_Weeks=pd.merge(Sales_Weeks,Sales_Weeks_i,on=["Country","Asin","SKU"] ,how="left")
     Sales_Weeks.to_excel(r'D:\运营\2生成过程表\2023plan\Sales_Weeks.xlsx' ,index=False)  
 
 max_week=11
-Intransit_Weeks = Intransit_All[["COUNTRY","Asin","SKU"]].drop_duplicates()
+Intransit_Weeks = Intransit_All[["Country","Asin","SKU"]].drop_duplicates()
 for i in range(1,max_week):
 
   Intransit_Weeks_i=Intransit_All.loc[Intransit_All["周数"]==i]
   if len(Intransit_Weeks_i)>0:
-      Intransit_Weeks_i=Intransit_Weeks_i[["COUNTRY","Asin","SKU","Shipped"]]
+      Intransit_Weeks_i=Intransit_Weeks_i[["Country","Asin","SKU","Shipped"]]
       Intransit_Weeks_i.rename(columns = {"Shipped":"第"+str(i)+"周入库"}, inplace = True)
-  Intransit_Weeks =pd.merge(Intransit_Weeks,Intransit_Weeks_i,on=["COUNTRY","Asin","SKU"] ,how="left")
+  Intransit_Weeks =pd.merge(Intransit_Weeks,Intransit_Weeks_i,on=["Country","Asin","SKU"] ,how="left")
   
 
 
 
 
-PlanAll=pd.merge(SKUAll,Sales_Weeks,how="left", on=["COUNTRY","SKU","Asin"])
+PlanAll=pd.merge(SKUAll,Sales_Weeks,how="left", on=["Country","SKU","Asin"])
 
-PlanAll=pd.merge(PlanAll,Stock_All,how="left", on=["COUNTRY","SKU","Asin"])
+PlanAll=pd.merge(PlanAll,Stock_All,how="left", on=["Country","SKU","Asin"])
 
-PlanAll=pd.merge(PlanAll,Intransit_Weeks,how="left", on=["COUNTRY","SKU","Asin"])
+PlanAll=pd.merge(PlanAll,Intransit_Weeks,how="left", on=["Country","SKU","Asin"])
 
 PlanAll.fillna(0,inplace=True)
 Listing=pd.read_excel(r'D:/运营/2019plan/Listing.xlsx',sheet_name="Listing")
-Listing=Listing[["COUNTRY","SKU","大类","小类"]]
+Listing=Listing[["Country","SKU","大类","小类"]]
 
 Price=pd.read_excel(r'D:/运营/2019plan/Listing.xlsx',sheet_name="Price")
 Price=Price[["SKU","Price"]]
-PlanAll=pd.merge(PlanAll,Listing,on=["COUNTRY","SKU" ] ,how="left")
+PlanAll=pd.merge(PlanAll,Listing,on=["Country","SKU" ] ,how="left")
 PlanAll=pd.merge(PlanAll,Price,on=["SKU" ] ,how="left")
 print(PlanAll)
     
@@ -203,7 +203,7 @@ PlanAll["Adjusted-Week15"]=PlanAll["ZZ2"]*0.7*15+PlanAll["For第15周销售的�
 
 
 
-#SELECT "US" AS COUNTRY, 周销售数据_交叉表_SKU日期.SKU, 周销售数据_交叉表_SKU日期.[(Child)
+#SELECT "US" AS Country, 周销售数据_交叉表_SKU日期.SKU, 周销售数据_交叉表_SKU日期.[(Child)
 #ASIN], listing.大类, listing.小类, listing.新品, listing.型号, listing.唯一中文名称,
 #周销售数据_交叉表_SKU日期.Title之Last, 周销售数据_交叉表_SKU日期.[总计 Units Ordered],
 #IIF([1]>0,[周Bulk广告数据汇总-US_交叉表加名字].广告1/[1],null) AS BILI1,
@@ -299,23 +299,23 @@ CampaignSKU_Summary=pd.read_excel(r'D:/运营/2生成过程表/周bulk数据Summ
 
 
 
-CampaignSKU_Summary_biaotou=CampaignSKU_Summary[["COUNTRY","SKU"]].drop_duplicates()
+CampaignSKU_Summary_biaotou=CampaignSKU_Summary[["Country","SKU"]].drop_duplicates()
 print(CampaignSKU_Summary_biaotou)
 
 for i in range(1,11):
     #CampaignSKU_Summary_i=CampaignSKU_Summary["Clicks","Orders"].loc[(CampaignSKU_Summary["周数"]==i)]
     CampaignSKU_Summary_i=CampaignSKU_Summary.loc[(CampaignSKU_Summary["周数"]==i)]
     
-    CampaignSKU_Summary_i=CampaignSKU_Summary_i[["COUNTRY","SKU","Clicks","Orders","Spend"]]
+    CampaignSKU_Summary_i=CampaignSKU_Summary_i[["Country","SKU","Clicks","Orders","Spend"]]
     #更改列名
 
     CampaignSKU_Summary_i.rename(columns = {'Clicks':'广告Clicks'+str(i), 'Orders':'广告Orders'+str(i),'Spend':'广告'+str(i)}, inplace = True)
 
-    PlanAll=pd.merge(PlanAll,CampaignSKU_Summary_i,on=["COUNTRY","SKU" ] ,how="left")
+    PlanAll=pd.merge(PlanAll,CampaignSKU_Summary_i,on=["Country","SKU" ] ,how="left")
  
 PlanAll["GGZZ1"]=PlanAll["广告1"]-PlanAll["广告2"]
 PlanAll["BILI1"]=PlanAll["广告1"]/PlanAll["1"]
 PlanAll=PlanAll.drop_duplicates()
-PlanAll=PlanAll[["COUNTRY","SKU","Asin","Title","大类","小类","Price",	"SELLING10","STOCKALL","TotalAmount","Zhouzhuan10","GGZZ1","BILI1","ZZ1","ZZ2","1","2","3","4","5","6","7","8","9","10","广告1","广告2","广告3","广告4","广告5","广告6","广告7","广告8","广告9","广告10","Fufillable","Reserved","afn-inbound-working-quantity","afn-inbound-shipped-quantity","Receiving","第1周入库","第2周入库","第3周入库","第4周入库","第5周入库","第6周入库","第7周入库","第8周入库","第9周入库","第10周入库","For第2周销售的到货需求","For第3周销售的到货需求","For第4周销售的到货需求","For第5周销售的到货需求","For第6周销售的到货需求","For第7周销售的到货需求","For第8周销售的到货需求","For第9周销售的到货需求","For第10周销售的到货需求","For第11周销售的到货需求","For第12周销售的到货需求","For第13周销售的到货需求","For第14周销售的到货需求","For第15周销售的到货需求","Adjusted-Week2","Adjusted-Week3","Adjusted-Week4","Adjusted-Week5","Adjusted-Week6","Adjusted-Week7","Adjusted-Week8","Adjusted-Week9","Adjusted-Week10","Adjusted-Week11","Adjusted-Week12","Adjusted-Week13","Adjusted-Week14","Adjusted-Week15","广告Clicks1","广告Orders1"	,"广告Clicks2","广告Orders2","广告Clicks3","广告Orders3","广告Clicks4","广告Orders4","广告Clicks5","广告Orders5","广告Clicks6","广告Orders6","广告Clicks7","广告Orders7","广告Clicks8","广告Orders8","广告Clicks9","广告Orders9","广告Clicks10","广告Orders10"]]
+PlanAll=PlanAll[["Country","SKU","Asin","Title","大类","小类","Price",	"SELLING10","STOCKALL","TotalAmount","Zhouzhuan10","GGZZ1","BILI1","ZZ1","ZZ2","1","2","3","4","5","6","7","8","9","10","广告1","广告2","广告3","广告4","广告5","广告6","广告7","广告8","广告9","广告10","Fufillable","Reserved","afn-inbound-working-quantity","afn-inbound-shipped-quantity","Receiving","第1周入库","第2周入库","第3周入库","第4周入库","第5周入库","第6周入库","第7周入库","第8周入库","第9周入库","第10周入库","For第2周销售的到货需求","For第3周销售的到货需求","For第4周销售的到货需求","For第5周销售的到货需求","For第6周销售的到货需求","For第7周销售的到货需求","For第8周销售的到货需求","For第9周销售的到货需求","For第10周销售的到货需求","For第11周销售的到货需求","For第12周销售的到货需求","For第13周销售的到货需求","For第14周销售的到货需求","For第15周销售的到货需求","Adjusted-Week2","Adjusted-Week3","Adjusted-Week4","Adjusted-Week5","Adjusted-Week6","Adjusted-Week7","Adjusted-Week8","Adjusted-Week9","Adjusted-Week10","Adjusted-Week11","Adjusted-Week12","Adjusted-Week13","Adjusted-Week14","Adjusted-Week15","广告Clicks1","广告Orders1"	,"广告Clicks2","广告Orders2","广告Clicks3","广告Orders3","广告Clicks4","广告Orders4","广告Clicks5","广告Orders5","广告Clicks6","广告Orders6","广告Clicks7","广告Orders7","广告Clicks8","广告Orders8","广告Clicks9","广告Orders9","广告Clicks10","广告Orders10"]]
 
 PlanAll.to_excel(r'D:\运营\2生成过程表\2023plan\plan.xlsx' ,index=False)       

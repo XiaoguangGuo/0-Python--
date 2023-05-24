@@ -22,7 +22,7 @@ SeartchtermAll=pd.read_excel(r'D:\\运营\\2生成过程表\\Sponsored Products 
 for seartchtermfile in f_name:
 
 
-    DFseartchtermfile=pd.read_excel(filePath+"\\"+str(seartchtermfile),engine="openpyxl").assign(COUNTRY=os.path.basename(seartchtermfile).split('_')[0])
+    DFseartchtermfile=pd.read_excel(filePath+"\\"+str(seartchtermfile),engine="openpyxl").assign(Country=os.path.basename(seartchtermfile).split('_')[0])
 
     shutil.move(filePath+"\\"+str(seartchtermfile), r'D:/运营/1数据源/周SearchTerm数据')
 

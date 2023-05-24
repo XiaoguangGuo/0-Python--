@@ -10,7 +10,7 @@ import numpy as np
 
 
 SearchSummaryWeeks=pd.read_excel(r'D:\\运营\\2生成过程表\\Search_Term_Summary.xlsx',sheet_name="SeachTermWeekSum_Weeks")
-SearchSummaryWeeks=SearchSummaryWeeks[SearchSummaryWeeks["COUNTRY"]=="NEW-US"]
+SearchSummaryWeeks=SearchSummaryWeeks[SearchSummaryWeeks["Country"]=="NEW-US"]
 
 SearSummaryBiaotou=SearchSummaryWeeks[["Campaign Name", "Ad Group Name","Targeting","Match Type","Customer Search Term"]]
 

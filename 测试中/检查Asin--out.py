@@ -14,11 +14,11 @@ grouped = bulkdf.groupby(['Country', 'SKU'])[['Spend', 'Orders', 'Clicks']].sum(
 
 
 # 输出指定国家和 SKU 的 Spend、Orders、Clicks 总和
-country = 'GV-US'  # 指定国家
+Country = 'GV-US'  # 指定国家
 sku = 'N20201226-heartglass-gift'  # 指定 SKU
 
 
-result = grouped.loc[(country, sku)]
+result = grouped.loc[(Country, sku)]
 print(result)
 
 file_pathSummary = r'D:\运营\2生成过程表\周bulk数据Summary.xlsx'
@@ -26,10 +26,10 @@ sheet_name="SKU-Campaign-Spend"
 seartchtermSummary= r'D:\运营\2生成过程表\Search_Term_Summary.xlsx'
 sheet_name_keywords='SeachTermWeekSum_Weeks'
 columnsSummary = ['Country', 'Campaign', 'SKU', 'Spend', 'Orders', 'Clicks', 'zhuanhualv', 'SKU-Campaign-zhuanhualv-ranking', 'Campaign-SKU_Spend_ranking', 'SKU_Campaign_Spend_ranking']
-seartchtermSummary_columns=['COUNTRY','Campaign Name',	'Ad Group Name','Targeting','Match Type','Customer Search Term','Impressions','Clicks','Spend',	'7 Day Total Sales','7 Day Total Orders (#)','Clicks1','Orders1']
+seartchtermSummary_columns=['Country','Campaign Name',	'Ad Group Name','Targeting','Match Type','Customer Search Term','Impressions','Clicks','Spend',	'7 Day Total Sales','7 Day Total Orders (#)','Clicks1','Orders1']
 
 dfSummary = pd.read_excel(file_pathSummary, sheet_name=sheet_name, usecols=columnsSummary)
-dfSummary=dfSummary[dfSummary['Country']==country]
+dfSummary=dfSummary[dfSummary['Country']==Country]
 seartchtermSummary_df=pd.read_excel(seartchtermSummary, sheet_name=sheet_name_keywords, usecols=seartchtermSummary_columns)
 
 # 筛选 Campaign-SKU_Spend_ranking 为 1 的行
@@ -37,10 +37,10 @@ CampaigntoSKU = dfSummary.loc[dfSummary['Campaign-SKU_Spend_ranking'] == 1]
 CampaigntoSKUBAoliu=CampaigntoSKU[['Country', 'Campaign', 'SKU']]
 
 
-seartchtermSummary_df=pd.merge(seartchtermSummary_df,CampaigntoSKUBAoliu,left_on=['COUNTRY','Campaign Name'],right_on=['Country', 'Campaign'],how='left')
+seartchtermSummary_df=pd.merge(seartchtermSummary_df,CampaigntoSKUBAoliu,left_on=['Country','Campaign Name'],right_on=['Country', 'Campaign'],how='left')
 
-seartchtermSummary_df_grouped=seartchtermSummary_df.groupby(["COUNTRY","SKU",'Customer Search Term'],as_index=False)[['Impressions','Clicks','Spend',	'7 Day Total Sales','7 Day Total Orders (#)','Clicks1','Orders1']].agg("sum")
-seartchtermSummary_df_grouped_country=seartchtermSummary_df_grouped[(seartchtermSummary_df_grouped["COUNTRY"]==country)&(seartchtermSummary_df_grouped["SKU"]==sku)]
+seartchtermSummary_df_grouped=seartchtermSummary_df.groupby(["Country","SKU",'Customer Search Term'],as_index=False)[['Impressions','Clicks','Spend',	'7 Day Total Sales','7 Day Total Orders (#)','Clicks1','Orders1']].agg("sum")
+seartchtermSummary_df_grouped_country=seartchtermSummary_df_grouped[(seartchtermSummary_df_grouped["Country"]==Country)&(seartchtermSummary_df_grouped["SKU"]==sku)]
 
 import pandas as pd
 import os
@@ -51,10 +51,10 @@ file_name_format = '{}_*.xlsx'
 
 # 指定国家名并根据其查找文件
  
-file_name = file_name_format.format(country)
+file_name = file_name_format.format(Country)
 file_path = None
 for file in os.listdir(directory):
-    if file.startswith(country):
+    if file.startswith(Country):
         file_path = os.path.join(directory, file)
         break
 
@@ -89,7 +89,7 @@ FanchaAsinTerms=pd.read_excel(r'D:\运营\1数据源\反查关键词\\GV-CA_反�
 FanchaAsinTerms=pd.merge(FanchaAsinTerms,selfAsinTerms_formerge,on='关键词',how="left")
 
 conn= sqlite3.connect('D:/运营/sqlite/Top1M.db')
-Top1M_df = pd.read_sql_query('SELECT * FROM "Top1M" WHERE Country= country AND 日期 =(SELECT MAX(日期) FROM "Top1M" WHERE Country=country)', conn)
+Top1M_df = pd.read_sql_query('SELECT * FROM "Top1M" WHERE Country= Country AND 日期 =(SELECT MAX(日期) FROM "Top1M" WHERE Country=Country)', conn)
 
 Top1M_df=Top1M_df[["Search Frequency Rank","Search Term","Top Clicked Product #1: ASIN","Top Clicked Product #1: Product Title","Top Clicked Product #1: Click Share","Top Clicked Product #1: Conversion Share"]]
 

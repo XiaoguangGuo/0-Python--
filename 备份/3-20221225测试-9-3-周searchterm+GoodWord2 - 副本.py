@@ -16,12 +16,12 @@ f_name = os.listdir(filePath)
 
 
 SeartchtermAll=pd.read_excel(r'D:\\运营\\2生成过程表\\Sponsored Products Search term report.xlsx')
-SeartchtermAll["COUNTRY"]=SeartchtermAll["COUNTRY"].str.upper()
-today = datetime.datetime.today().strftime('%Y-%m-%d')
+SeartchtermAll["Country"]=SeartchtermAll["Country"].str.upper()
+
 for seartchtermfile in f_name:
 
 
-    DFseartchtermfile=pd.read_excel(filePath+"\\"+str(seartchtermfile),engine="openpyxl").assign(COUNTRY=os.path.basename(seartchtermfile).split('_')[0])
+    DFseartchtermfile=pd.read_excel(filePath+"\\"+str(seartchtermfile),engine="openpyxl").assign(Country=os.path.basename(seartchtermfile).split('_')[0])
     colunmns_list=DFseartchtermfile.columns
     
     if "Total Advertising Cost of Sales (ACOS)" in colunmns_list:
@@ -30,8 +30,7 @@ for seartchtermfile in f_name:
         DFseartchtermfile.rename(columns={'Total Return on Advertising Spend (ROAS)':'Total Return on Advertising Spend (RoAS)'},inplace=True)
 
     SeartchtermAll=pd.concat([SeartchtermAll,DFseartchtermfile])
-    shutil.move(filePath+"\\"+str(seartchtermfile), r'D:\\运营\\HistoricalData\\广告周数据'+str(today)+str(seartchtermfile))
-                
+    shutil.move(filePath+"\\"+str(seartchtermfile), r'D:\\运营\\HistoricalData\\广告周数据')
 
     
 SeartchtermAll["周数"]=(maxtime-SeartchtermAll["Date"]).dt.days//7+1
@@ -40,11 +39,11 @@ SeartchtermAll["周数"]=(maxtime-SeartchtermAll["Date"]).dt.days//7+1
                            
 
 
-SeartchtermAll["COUNTRY"].replace("CA","GV-CA",inplace=True)
-SeartchtermAll["COUNTRY"].replace("US","GV-US",inplace=True)
-SeartchtermAll["COUNTRY"].replace("MX","GV-MX",inplace=True)
+SeartchtermAll["Country"].replace("CA","GV-CA",inplace=True)
+SeartchtermAll["Country"].replace("US","GV-US",inplace=True)
+SeartchtermAll["Country"].replace("MX","GV-MX",inplace=True)
 
-SeartchtermAll.dropna(axis=0, how='any', subset=["COUNTRY"],inplace=True)
+SeartchtermAll.dropna(axis=0, how='any', subset=["Country"],inplace=True)
 SeartchtermAll.to_excel(r'D:\\运营\\2生成过程表\\Sponsored Products Search term report.xlsx',engine="openpyxl",sheet_name="Sponsored Product Search Term R",index=False)         
 
 
@@ -57,14 +56,16 @@ SeartchtermAll.to_excel(r'D:\\运营\\2生成过程表\\Sponsored Products Searc
 
 # -*- coding:utf-8 –*-
 
+import pandas as pd
+import os
+
+import datetime 
 
 import numpy as np
 
 input("检查zongbiao后回车")
 
 Campaign_SKU=pd.read_excel(r'D:\\运营\\2生成过程表\\周Bulk数据Summary.xlsx',sheet_name="SKUMax-Campaign")
-filtered_campaign_sku = Campaign_SKU[Campaign_SKU['Campaign-SKU_Spend_ranking'] == 1]
-
 
 SearchTermAll=pd.read_excel(r'D:\\运营\\2生成过程表\\Sponsored Products Search term report.xlsx')
 
@@ -73,9 +74,9 @@ SearchTermAll["Clicks"].fillna(0,inplace=True)
 
 SearchTermAll["Customer Search Term"].astype(str)
 
-All_Campaign_SearchTerm=SearchTermAll.groupby(["COUNTRY","Campaign Name", "Customer Search Term"],as_index=False)[["Impressions","Clicks","Spend","7 Day Total Sales ","7 Day Total Orders (#)"]].agg("sum")
+All_Campaign_SearchTerm=SearchTermAll.groupby(["Country","Campaign Name", "Customer Search Term"],as_index=False)[["Impressions","Clicks","Spend","7 Day Total Sales ","7 Day Total Orders (#)"]].agg("sum")
 
-
+#AllbulkCampaignKeywordWEEK=Allbulk.groupby(["Country","Campaign","Keyword or Product Targeting","Ad Group","周数"],as_index=False)[['Impressions','Clicks','Spend','Orders','Total Units','Sales']].agg("sum")
 
 
 
@@ -88,59 +89,43 @@ All_Campaign_SearchTerm.loc[(All_Campaign_SearchTerm["转化率"]>=0.25)&(All_Ca
 All_Campaign_SearchTerm.loc[(All_Campaign_SearchTerm["转化率"]<0.05)&(All_Campaign_SearchTerm["Clicks"]>=15),"转化率好坏"]="差词"
 
 
-All_Campaign_SearchTerm=pd.merge(All_Campaign_SearchTerm,filtered_campaign_sku ,how="left",left_on=["COUNTRY","Campaign Name"],right_on=["Country","Campaign"])
+All_Campaign_SearchTerm=pd.merge(All_Campaign_SearchTerm,Campaign_SKU,how="left",left_on=["Country","Campaign Name"],right_on=["Country","Campaign"])
 
-GoodWord=All_Campaign_SearchTerm[All_Campaign_SearchTerm["转化率好坏"]=="好词"].groupby(["COUNTRY","SKU"],as_index=False)["转化率好坏"].agg("count")
+GoodWord=All_Campaign_SearchTerm[All_Campaign_SearchTerm["转化率好坏"]=="好词"].groupby(["Country","SKU"],as_index=False)["转化率好坏"].agg("count")
 
-SeachTermWeekSum=SearchTermAll.groupby(["COUNTRY","Campaign Name", "Ad Group Name","Targeting","Match Type","Customer Search Term","周数"],as_index=False)[["Impressions","Clicks","Spend","7 Day Total Sales ","7 Day Total Orders (#)"]].agg("sum")
-SeachTermWeekSumTotal=SearchTermAll.groupby(["COUNTRY","Campaign Name", "Ad Group Name","Targeting","Match Type","Customer Search Term",],as_index=False)[["Impressions","Clicks","Spend","7 Day Total Sales ","7 Day Total Orders (#)"]].agg("sum")
+SeachTermWeekSum=SearchTermAll.groupby(["Country","Campaign Name", "Ad Group Name","Targeting","Match Type","Customer Search Term","周数"],as_index=False)[["Impressions","Clicks","Spend","7 Day Total Sales ","7 Day Total Orders (#)"]].agg("sum")
+SeachTermWeekSumTotal=SearchTermAll.groupby(["Country","Campaign Name", "Ad Group Name","Targeting","Match Type","Customer Search Term",],as_index=False)[["Impressions","Clicks","Spend","7 Day Total Sales ","7 Day Total Orders (#)"]].agg("sum")
 
 SeachTermWeekSumTotal["zhuanhualv"]=SeachTermWeekSumTotal["7 Day Total Orders (#)"]/SeachTermWeekSumTotal["Clicks"]
 
 SeachTermWeekSum["zhuanhualv"]=SeachTermWeekSum["7 Day Total Orders (#)"]/SeachTermWeekSum["Clicks"]
 
-SeachTermWeekSum_Biaotou=SeachTermWeekSum[["COUNTRY","Campaign Name", "Ad Group Name","Targeting","Match Type","Customer Search Term"]].drop_duplicates()
-SeachTermWeekSum_Biaotou=pd.merge(SeachTermWeekSum_Biaotou,SeachTermWeekSumTotal,on=["COUNTRY","Campaign Name", "Ad Group Name","Targeting","Match Type","Customer Search Term"] ,how="left")
+SeachTermWeekSum_Biaotou=SeachTermWeekSum[["Country","Campaign Name", "Ad Group Name","Targeting","Match Type","Customer Search Term"]].drop_duplicates()
+SeachTermWeekSum_Biaotou=pd.merge(SeachTermWeekSum_Biaotou,SeachTermWeekSumTotal,on=["Country","Campaign Name", "Ad Group Name","Targeting","Match Type","Customer Search Term"] ,how="left")
     
-header_cols = ["COUNTRY", "Campaign Name", "Ad Group Name", "Targeting", "Match Type", "Customer Search Term"]
+max_week=int(SearchTermAll["周数"].max())
 
-SeachTermWeekSum_Biaotou = SeachTermWeekSum[header_cols].drop_duplicates()
-SeachTermWeekSum_Biaotou = pd.merge(SeachTermWeekSum_Biaotou, SeachTermWeekSumTotal, on=header_cols, how="left")
+for i in range(1,max_week):
+    #CampaignSKU_Summary_i=CampaignSKU_Summary["Clicks","Orders"].loc[(CampaignSKU_Summary["周数"]==i)]
+    SeachTermWeekSum_i=SeachTermWeekSum.loc[(SeachTermWeekSum["周数"]==i)]
 
-max_week = int(SearchTermAll["周数"].max())
+     
 
-for i in range(1, max_week):
-    SeachTermWeekSum_i = SeachTermWeekSum.loc[SeachTermWeekSum["周数"] == i]
-    SeachTermWeekSum_i = SeachTermWeekSum_i[header_cols + ["Clicks", "7 Day Total Orders (#)", "zhuanhualv"]]
-    SeachTermWeekSum_i.rename(columns={"Clicks": f'Clicks{i}',
-                                        "7 Day Total Orders (#)": f'Orders{i}',
-                                        "zhuanhualv": f'zhuanhualv{i}'}, inplace=True)
+    SeachTermWeekSum_i=SeachTermWeekSum_i[["Country","Campaign Name", "Ad Group Name","Targeting","Match Type","Customer Search Term","Clicks","7 Day Total Orders (#)","zhuanhualv"]]
+    SeachTermWeekSum_i.rename(columns = {"Clicks":'Clicks'+str(i),"7 Day Total Orders (#)":'Orders'+str(i),  "zhuanhualv":'zhuanhualv'+str(i)}, inplace = True)
+     
+    #合并
 
-    SeachTermWeekSum_Biaotou = pd.merge(SeachTermWeekSum_Biaotou, SeachTermWeekSum_i, on=header_cols, how="left")
-
-
-
-
-# 选择要合并的列
-columns_to_merge = ['Country', 'Campaign', 'SKU']
-
-# 使用指定的列名将筛选后的 Campaign_SKU 数据集与 SeachTermWeekSum_Biaotou 数据集合并
-merged_data_biaotou = pd.merge(SeachTermWeekSum_Biaotou, filtered_campaign_sku[columns_to_merge],
-                       left_on=['COUNTRY', 'Campaign Name'],right_on=['Country','Campaign'], how='left')
-
-# 将 SKU 列移动到 Country 和 Campaign 之后
-cols = list(merged_data_biaotou.columns)
-sku_index = cols.index('SKU')
-cols = cols[:sku_index] + cols[sku_index + 1:] + [cols[sku_index]]
-merged_data_biaotou = merged_data_biaotou[cols]
-output_path = r'D:\\运营\\2生成过程表\\Search_Term_Summary.xlsx'
-with pd.ExcelWriter(output_path) as writer:
-    All_Campaign_SearchTerm.to_excel(writer, "All_Campaign_SearchTerm", index=False)
-    GoodWord.to_excel(writer, "GoodWord", index=False)
-    merged_data_biaotou.to_excel(writer, "SeachTermWeekSum_Weeks")   
+    SeachTermWeekSum_Biaotou=pd.merge(SeachTermWeekSum_Biaotou,SeachTermWeekSum_i,on=["Country","Campaign Name", "Ad Group Name","Targeting","Match Type","Customer Search Term"] ,how="left")
+    
 
 
 
+writer=pd.ExcelWriter(r'D:\\运营\\2生成过程表\\Search_Term_Summary.xlsx')
+
+All_Campaign_SearchTerm.to_excel(writer,"All_Campaign_SearchTerm",index=False)
+GoodWord.to_excel(writer,"GoodWord",index=False)
+SeachTermWeekSum_Biaotou.to_excel(writer,"SeachTermWeekSum_Weeks")
 writer.close()
 
 
@@ -169,8 +154,8 @@ SearchTermAll["Clicks"].fillna(0,inplace=True)
 
 SearchTermAll["Customer Search Term"].astype(str)
 
-SearchTermAll_Sum=SearchTermAll.groupby(["COUNTRY","Campaign Name", "Ad Group Name","Customer Search Term"],as_index=False)[["Impressions","Clicks","Spend","7 Day Total Sales ","7 Day Total Orders (#)"]].agg("sum")
-SearchTermAllquan=SearchTermAll.groupby(["COUNTRY","Campaign Name", "Ad Group Name","Customer Search Term","Targeting","Match Type"],as_index=False)[["Impressions","Clicks","Spend","7 Day Total Sales ","7 Day Total Orders (#)"]].agg("sum")
+SearchTermAll_Sum=SearchTermAll.groupby(["Country","Campaign Name", "Ad Group Name","Customer Search Term"],as_index=False)[["Impressions","Clicks","Spend","7 Day Total Sales ","7 Day Total Orders (#)"]].agg("sum")
+SearchTermAllquan=SearchTermAll.groupby(["Country","Campaign Name", "Ad Group Name","Customer Search Term","Targeting","Match Type"],as_index=False)[["Impressions","Clicks","Spend","7 Day Total Sales ","7 Day Total Orders (#)"]].agg("sum")
 
 SearchTermAll_Sum.loc[SearchTermAll_Sum['Clicks']>0,"转化率"]=SearchTermAll_Sum["7 Day Total Orders (#)"]/SearchTermAll_Sum['Clicks']
 
@@ -215,7 +200,7 @@ mask = Allbulk['Spend'].isnull() | Allbulk['Spend'].astype(str).str.isspace() | 
 print(mask)
 Allbulk["Spend"].describe()
 
-
+#遍历SeachTermGood
 
 
 
@@ -233,7 +218,7 @@ averagePriceDic={"GV-US":0.75,"GV-CA":0.75,"NEW-UK":0.5,"NEW-JP":50,"NEW-CA":0.7
 StandardCountryList=["GV-US","GV-CA" ,"NEW-UK" ,"NEW-JP" ,"NEW-CA" ,"NEW-IT" ,"NEW-DE" ,"NEW-ES" ,"NEW-FR" ,"NEW-US" ,"HM-US" ,"GV-MX","NEW-MX" ,"HM-US"]
  
 
-SearchTermAll_Country_list=SearchTermAll["COUNTRY"].drop_duplicates().to_list()                 
+SearchTermAll_Country_list=SearchTermAll["Country"].drop_duplicates().to_list()                 
 for countryname in SearchTermAll_Country_list:   #遍历searchTemgood里的国家
     if countryname in StandardCountryList:
         averageprice=averagePriceDic[countryname]
@@ -251,7 +236,7 @@ for countryname in SearchTermAll_Country_list:   #遍历searchTemgood里的国�
     
     Allbulk_Campaign_SKUSum_Country=Allbulk_Campaign_SKUSum[Allbulk_Campaign_SKUSum["Country"]==countryname].reindex()
 
-    CountrySKU_Close_List=ProductActions.loc[(ProductActions["COUNTRY"]==countryname)&(ProductActions["行动方案"].str.contains("关闭广告")),"SKU"].drop_duplicates().to_list()#这个国家要关闭的SKU的List
+    CountrySKU_Close_List=ProductActions.loc[(ProductActions["Country"]==countryname)&(ProductActions["行动方案"].str.contains("关闭广告")),"SKU"].drop_duplicates().to_list()#这个国家要关闭的SKU的List
 
     AllCountryActions_Country_SKU_Close_List_nocomma_list=[] 
     for AllCountryActions_Country_SKU_Close_List_nocomma in CountrySKU_Close_List:
@@ -286,7 +271,7 @@ for countryname in SearchTermAll_Country_list:   #遍历searchTemgood里的国�
         Bulkfile_Country=bulkdatafile.split('_')[0]
 
         if Bulkfile_Country==countryname:
-            SearchTermAll_Good_Country=SearchTermAll_Good[SearchTermAll_Good["COUNTRY"]==str(countryname)]
+            SearchTermAll_Good_Country=SearchTermAll_Good[SearchTermAll_Good["Country"]==str(countryname)]
          
             
              
@@ -713,7 +698,7 @@ for countryname22 in SearchTermAll_Country_list:
 
 
     
-    SearchBadwithCountry=SearchTermAll_Bad[SearchTermAll_Bad["COUNTRY"]==countryname22] 
+    SearchBadwithCountry=SearchTermAll_Bad[SearchTermAll_Bad["Country"]==countryname22] 
     
     if len(SearchBadwithCountry)>0:    
         n=0                                             

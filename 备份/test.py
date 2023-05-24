@@ -43,9 +43,9 @@ df["Country"].replace("GX-MX","GV-MX",inplace=True)
 
 df['Spend'] = df['Spend'].astype(float)
 def convert_to_usd(row):
-    country = row['Country']
+    Country = row['Country']
     spend = row['Spend']
-    currency = exchangerate_dic[country]
+    currency = exchangerate_dic[Country]
     exchange_rate = exchange_rates[currency]
     return spend / exchange_rate
 

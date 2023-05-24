@@ -10,7 +10,7 @@ import re
 # 请输入国家名
 Shipment_dic = {}
 tempplate_file_path ="D:\\运营\\发票模板\\"
-country=input("请输入国家名:US,CA,JP，NEW-US,NEW-CA,UK,IT")
+Country=input("请输入国家名:US,CA,JP，NEW-US,NEW-CA,UK,IT")
 link_dic={"US":"www.amazon.com/dp/","JP":"www.amazon.co.jp/dp/","UK":"www.amazon.co.uk/dp/","CA":"www.amazon.ca/dp/"}
 #输入渠道名
 channel=input("请输入渠道名:全中,小平")
@@ -22,7 +22,7 @@ found_file = False
 while not found_file:
     for root, dirs, files in os.walk(tempplate_file_path):
         for file in files:
-            if country in file and channel in file:
+            if Country in file and channel in file:
                 print(file)
                 templatefile = tempplate_file_path + file
                 found_file = True
@@ -109,24 +109,8 @@ for row in range(1, sheet.max_row + 1):
                             break
                         fnsku_row += 1
                     
-                    # 查找数量
-                    quantity_row = sku_row + 1
-                    while quantity_row <= sheet.max_row:
-                        try:
-                            quantity = int(sheet.cell(row=quantity_row, column=1).value)
-                            break
-                        except (ValueError, TypeError):
-                            quantity_row += 1
+                    
 
-                        # 如果当前行是最后一行，寻找下一个有效的数字作为数量
-                        if quantity_row == sheet.max_row and quantity is None:
-                            search_row = sheet.max_row
-                            while search_row > 0:
-                                try:
-                                    quantity = int(sheet.cell(row=search_row, column=1).value)
-                                    break
-                                except (ValueError, TypeError):
-                                    search_row -= 1
                     
 
                     weight_row = row + 1
@@ -149,7 +133,7 @@ for row in range(1, sheet.max_row + 1):
                             break
                         dimensions_row += 1
 
-                    if "US" in country  or "NEW-US" in country:
+                    if "US" in Country  or "NEW-US" in Country:
                         weight = round(weight * 0.45359237, 2)
                         length = round(length * 2.54, 2)
                         width = round(width * 2.54, 2)
@@ -181,17 +165,17 @@ shipment_data["Shipment Name"] = shipment_name
 shipment_data = pd.DataFrame(shipment_data)
 shipment_data["Reference ID"]=Reference_id
 shipment_data["图片"]=""
-shipment_data["产品链接"]=link_dic[country]+shipment_data["ASIN"]
+shipment_data["产品链接"]=link_dic[Country]+shipment_data["ASIN"]
 #定义shipment_df的“发货日期”列等于今天的日期
 shipment_data["发货日期"]=datetime.date.today()
 #定义shipment_df的“Country”列等于country
-shipment_data["Country"]=country
+shipment_data["Country"]=Country
 #定义shipment_df的“Channel”列等于channel
 shipment_data["Channel"]=channel
 #定义shipment_dic
 Shipment_dic["Shipment ID"] = shipment_id
 Shipment_dic["Reference ID"] = Reference_id
-Shipment_dic["Country"] = country
+Shipment_dic["Country"] = Country
 Shipment_dic["Channel"] = channel
 print(shipment_data)
 #to_excel
@@ -279,12 +263,12 @@ for index, row in other_df.iterrows():
 print(other_df.columns)
 #输出other_df至excel，路径D:\\运营\invoice\\other_df.xlsx
 
+# 计算箱体积并保留小数后三位
+other_df["箱体积"] = (other_df["Length"] * other_df["Width"] * other_df["Height"] / 1000000).round(3)
 
 # 修改箱尺寸列
 other_df["箱尺寸"] = other_df["Length"].astype(str) + "*" + other_df["Width"].astype(str) + "*" + other_df["Height"].astype(str)
 
-# 计算箱体积并保留小数后三位
-other_df["箱体积"] = (other_df["Length"] * other_df["Width"] * other_df["Height"] / 1000000).round(3)
 
 # 增加箱数列
 other_df["箱数"] = 1
@@ -315,7 +299,7 @@ for index, row in other_df.iterrows():
         other_df.at[index, "箱体积"] = ""
         other_df.at[index, "箱尺寸"] = ""
 
-other_df["Country"]=country
+other_df["Country"]=Country
 invoiceALL_df=pd.read_excel(r'D:\运营\Invoice\\invoiceALL.xlsx')
 invoiceALL_df = pd.concat([invoiceALL_df, other_df], axis=0, ignore_index=True)
 invoiceALL_df.to_excel(r'D:\运营\Invoice\\invoiceALL.xlsx',index=False)
@@ -416,14 +400,14 @@ for col in new_col_names:
 # 将other_df_selected的列顺序调整为与new_col_names相同
 other_df_selected = other_df_selected[new_col_names]
 print(other_df_selected.columns)
-other_df_selected.to_excel(r'D:\\运营\invoice\\invoicedraft-new'+country+".xlsx")
+other_df_selected.to_excel(r'D:\\运营\invoice\\invoicedraft-new'+Country+".xlsx")
 
 
 
 
 
 today = datetime.datetime.today().strftime('%Y%m%d')
-new_file_name = country + today + '.xlsx'
+new_file_name = Country + today + '.xlsx'
 new_file_path = os.path.join(os.path.dirname(tempplate_file_path), new_file_name)
 shutil.copyfile(templatefile, new_file_path)
 

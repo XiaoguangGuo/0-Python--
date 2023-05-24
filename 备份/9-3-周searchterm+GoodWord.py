@@ -145,9 +145,9 @@ shanchuduoyuhang=shanchuduoyuhang[~shanchuduoyuhang.iloc[:,0].isin(["Date"])]
 #shanchuduoyuhang['Date'] = pd.to_datetime(shanchuduoyuhang.Date)
 #shanchuduoyuhang.Date = pd.to_datetime(shanchuduoyuhang.Date)
 
-shanchuduoyuhang["COUNTRY"].replace("CA","GV-CA",inplace=True)
-shanchuduoyuhang["COUNTRY"].replace("US","GV-US",inplace=True)
-shanchuduoyuhang["COUNTRY"].replace("MX","GV-MX",inplace=True)
+shanchuduoyuhang["Country"].replace("CA","GV-CA",inplace=True)
+shanchuduoyuhang["Country"].replace("US","GV-US",inplace=True)
+shanchuduoyuhang["Country"].replace("MX","GV-MX",inplace=True)
 
 shanchuduoyuhang.to_excel(r'D:\\运营\\2生成过程表\Sponsored Products Search term report.xlsx',sheet_name ="Sponsored Product Search Term R", index=False)
 
@@ -176,7 +176,7 @@ SearchTermAll["Clicks"].fillna(0,inplace=True)
 
 SearchTermAll["Customer Search Term"].astype(str)
 
-SearchTermAll_Sum=SearchTermAll.groupby(["COUNTRY","Campaign Name", "Ad Group Name","Customer Search Term"],as_index=False)[["Impressions","Clicks","Spend","7 Day Total Sales ","7 Day Total Orders (#)"]].agg("sum")
+SearchTermAll_Sum=SearchTermAll.groupby(["Country","Campaign Name", "Ad Group Name","Customer Search Term"],as_index=False)[["Impressions","Clicks","Spend","7 Day Total Sales ","7 Day Total Orders (#)"]].agg("sum")
 
 
 SearchTermAll_Sum.loc[SearchTermAll_Sum['Clicks']>0,"转化率"]=SearchTermAll_Sum["7 Day Total Orders (#)"]/SearchTermAll_Sum['Clicks']
@@ -205,7 +205,7 @@ Allbulk_Week1=Allbulk[Allbulk["周数"]==1]
 Allbulk_Campaign_SKUMax=Allbulk[Allbulk['Record Type']=="Ad"].groupby(["Country","Campaign","Ad Group","SKU"],as_index=False)[['Spend']].agg('sum')#全部历史bulk的sku spend相加：找自动广告的sku
 
 
-SearchTermAll_Good_Country_list=SearchTermAll_Good["COUNTRY"].drop_duplicates().to_list()
+SearchTermAll_Good_Country_list=SearchTermAll_Good["Country"].drop_duplicates().to_list()
 
 
 
@@ -224,7 +224,7 @@ for countryname in SearchTermAll_Good_Country_list:   #遍历searchTemgood里的
         Bulkfile_Country=bulkdatafile.split('_')[0]
 
         if Bulkfile_Country==countryname:
-            SearchTermAll_Good_Country=SearchTermAll_Good[SearchTermAll_Good["COUNTRY"]==str(countryname)]
+            SearchTermAll_Good_Country=SearchTermAll_Good[SearchTermAll_Good["Country"]==str(countryname)]
          
             
             print("SearchTermAll_Good_Country")

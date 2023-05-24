@@ -48,12 +48,12 @@ input("按任意键继续")
 
 def process_spend_summary(pivot_df):
 
-    # 查找是否有 "Country" 或 "COUNTRY" 列
+    # 查找是否有 "Country" 或 "Country" 列
     has_country = False
 
-    # 如果有 "COUNTRY" 列，将其改为 "Country"
-    if "COUNTRY" in pivot_df.columns:
-        pivot_df.rename(columns={"COUNTRY": "Country"}, inplace=True)
+    # 如果有 "Country" 列，将其改为 "Country"
+    if "Country" in pivot_df.columns:
+        pivot_df.rename(columns={"Country": "Country"}, inplace=True)
         has_country = "Country" in pivot_df.columns
     elif "Country" in pivot_df.columns:
         has_country = True
@@ -89,8 +89,8 @@ def process_spend_summary(pivot_df):
 search_report = pd.read_excel(r'D:\运营\2生成过程表\Sponsored Products Search term report.xlsx')
 #获取距lastsaturday27周内的数据，lastsaturday为最近一个周六，使用本程序的函数计算
 search_report = search_report[search_report['Date'] > find_last_saturday() - timedelta(weeks=27)]
-#search_report的"COUNTRY"列改为"Country"
-search_report.rename(columns={"COUNTRY": "Country"}, inplace=True)
+#search_report的"Country"列改为"Country"
+search_report.rename(columns={"Country": "Country"}, inplace=True)
 
 #按Date距离last Saturday的日期重新计算周数并更新周数列
 

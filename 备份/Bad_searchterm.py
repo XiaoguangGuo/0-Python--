@@ -24,9 +24,9 @@ SearchTermAll["Clicks"].fillna(0,inplace=True)
 
 
 SearchTermAll["Customer Search Term"].astype(str)
-SearchTermAll_Sum_Targeting=SearchTermAll.groupby(["COUNTRY","Campaign Name", "Ad Group Name","Targeting","Customer Search Term"],as_index=False)[["Impressions","Clicks","Spend","7 Day Total Sales ","7 Day Total Orders (#)"]].agg("sum")
+SearchTermAll_Sum_Targeting=SearchTermAll.groupby(["Country","Campaign Name", "Ad Group Name","Targeting","Customer Search Term"],as_index=False)[["Impressions","Clicks","Spend","7 Day Total Sales ","7 Day Total Orders (#)"]].agg("sum")
 
-SearchTermAll_Sum=SearchTermAll.groupby(["COUNTRY","Campaign Name", "Ad Group Name","Customer Search Term"],as_index=False)[["Impressions","Clicks","Spend","7 Day Total Sales ","7 Day Total Orders (#)"]].agg("sum")
+SearchTermAll_Sum=SearchTermAll.groupby(["Country","Campaign Name", "Ad Group Name","Customer Search Term"],as_index=False)[["Impressions","Clicks","Spend","7 Day Total Sales ","7 Day Total Orders (#)"]].agg("sum")
 
 
 SearchTermAll_Sum.loc[SearchTermAll_Sum['Clicks']>0,"转化率"]=SearchTermAll_Sum["7 Day Total Orders (#)"]/SearchTermAll_Sum['Clicks']
@@ -37,11 +37,11 @@ SearchTermAll_Sum.loc[SearchTermAll_Sum['Clicks']>0,"转化率"]=SearchTermAll_S
 SearchTermAll_Bad=SearchTermAll_Sum[(SearchTermAll_Sum["转化率"]<0.033)&(SearchTermAll_Sum["Clicks"]>30)]
 
 
-for countryname in  SearchTermAll["COUNTRY"].drop_dulicates().to_list()#遍历国家
+for countryname in  SearchTermAll["Country"].drop_dulicates().to_list()#遍历国家
 
 
 
-    SearchTermAll_Bad_Country=SearchTermAll_Sum[(SearchTermAll["COUNTRY"]==countryname)&(SearchTermAll_Sum["转化率"]<zhuanhualv_bad[countryname])&(SearchTermAll_Sum["Clicks"]>35)]
+    SearchTermAll_Bad_Country=SearchTermAll_Sum[(SearchTermAll["Country"]==countryname)&(SearchTermAll_Sum["转化率"]<zhuanhualv_bad[countryname])&(SearchTermAll_Sum["Clicks"]>35)]
     
    
     

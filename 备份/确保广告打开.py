@@ -15,7 +15,7 @@ bulkdatafilepath = 'D:\\运营\\1数据源\周bulk广告数据\\'
 
 AllCountryActions=pd.read_excel(r'D:\\运营\\3数据分析结果\\国家汇总.xlsx',sheet_name="ProductActions")
 
-AllCountryActions_CountryList=AllCountryActions["COUNTRY"].drop_duplicates().to_list()
+AllCountryActions_CountryList=AllCountryActions["Country"].drop_duplicates().to_list()
 
 for AllCountryActions_Country in AllCountryActions_CountryList:
     print("现在处理"+AllCountryActions_Country)
@@ -33,7 +33,7 @@ for AllCountryActions_Country in AllCountryActions_CountryList:
             print("找到了要处理的文件",bulkfile)
             
 #############################################################确保关闭##############################################################
-            AllCountryActions_Country_SKU_Close_List=AllCountryActions.loc[(AllCountryActions["COUNTRY"]==AllCountryActions_Country)&(AllCountryActions["行动方案"].str.contains("关闭广告")),"SKU"].drop_duplicates().to_list()
+            AllCountryActions_Country_SKU_Close_List=AllCountryActions.loc[(AllCountryActions["Country"]==AllCountryActions_Country)&(AllCountryActions["行动方案"].str.contains("关闭广告")),"SKU"].drop_duplicates().to_list()
 
             if len(AllCountryActions_Country_SKU_Close_List)>0:
                 print("执行关闭广告"+str(AllCountryActions_Country_SKU_Close_List))
@@ -82,7 +82,7 @@ for AllCountryActions_Country in AllCountryActions_CountryList:
                  print("这个国家没有确保关闭广告的SKU,跳过循环继续找其他国家")
             
     
-            AllCountryActions_Country_SKU_List=AllCountryActions.loc[(AllCountryActions["COUNTRY"]==AllCountryActions_Country)&(AllCountryActions["行动方案"].str.contains("确保广告是开的")),"SKU"].drop_duplicates().to_list()
+            AllCountryActions_Country_SKU_List=AllCountryActions.loc[(AllCountryActions["Country"]==AllCountryActions_Country)&(AllCountryActions["行动方案"].str.contains("确保广告是开的")),"SKU"].drop_duplicates().to_list()
             if len(AllCountryActions_Country_SKU_List)>0:
                 print("这个国家有要开广告的SKU，继续执行")
                 

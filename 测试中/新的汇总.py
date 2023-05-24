@@ -153,23 +153,23 @@ countries = keywords_df['Country'].unique()
 bulk_dir = r'D:\运营\1数据源\周Bulk广告数据'
 
 # 遍历国家列表
-for country in countries:
+for Country in countries:
     # 查找以国家名开头的Bulk文件
     bulk_file = None
     for file in os.listdir(bulk_dir):
-        if file.startswith(country + "_"):
+        if file.startswith(Country + "_"):
             bulk_file = os.path.join(bulk_dir, file)
             break
 
     if bulk_file is None:
-        print(f"No bulk file found for country {country}")
+        print(f"No bulk file found for Country {Country}")
         continue
 
     # 读取当前国家的Bulk文件
     amazon_bulk_df = pd.read_excel(bulk_file)
 
     # 筛选当前国家的选词表格数据
-    country_keywords_df = keywords_df[keywords_df['Country'] == country].drop(columns=['Country'])
+    country_keywords_df = keywords_df[keywords_df['Country'] == Country].drop(columns=['Country'])
 
     # 为简化处理，我们将Bulk文件和选词表格的列名进行统一
     country_keywords_df.columns = ["Campaign", "Ad Group", "Match Type", "Keyword or Product Targeting"]
@@ -192,7 +192,7 @@ for country in countries:
     merged_df = pd.concat([filtered_bulk_df, country_keywords_df.loc[~country_keywords_df.apply(tuple, 1).isin(filtered_bulk_df.apply(tuple, 1))]], ignore_index=True, sort=False)
 
     # 将结果保存到新的Excel文件
-    output_file = os.path.join("updated_bulk_files", f"{country}_updated_bulk_file.xlsx")
+    output_file = os.path.join("updated_bulk_files", f"{Country}_updated_bulk_file.xlsx")
     os.makedirs(os.path.dirname(output_file), exist_ok=True)
     merged_df.to_excel(output_file, index=False)
 

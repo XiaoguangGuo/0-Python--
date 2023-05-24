@@ -1,4 +1,4 @@
-# 使用Oenyxl编写，没有使用pandas
+#2023-# 使用Oenyxl编写，没有使用pandas
 ### 第一部分汇总各国bulk广告数据到汇总表
 #用于实际使用，从零开始导入10周最新的。创建新的文件，存到指定文件名。：测试OK。
 
@@ -205,7 +205,7 @@ for bulkoperationfile in os.listdir(bulkoperationfilespath):
 
 ###周转率大于0.2的保持enabled
     bocondition05df=AllbulkCampaignKeyword[(AllbulkCampaignKeyword["Country"]==bulkfileCountry) &(AllbulkCampaignKeyword["zhuanhualv"]>0.13)&(AllbulkCampaignKeyword["Clicks"]>0)]
-    CountrySKU_Close_List=ProductActions.loc[(ProductActions["COUNTRY"]==bulkfileCountry)&(ProductActions["行动方案"].str.contains("关闭广告")),"SKU"].drop_duplicates().to_list()
+    CountrySKU_Close_List=ProductActions.loc[(ProductActions["Country"]==bulkfileCountry)&(ProductActions["行动方案"].str.contains("关闭广告")),"SKU"].drop_duplicates().to_list()
     for boi in range(0,len(bocondition05df)):
            #定义要找的词和Campaign
         boi_Matchtype=bocondition05df.iloc[[boi],[3]].values[0][0]
@@ -413,7 +413,7 @@ bulkdatafilepath = 'D:\\运营\\1数据源\周bulk广告数据\\'
 
 AllCountryActions=pd.read_excel(r'D:\\运营\\3数据分析结果\\国家汇总.xlsx',sheet_name="ProductActions")
 
-AllCountryActions_CountryList=AllCountryActions["COUNTRY"].drop_duplicates().to_list()
+AllCountryActions_CountryList=AllCountryActions["Country"].drop_duplicates().to_list()
 AllCountryActions.dropna(subset=["SKU"],inplace=True)
 AllCountryActions["SKU"].astype(str)
 
@@ -433,7 +433,7 @@ for AllCountryActions_Country in AllCountryActions_CountryList:
             print("找到了要处理的文件")
             
 #############################################################确保关闭##############################################################
-            AllCountryActions_Country_SKU_Close_List=AllCountryActions.loc[(AllCountryActions["COUNTRY"]==AllCountryActions_Country)&(AllCountryActions["行动方案"].str.contains("关闭广告")),"SKU"].drop_duplicates().to_list()
+            AllCountryActions_Country_SKU_Close_List=AllCountryActions.loc[(AllCountryActions["Country"]==AllCountryActions_Country)&(AllCountryActions["行动方案"].str.contains("关闭广告")),"SKU"].drop_duplicates().to_list()
             print(AllCountryActions_Country_SKU_Close_List)
             AllCountryActions_Country_SKU_Close_List_nocomma_list=[]
             for AllCountryActions_Country_SKU_Close_List_nocomma in AllCountryActions_Country_SKU_Close_List:
@@ -517,7 +517,7 @@ for AllCountryActions_Country in AllCountryActions_CountryList:
          
             #BestSKUCampaignMax=BestSKUCampaign.groupby(["Country","SKU","Ad Group","Campaign Targeting Type"],as_index=False)[["zhuanhualv"]].agg('max')
 
-            AllCountryActions_Country_SKU_Open_List=AllCountryActions.loc[(AllCountryActions["COUNTRY"]==AllCountryActions_Country)&(AllCountryActions["行动方案"].str.contains("确保广告是开的")),"SKU"].drop_duplicates().to_list()
+            AllCountryActions_Country_SKU_Open_List=AllCountryActions.loc[(AllCountryActions["Country"]==AllCountryActions_Country)&(AllCountryActions["行动方案"].str.contains("确保广告是开的")),"SKU"].drop_duplicates().to_list()
            
            
             AllCountryActions_Country_SKU_Open_List_nocomma_list=[]

@@ -92,12 +92,12 @@ for column_name in column_names:
 # 获取并去重 Country 列
 unique_countries = df['Country'].drop_duplicates().sort_values().reset_index(drop=True)
 
-for country in unique_countries:
+for Country in unique_countries:
     # 按 Country 获取并去重日期列
-    unique_dates = df[df['Country'] == country]['日期'].drop_duplicates().sort_values().reset_index(drop=True)
+    unique_dates = df[df['Country'] == Country]['日期'].drop_duplicates().sort_values().reset_index(drop=True)
     unique_dates = unique_dates.dropna()
     unique_dates.to_excel(r'D:\\运营\\uniquedates.xlsx')
-    print(f"\nCountry: {country}")
+    print(f"\nCountry: {Country}")
     print("Unique Dates:")
     print(unique_dates)
     

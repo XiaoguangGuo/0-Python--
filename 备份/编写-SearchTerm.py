@@ -15,7 +15,7 @@ SearchTermAll=pd.read_excel(r'D:\\运营\\运行结果数据\\Sponsored Products
 SearchTermAll["Clicks"].fillna(0,inplace=True)
 
 
-SearchTermAll_Sum=SearchTermAll.groupby(["COUNTRY","Campaign Name", "Ad Group Name","Customer Search Term"],as_index=False)[["Impressions","Clicks","Spend","7 Day Total Sales ","7 Day Total Orders (#)"]].agg("sum")
+SearchTermAll_Sum=SearchTermAll.groupby(["Country","Campaign Name", "Ad Group Name","Customer Search Term"],as_index=False)[["Impressions","Clicks","Spend","7 Day Total Sales ","7 Day Total Orders (#)"]].agg("sum")
 
 
 SearchTermAll_Sum.loc[SearchTermAll_Sum['Clicks']>0,"转化率"]=SearchTermAll_Sum["7 Day Total Orders (#)"]/SearchTermAll_Sum['Clicks']
@@ -41,9 +41,9 @@ Allbulk=pd.read_excel(Allbulkpath+'周bulk广告数据汇总表.xlsx')
 Allbulk_Week1=Allbulk[Allbulk["周数"]==1]
 
 
-SearchTermAll_Good_Country_list=SearchTermAll_Good["COUNTRY"].dropduplicates().to_list()
+SearchTermAll_Good_Country_list=SearchTermAll_Good["Country"].dropduplicates().to_list()
 for countryname in SearchTermAll_Good_Country_list：
-    SearchTermAll_Good_Country=SearchTermAll_Good[[SearchTermAll_Good["COUNTRY"]==str(countryname)]
+    SearchTermAll_Good_Country=SearchTermAll_Good[[SearchTermAll_Good["Country"]==str(countryname)]
 
 
 

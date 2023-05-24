@@ -16,12 +16,12 @@ f_name = os.listdir(filePath)
 
 
 SeartchtermAll=pd.read_excel(r'D:\\运营\\2生成过程表\\Sponsored Products Search term report.xlsx')
-SeartchtermAll["COUNTRY"]=SeartchtermAll["COUNTRY"].str.upper()
+SeartchtermAll["Country"]=SeartchtermAll["Country"].str.upper()
 
 for seartchtermfile in f_name:
 
 
-    DFseartchtermfile=pd.read_excel(filePath+"\\"+str(seartchtermfile),engine="openpyxl").assign(COUNTRY=os.path.basename(seartchtermfile).split('_')[0])
+    DFseartchtermfile=pd.read_excel(filePath+"\\"+str(seartchtermfile),engine="openpyxl").assign(Country=os.path.basename(seartchtermfile).split('_')[0])
     colunmns_list=DFseartchtermfile.columns
     
     if "Total Advertising Cost of Sales (ACOS)" in colunmns_list:
@@ -39,11 +39,11 @@ SeartchtermAll["周数"]=(maxtime-SeartchtermAll["Date"]).dt.days//7+1
                            
 
 
-SeartchtermAll["COUNTRY"].replace("CA","GV-CA",inplace=True)
-SeartchtermAll["COUNTRY"].replace("US","GV-US",inplace=True)
-SeartchtermAll["COUNTRY"].replace("MX","GV-MX",inplace=True)
+SeartchtermAll["Country"].replace("CA","GV-CA",inplace=True)
+SeartchtermAll["Country"].replace("US","GV-US",inplace=True)
+SeartchtermAll["Country"].replace("MX","GV-MX",inplace=True)
 
-SeartchtermAll.dropna(axis=0, how='any', subset=["COUNTRY"],inplace=True)
+SeartchtermAll.dropna(axis=0, how='any', subset=["Country"],inplace=True)
 SeartchtermAll.to_excel(r'D:\\运营\\2生成过程表\\Sponsored Products Search term report.xlsx',engine="openpyxl",sheet_name="Sponsored Product Search Term R",index=False)         
 
 
@@ -77,8 +77,8 @@ SearchTermAll["Clicks"].fillna(0,inplace=True)
 
 SearchTermAll["Customer Search Term"].astype(str)
 
-SearchTermAll_Sum=SearchTermAll.groupby(["COUNTRY","Campaign Name", "Ad Group Name","Customer Search Term"],as_index=False)[["Impressions","Clicks","Spend","7 Day Total Sales ","7 Day Total Orders (#)"]].agg("sum")
-SearchTermAllquan=SearchTermAll.groupby(["COUNTRY","Campaign Name", "Ad Group Name","Customer Search Term","Targeting","Match Type"],as_index=False)[["Impressions","Clicks","Spend","7 Day Total Sales ","7 Day Total Orders (#)"]].agg("sum")
+SearchTermAll_Sum=SearchTermAll.groupby(["Country","Campaign Name", "Ad Group Name","Customer Search Term"],as_index=False)[["Impressions","Clicks","Spend","7 Day Total Sales ","7 Day Total Orders (#)"]].agg("sum")
+SearchTermAllquan=SearchTermAll.groupby(["Country","Campaign Name", "Ad Group Name","Customer Search Term","Targeting","Match Type"],as_index=False)[["Impressions","Clicks","Spend","7 Day Total Sales ","7 Day Total Orders (#)"]].agg("sum")
 
 SearchTermAll_Sum.loc[SearchTermAll_Sum['Clicks']>0,"转化率"]=SearchTermAll_Sum["7 Day Total Orders (#)"]/SearchTermAll_Sum['Clicks']
 
@@ -114,7 +114,7 @@ averagePriceDic={"GV-US":0.75,"GV-CA":0.75,"NEW-UK":0.5,"NEW-JP":50,"NEW-CA":0.7
 StandardCountryList=["GV-US","GV-CA" ,"NEW-UK" ,"NEW-JP" ,"NEW-CA" ,"NEW-IT" ,"NEW-DE" ,"NEW-ES" ,"NEW-FR" ,"NEW-US" ,"HM-US" ,"GV-MX","NEW-MX" ,"HM-US"]
  
 
-SearchTermAll_Country_list=SearchTermAll["COUNTRY"].drop_duplicates().to_list()                 
+SearchTermAll_Country_list=SearchTermAll["Country"].drop_duplicates().to_list()                 
 for countryname in SearchTermAll_Country_list:   #遍历searchTemgood里的国家
     if countryname in StandardCountryList:
         averageprice=averagePriceDic[countryname]
@@ -132,7 +132,7 @@ for countryname in SearchTermAll_Country_list:   #遍历searchTemgood里的国�
     
     Allbulk_Campaign_SKUSum_Country=Allbulk_Campaign_SKUSum[Allbulk_Campaign_SKUSum["Country"]==countryname].reindex()
 
-    CountrySKU_Close_List=ProductActions.loc[(ProductActions["COUNTRY"]==countryname)&(ProductActions["行动方案"].str.contains("关闭广告")),"SKU"].drop_duplicates().to_list()#这个国家要关闭的SKU的List
+    CountrySKU_Close_List=ProductActions.loc[(ProductActions["Country"]==countryname)&(ProductActions["行动方案"].str.contains("关闭广告")),"SKU"].drop_duplicates().to_list()#这个国家要关闭的SKU的List
 
     AllCountryActions_Country_SKU_Close_List_nocomma_list=[] 
     for AllCountryActions_Country_SKU_Close_List_nocomma in CountrySKU_Close_List:
@@ -167,7 +167,7 @@ for countryname in SearchTermAll_Country_list:   #遍历searchTemgood里的国�
         Bulkfile_Country=bulkdatafile.split('_')[0]
 
         if Bulkfile_Country==countryname:
-            SearchTermAll_Good_Country=SearchTermAll_Good[SearchTermAll_Good["COUNTRY"]==str(countryname)]
+            SearchTermAll_Good_Country=SearchTermAll_Good[SearchTermAll_Good["Country"]==str(countryname)]
          
             
              
@@ -592,7 +592,7 @@ for countryname22 in SearchTermAll_Country_list:
 
 
     
-    SearchBadwithCountry=SearchTermAll_Bad[SearchTermAll_Bad["COUNTRY"]==countryname22] 
+    SearchBadwithCountry=SearchTermAll_Bad[SearchTermAll_Bad["Country"]==countryname22] 
     
     if len(SearchBadwithCountry)>0:    
         n=0                                             

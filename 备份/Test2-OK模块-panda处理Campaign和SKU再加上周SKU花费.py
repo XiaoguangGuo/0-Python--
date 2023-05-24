@@ -7,7 +7,7 @@ import openpyxl
 src_dir_path_sales=r'D:\运营\广告BulkOperation'
 #设置查找文件路径
 
-campaignskucountry=pd.read_excel(r'D:\运营\Campaign-sku-country.xlsx')
+campaignskucountry=pd.read_excel(r'D:\运营\Campaign-sku-Country.xlsx')
 #先读出旧的目标文件
 
 dfadbulk=pd.DataFrame(columns=["Campaign","SKU","Country"])
@@ -52,13 +52,13 @@ for file in os.listdir(src_dir_path_sales):
 campaignskucountry= campaignskucountry.append (dfadbulk,ignore_index=True)
 campaignskucountry.drop_duplicates(inplace=True)
 # 将过渡文件追加到目标文件中；去掉重复项   
-campaignskucountry.to_excel(r'D:/运营/Campaign-sku-country.xlsx', sheet_name="Sheet1",startrow=0,header=True,index=False)
+campaignskucountry.to_excel(r'D:/运营/Campaign-sku-Country.xlsx', sheet_name="Sheet1",startrow=0,header=True,index=False)
 #导出到Excel
 
 Campaignskucountryuse=campaignskucountry.drop_duplicates(subset=['Campaign','Country'], keep='last',inplace=False)
 print(Campaignskucountryuse)
  
-Campaignskucountryuse.to_excel(r'D:/运营/Campaign-sku-country-use.xlsx', sheet_name="Sheet1",startrow=0,header=True,index=False) 
+Campaignskucountryuse.to_excel(r'D:/运营/Campaign-sku-Country-use.xlsx', sheet_name="Sheet1",startrow=0,header=True,index=False) 
 
 
 

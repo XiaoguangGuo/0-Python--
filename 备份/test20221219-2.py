@@ -23,10 +23,10 @@ for bulkchangefile in dirlist: #找bulkfile对应的国家文件 os.listdir(bulk
 
     bulkchangefileSKU_list=Changefiledf["SKU"].drop_duplicates().to_list()
     for bulkchangefileSKU in bulkchangefileSKU_list:
-        if bulkchangefileSKU in CountriesProduct.loc[CountriesProduct["COUNTRY"]==countryname20001219,"SKU"].to_list():
-            stock_oi=CountriesProduct.loc[(CountriesProduct["COUNTRY"]==countryname20001219)&(CountriesProduct["SKU"].str.contains(bulkchangefileSKU)),"STOCKALL"].value[0]
-            label_oi=CountriesProduct.loc[(CountriesProduct["COUNTRY"]==countryname20001219)&(CountriesProduct["SKU"].str.contains(bulkchangefileSKU)),"皮质标签"].value[0]
-            action_oi=CountriesProduct.loc[(CountriesProduct["COUNTRY"]==countryname20001219)&(CountriesProduct["SKU"].str.contains(bulkchangefileSKU)),"皮质标签"].value[0]                              
+        if bulkchangefileSKU in CountriesProduct.loc[CountriesProduct["Country"]==countryname20001219,"SKU"].to_list():
+            stock_oi=CountriesProduct.loc[(CountriesProduct["Country"]==countryname20001219)&(CountriesProduct["SKU"].str.contains(bulkchangefileSKU)),"STOCKALL"].value[0]
+            label_oi=CountriesProduct.loc[(CountriesProduct["Country"]==countryname20001219)&(CountriesProduct["SKU"].str.contains(bulkchangefileSKU)),"皮质标签"].value[0]
+            action_oi=CountriesProduct.loc[(CountriesProduct["Country"]==countryname20001219)&(CountriesProduct["SKU"].str.contains(bulkchangefileSKU)),"皮质标签"].value[0]                              
             
             Changefiledf.loc[Changefiledf["SKU"]==bulkchangefileSKU,"STOCKALL"]== stock_oi                          
             Changefiledf.loc[Changefiledf["SKU"]==bulkchangefileSKU,"皮质标签"]== label_oi

@@ -1,6 +1,30 @@
 # -*- coding:utf-8 –*-
 import os
 import pandas as pd
+from datetime import datetime, timedelta
+
+
+def find_last_saturday():
+    today = datetime.now()
+    last_saturday = today - timedelta(days=today.weekday() + 2)
+    return last_saturday
+#将df中的日期列转换为周数并添加周数列
+def update_week_numbers(df):
+
+
+    last_saturday = find_last_saturday()
+    print(last_saturday)
+
+    # 检查输入 DataFrame 的列名中哪一个表示日期
+    date_column = "日期" if "日期" in df.columns else "Date"
+
+    df[date_column] = pd.to_datetime(df[date_column])
+    df['周数'] = ((last_saturday - df[date_column]).dt.days // 7) + 1
+    return df
+
+
+src_dir_path_sales=r'D:\运营\1数据源\计划数据\老站\销售数据'
+
 src_dir_path_inventory=r'D:\运营\\1数据源\\计划数据\老站\当日库存'
 
 key =['US','CA','MX']
@@ -100,142 +124,55 @@ for file in os.listdir(src_dir_path_restock):
         print("什么restock文件都没有")
 
 #复制销售数据 20210221模块待写入
-src_dir_path_sales=r'D:\运营\1数据源\计划数据\老站\销售数据'
-# 设置来源文件搜索目录
-print(os.listdir(src_dir_path_sales))
-key =['US','CA','MX']
-#设置需要搜索的国家名字
 
-# 以后做函数来简化程序def data_csv_open(file)
-# def sourcesales_totargetsales(path,listofcountry,target_excel)未来做
+all_sales_df=pd.read_excel(r'D:\运营\2生成过程表\周销售数据总表.xlsx',sheet_name="Sheet1")
 
 
 for file in os.listdir(src_dir_path_sales):
-     
-    data_sales_US=pd.read_excel(r'D:\运营\2019plan\周销售数据.xlsx')
-    data_sales_CA=pd.read_excel(r'D:\运营\2019plan\Canada周销售数据.xlsx')
-    data_sales_MX=pd.read_excel(r'D:\运营\2019plan\Mexico周销售数据.xlsx')
+        file_first_part = file.split("_")[0]
+        for keyword in key:
+            if keyword in file_first_part :
 
-    #读取 D:\运营\2生成过程表\周销售数据总表.xlsx
-    all_sales_df=pd.read_excel(r'D:\运营\2生成过程表\周销售数据总表.xlsx')
+                file_path = os.path.join(src_dir_path_sales, file)
+                data_csv_sales = pd.read_csv(file_path).assign(日期=os.path.basename(file).split('_')[1])
+                data_csv_sales['日期'] = pd.to_datetime(data_csv_sales['日期'])
+                data_csv_sales["Country"]="GV"+"-"+str(keyword)
+                if keyword=="CA":
+                    data_csv_sales=data_csv_sales.rename(columns = {
+    "Sessions – Total – B2B": "Sessions - Total - B2B",
+    "Session percentage - Total": "Session Percentage - Total",
+    "Session Percentage – Total – B2B": "Session Percentage - Total - B2B",
+    "Page views - Total": "Page Views - Total",
+    "Page Views – Total – B2B": "Page Views - Total - B2B",
+    "Page views percentage - Total": "Page Views Percentage - Total",
+    "Page Views Percentage – Total – B2B": "Page Views Percentage - Total - B2B",
+    "Featured Offer (Buy Box) Percentage – B2B": "Featured Offer (Buy Box) Percentage - B2B",
+    "Units ordered": "Units Ordered",
+    "Units ordered – B2B": "Units Ordered - B2B",
+    "Unit session percentage": "Unit Session Percentage",
+    "Units session percentage – B2B": "Unit Session Percentage - B2B",
+    "Ordered product sales": "Ordered Product Sales",
+    "Ordered product sales – B2B": "Ordered Product Sales - B2B",
+    "Total order items": "Total Order Items",
+    "Total order items – B2B": "Total Order Items - B2B"})
 
-#未来可以做一个文件名列表包含文件名和sheet名
-    salescolumns_US=data_sales_US.columns.tolist()
-    salescolumns_CA=data_sales_CA.columns.tolist()
-    salescolumns_MX=data_sales_MX.columns.tolist()
-    salescolumns_all=all_sales_df.columns.tolist()
-#取得目标文件的dataframe和列名
+                #judge if the columns of data_csv_sales is a subset of all_sales_df
+                if set(data_csv_sales.columns).issubset(set(all_sales_df.columns)):
 
-    if key[0] in file:
-        print("开始处理US数据")
-    
-   
-   
-        data_csv_sales =pd.read_csv(r'D:\\运营\\1数据源\计划数据\\老站\\销售数据\\'+ str(file)).assign(日期=os.path.basename(file).split('_')[1])
-    #读取源数据加日期 把文件名中的日期写进来
-        data_csv_sales['日期'] = pd.to_datetime(data_csv_sales['日期'])
-        print(data_csv_sales['日期'])
-        data_csv_sales['周数']=""
-            
-        print(data_csv_sales)
-      
-        ru=data_sales_US.columns.size-data_csv_sales.columns.size 
-        
-        if ru==0:
-        #如果列数相同
-            data_csv_sales.columns=salescolumns_US
-            data_sales_US=data_sales_US.append(data_csv_sales,ignore_index=True)
-        #做append将源数据合并到目标文件
-            maxtime=pd.to_datetime(data_sales_US["日期"].max())
-        #查目标文件的最晚日期
-            print("最晚时间",maxtime)
-            data_sales_US ['周数']=(maxtime-data_sales_US['日期']).dt.days//7+1
-        #周数写到目标文件
-        #在导出之前加周数
-            data_sales_US.to_excel(r'D:\运营\2019plan\周销售数据.xlsx', sheet_name="Sheet1",startrow=0,header=True,index=False)
-            print("US销售数据更新完成")
-        else:
-            print("US销售数据未导出，请修改目标文件以保证列数相同")
-            print("列数新下载数据文件和目标文件分别为：",data_csv_sales.columns.size,data_sales_CA.columns.size)
-              
-
-              
-    # CA
-    
-    elif key[1] in file:
+                    all_sales_df = all_sales_df.reset_index(drop=True)
+                    data_csv_sales = data_csv_sales.reset_index(drop=True)
+                    print(data_csv_sales.columns)
+                     
+                    all_sales_df = pd.concat([all_sales_df,data_csv_sales],axis=0,ignore_index=True)
+                    break
+                else:
+                    print("列名有不符合的，需要修改")
+                    input("请修改列名后按回车键继续")
+                    
+all_sales_df=update_week_numbers(all_sales_df)
+print(all_sales_df)        
+all_sales_df.to_excel(r'D:\运营\2生成过程表\周销售数据总表.xlsx', sheet_name="Sheet1", startrow=0, header=True, index=False)
  
-    
-   
-   
-        data_csv_sales =pd.read_csv(r'D:\\运营\\1数据源\\计划数据\\老站\\销售数据\\'+ str(file),encoding="Latin1").assign(日期=os.path.basename(file).split('_')[1])
-    #读取源数据加日期 把文件名中的日期写进来
-        data_csv_sales['日期'] = pd.to_datetime(data_csv_sales['日期'])
-        print(data_csv_sales['日期'])
-        data_csv_sales['周数']=""
-            
-        print(data_csv_sales)
-   
-       
-    
-        
-   
-            
-        ru=data_sales_CA.columns.size-data_csv_sales.columns.size 
-        
-        if ru==0:
-        #如果列数相同
-            data_csv_sales.columns=salescolumns_CA
-            data_sales_CA=data_sales_CA.append(data_csv_sales,ignore_index=True)
-        #做append将源数据合并到目标文件
-            maxtime=pd.to_datetime(data_sales_CA["日期"].max())
-        #查目标文件的最晚日期
-            print("最晚时间",maxtime)
-            data_sales_CA ['周数']=(maxtime-data_sales_CA['日期']).dt.days//7+1
-        #周数写到目标文件
-        #在导出之前加周数
-            data_sales_CA.to_excel(r'D:\运营\2019plan\Canada周销售数据.xlsx', sheet_name="Sheet1",startrow=0,header=True,index=False)
-            print("CA销售数据更新完成")
-        else:
-            print("CA销售数据未导出，请修改目标文件以保证列数相同")
-            print("列数新下载数据文件和目标文件分别为：",data_csv_sales.columns.size,data_sales_CA.columns.size)
-              
-    # MX
-
-    elif key[2] in file:
-        print("开始处理MX数据")
-        # 不需要的 data_csv3 = pd.read_table(r'D:\\运营\\1数据源\\计划数据\\老站\\销售数据\\'+ str(file))
-    # 打开原文件的dataframe
-     
-
-   
-        data_csv_sales =pd.read_csv(r'D:\\运营\\1数据源\\计划数据\\老站\\销售数据\\'+ str(file)).assign(日期=os.path.basename(file).split('_')[1])
-    #加日期把文件名中的日期写进来
-        data_csv_sales['日期'] = pd.to_datetime(data_csv_sales['日期'])
-        print(data_csv_sales['日期'])
-       
-        data_csv_sales['周数']=""
-  
-    #加周数
-        ru=data_csv_sales.columns.size-data_sales_MX.columns.size
-        if ru==0:
-    #给列名赋值确保可以
-            data_csv_sales.columns=salescolumns_MX
-    #做append
-            data_sales_MX=data_sales_MX.append(data_csv_sales,ignore_index=True)
-            maxtime=pd.to_datetime(data_sales_MX["日期"].max())
-            print(maxtime)
-            data_sales_MX['周数']=(maxtime-data_sales_MX['日期']).dt.days//7+1
-            data_sales_MX.to_excel(r'D:\运营\2019plan\Mexico周销售数据.xlsx', sheet_name="Sheet1",startrow=0,header=True,index=False)
-            print("MX销售数据更新完成")
-        else:
-            print("请修改目标文件，以保证列数相同")
-            print("列数新下载数据文件和目标文件分别为：",data_csv_sales.columns.size,data_sales_MX.columns.size) 
-    else:
-        print("什么销售文件都没有")
-    
-
-    
-    
 # 复制TSV在途库存
 
 src_dir_path_shipped=r'D:\运营\1数据源\计划数据\老站\在途库存'
@@ -263,7 +200,7 @@ for file in os.listdir(src_dir_path_shipped):
 
         data_tsv5['到货日期']=""
         data_tsv5['周数']=""
-        print("lIESHU",data_tsv5.columns,salescolumns_US)
+        print("lIESHU",data_tsv5.columns,salescolumns_US) 
         data_tsv5.columns=salescolumns_US
         
     
@@ -328,81 +265,61 @@ input ("首先檢查三個在途計劃表,確認沒問題之後點回車")
 
 ##############################################################################################################################################################################
 
-#讀取2019計劃的銷售表
-Sales_US=pd.read_excel(r'D:\运营\2019plan\周销售数据.xlsx')
 
-Sales_US["COUNTRY"]="GV-US"
-Sales_US.rename(columns = {'(Child) ASIN':"Asin"}, inplace = True)
+
                 
 Stock_US=pd.read_excel(r'D:\运营\2019plan\当日Amazon库存.xlsx')
 Stock_US.rename(columns = {'sku':"SKU",'asin':"Asin","afn-fulfillable-quantity":"Fufillable","afn-inbound-receiving-quantity":"Receiving","afn-reserved-quantity":"Reserved"}, inplace = True)
-Stock_US["COUNTRY"]="GV-US"
-Stock_US=Stock_US[["COUNTRY","Asin","SKU","Fufillable","Reserved","afn-inbound-working-quantity","afn-inbound-shipped-quantity","Receiving"]]
+Stock_US["Country"]="GV-US"
+Stock_US=Stock_US[["Country","Asin","SKU","Fufillable","Reserved","afn-inbound-working-quantity","afn-inbound-shipped-quantity","Receiving"]]
 
 
 Intransit_us=pd.read_excel(r'D:\运营\2019plan\在途库存.xlsx')
 
-Intransit_us["COUNTRY"]="GV-US"
+Intransit_us["Country"]="GV-US"
  
 Intransit_us.rename(columns = {'Merchant SKU':"SKU",'ASIN':"Asin"}, inplace = True)
 
-
-#输出成excel表
-
-Sales_CA=pd.read_excel(r'D:\运营\2019plan\Canada周销售数据.xlsx')
-Sales_CA["COUNTRY"]="GV-CA"
-Sales_CA.rename(columns = {'(Child) ASIN':"Asin","Units ordered":"Units Ordered"}, inplace = True)
-
-                
 Stock_CA=pd.read_excel(r'D:\运营\2019plan\Canada当前Amazon库存.xlsx')
-Stock_CA["COUNTRY"]="GV-CA"
+Stock_CA["Country"]="GV-CA"
 Stock_CA.rename(columns = {'sku':"SKU",'asin':"Asin","afn-fulfillable-quantity":"Fufillable","afn-inbound-receiving-quantity":"Receiving","afn-reserved-quantity":"Reserved"}, inplace = True)
-Stock_CA=Stock_CA[["COUNTRY","Asin","SKU","Fufillable","Reserved","afn-inbound-working-quantity","afn-inbound-shipped-quantity","Receiving"]]
-
+Stock_CA=Stock_CA[["Country","Asin","SKU","Fufillable","Reserved","afn-inbound-working-quantity","afn-inbound-shipped-quantity","Receiving"]]
 
 Intransit_ca=pd.read_excel(r'D:\运营\2019plan\Canada在途库存.xlsx')
-Intransit_ca["COUNTRY"]="GV-CA"
+Intransit_ca["Country"]="GV-CA"
 Intransit_ca.rename(columns = {'Merchant SKU':"SKU",'ASIN':"Asin"}, inplace = True)
-
-         
-Sales_MX=pd.read_excel(r'D:\运营\2019plan\Mexico周销售数据.xlsx')
-Sales_MX["COUNTRY"]="GV-MX"
-
-
+        
 Stock_MX=pd.read_excel(r'D:\运营\2019plan\Mexico当日Amazon库存.xlsx')
 Stock_MX.rename(columns = {'sku':"SKU",'asin':"Asin"}, inplace = True)
 Stock_MX.rename(columns = {'sku':"SKU",'asin':"Asin","afn-fulfillable-quantity":"Fufillable","afn-inbound-receiving-quantity":"Receiving","afn-reserved-quantity":"Reserved"}, inplace = True)
-Stock_MX["COUNTRY"]="GV-MX"
-Stock_MX=Stock_MX[["COUNTRY","Asin","SKU","Fufillable","Reserved","afn-inbound-working-quantity","afn-inbound-shipped-quantity","Receiving"]]                
-
-
-
+Stock_MX["Country"]="GV-MX"
+Stock_MX=Stock_MX[["Country","Asin","SKU","Fufillable","Reserved","afn-inbound-working-quantity","afn-inbound-shipped-quantity","Receiving"]]                
 
 
 
 Intransit_mx=pd.read_excel(r'D:\运营\2019plan\Mexico在途库存.xlsx')
-Intransit_mx["COUNTRY"]="GV-MX"
+Intransit_mx["Country"]="GV-MX"
 
                 
 Intransit_mx.rename(columns = {'Merchant SKU':"SKU",'ASIN':"Asin"}, inplace = True) 
 
+Sales_All=all_sales_df[all_sales_df['周数']<53].drop_duplicates()
 
 
-Sales_All=pd.concat([Sales_US,Sales_CA,Sales_MX])
 
-
-Sales_All.to_excel(r'D:\运营\2生成过程表\2023plan\Sales_all.xlsx')
+#Sales_All rename columns
+Sales_All.rename(columns = {'(Child) ASIN':"Asin"}, inplace = True)
 
 Stock_All=pd.concat([Stock_US,Stock_CA,Stock_MX])
 Intransit_All=pd.concat([Intransit_us,Intransit_ca,Intransit_mx])       
 
  
-SKUAll_1=Stock_All[["COUNTRY","Asin","SKU"]].drop_duplicates()
-SKUAll_2=Sales_All[["COUNTRY","Asin","SKU"]].drop_duplicates()
+SKUAll_1=Stock_All[["Country","Asin","SKU"]].drop_duplicates()
+SKUAll_2=Sales_All[["Country","Asin","SKU"]].drop_duplicates()
 SKUAll=pd.concat([SKUAll_1,SKUAll_2])
 
 
-max_week=100
+max_week=52
 
 Sales_Weeks=SKUAll_2
 
@@ -413,14 +330,14 @@ for i in range(1,max_week):
 
     if i==1:
 
-        Sales_Weeks_i=Sales_Weeks_i[["COUNTRY","Asin","Title","SKU","Units Ordered","Sessions - Total","Unit Session Percentage"]]
+        Sales_Weeks_i=Sales_Weeks_i[["Country","Asin","Title","SKU","Units Ordered","Sessions - Total","Unit Session Percentage"]]
 
         Sales_Weeks_i.rename(columns = {"Units Ordered":str(i),"Sessions - Total":"Session"+str(i),"Unit Session Percentage":"Percentage"+str(i)}, inplace = True)
 
         print(Sales_Weeks_i)
        
     else:
-        Sales_Weeks_i=Sales_Weeks_i[["COUNTRY","Asin","SKU","Units Ordered","Sessions - Total","Unit Session Percentage"]]
+        Sales_Weeks_i=Sales_Weeks_i[["Country","Asin","SKU","Units Ordered","Sessions - Total","Unit Session Percentage"]]
         print(Sales_Weeks_i)
        
         print(i)
@@ -429,42 +346,39 @@ for i in range(1,max_week):
 
     #合并
 
-    Sales_Weeks=pd.merge(Sales_Weeks,Sales_Weeks_i,on=["COUNTRY","Asin","SKU"] ,how="left")
+    Sales_Weeks=pd.merge(Sales_Weeks,Sales_Weeks_i,on=["Country","Asin","SKU"] ,how="left")
     Sales_Weeks.to_excel(r'D:\运营\2生成过程表\2023plan\Sales_Weeks.xlsx' ,index=False)  
 
 max_week=11
-Intransit_Weeks = Intransit_All[["COUNTRY","Asin","SKU"]].drop_duplicates()
+Intransit_Weeks = Intransit_All[["Country","Asin","SKU"]].drop_duplicates()
 for i in range(1,max_week):
-  Intransit_All2=Intransit_All.groupby(["COUNTRY","Asin","SKU","周数"],as_index=False)[['Shipped']].agg('sum')
+  Intransit_All2=Intransit_All.groupby(["Country","Asin","SKU","周数"],as_index=False)[['Shipped']].agg('sum')
   Intransit_Weeks_i=Intransit_All2.loc[Intransit_All2["周数"]==i]
   if len(Intransit_Weeks_i)>0:
 
 
       
-      Intransit_Weeks_i=Intransit_Weeks_i[["COUNTRY","Asin","SKU","Shipped"]]
+      Intransit_Weeks_i=Intransit_Weeks_i[["Country","Asin","SKU","Shipped"]]
       Intransit_Weeks_i.rename(columns = {"Shipped":"第"+str(i)+"周入库"}, inplace = True)
-  Intransit_Weeks =pd.merge(Intransit_Weeks,Intransit_Weeks_i,on=["COUNTRY","Asin","SKU"] ,how="left")
+  Intransit_Weeks =pd.merge(Intransit_Weeks,Intransit_Weeks_i,on=["Country","Asin","SKU"] ,how="left")
   
 
-
-
-
-PlanAll=pd.merge(SKUAll,Sales_Weeks,how="left", on=["COUNTRY","SKU","Asin"])
+PlanAll=pd.merge(SKUAll,Sales_Weeks,how="left", on=["Country","SKU","Asin"])
 
 PlanAll.to_excel(r'D:\运营\2生成过程表\2023plan\PlanAllnew.xlsx' ,index=False)
 
 
-PlanAll=pd.merge(PlanAll,Stock_All,how="left", on=["COUNTRY","SKU","Asin"])
+PlanAll=pd.merge(PlanAll,Stock_All,how="left", on=["Country","SKU","Asin"])
 
-PlanAll=pd.merge(PlanAll,Intransit_Weeks,how="left", on=["COUNTRY","SKU","Asin"])
+PlanAll=pd.merge(PlanAll,Intransit_Weeks,how="left", on=["Country","SKU","Asin"])
 
 PlanAll.fillna(0,inplace=True)
 Listing=pd.read_excel(r'D:\运营\2019plan\Listing.xlsx',sheet_name="Listing")
-Listing=Listing[["COUNTRY","SKU","大类","小类"]]
+Listing=Listing[["Country","SKU","大类","小类"]]
 
 Price=pd.read_excel(r'D:\运营\2019plan\Listing.xlsx',sheet_name="Price")
 Price=Price[["SKU","Price"]]
-PlanAll=pd.merge(PlanAll,Listing,on=["COUNTRY","SKU" ] ,how="left")
+PlanAll=pd.merge(PlanAll,Listing,on=["Country","SKU" ] ,how="left")
 PlanAll=pd.merge(PlanAll,Price,on=["SKU" ] ,how="left")
 print(PlanAll)
     
@@ -532,7 +446,7 @@ PlanAll["Adjusted-Week15"]=PlanAll["ZZ2"]*0.7*15+PlanAll["For第15周销售的�
 
 
 
-#SELECT "US" AS COUNTRY, 周销售数据_交叉表_SKU日期.SKU, 周销售数据_交叉表_SKU日期.[(Child)
+#SELECT "US" AS Country, 周销售数据_交叉表_SKU日期.SKU, 周销售数据_交叉表_SKU日期.[(Child)
 #ASIN], listing.大类, listing.小类, listing.新品, listing.型号, listing.唯一中文名称,
 #周销售数据_交叉表_SKU日期.Title之Last, 周销售数据_交叉表_SKU日期.[总计 Units Ordered],
 #IIF([1]>0,[周Bulk广告数据汇总-US_交叉表加名字].广告1/[1],null) AS BILI1,
@@ -622,31 +536,31 @@ PlanAll["Adjusted-Week15"]=PlanAll["ZZ2"]*0.7*15+PlanAll["For第15周销售的�
 
 
 CampaignSKU_Summary=pd.read_excel(r'D:\运营\2生成过程表\周bulk数据Summary.xlsx',sheet_name="SKU-WEEK")
-CampaignSKU_Summary.rename(columns = {'Country':'COUNTRY'}, inplace = True)
+CampaignSKU_Summary.rename(columns = {'Country':'Country'}, inplace = True)
 
 
 
 
 
 
-CampaignSKU_Summary_biaotou=CampaignSKU_Summary[["COUNTRY","SKU"]].drop_duplicates()
+CampaignSKU_Summary_biaotou=CampaignSKU_Summary[["Country","SKU"]].drop_duplicates()
 print(CampaignSKU_Summary_biaotou)
 
 for i in range(1,11):
     #CampaignSKU_Summary_i=CampaignSKU_Summary["Clicks","Orders"].loc[(CampaignSKU_Summary["周数"]==i)]
     CampaignSKU_Summary_i=CampaignSKU_Summary.loc[(CampaignSKU_Summary["周数"]==i)]
     
-    CampaignSKU_Summary_i=CampaignSKU_Summary_i[["COUNTRY","SKU","Clicks","Orders","Spend"]]
+    CampaignSKU_Summary_i=CampaignSKU_Summary_i[["Country","SKU","Clicks","Orders","Spend"]]
     #更改列名
 
     CampaignSKU_Summary_i.rename(columns = {'Clicks':'广告Clicks'+str(i), 'Orders':'广告Orders'+str(i),'Spend':'广告'+str(i)}, inplace = True)
 
-    PlanAll=pd.merge(PlanAll,CampaignSKU_Summary_i,on=["COUNTRY","SKU" ] ,how="left")
+    PlanAll=pd.merge(PlanAll,CampaignSKU_Summary_i,on=["Country","SKU" ] ,how="left")
  
 PlanAll["GGZZ1"]=PlanAll["广告1"]-PlanAll["广告2"]
 PlanAll["BILI1"]=PlanAll["广告1"]/PlanAll["1"]
 PlanAll=PlanAll.drop_duplicates()
-PlanAll=PlanAll[["COUNTRY","SKU","Asin","Title","大类","小类","Price",	
+PlanAll=PlanAll[["Country","SKU","Asin","Title","大类","小类","Price",	
                  "SELLING10","STOCKALL","TotalAmount","Zhouzhuan10","GGZZ1","BILI1",
                  "ZZ1","ZZ2","1","2","3","4","5","6","7","8","9","10",
                  "广告1","广告2","广告3","广告4","广告5","广告6","广告7","广告8",

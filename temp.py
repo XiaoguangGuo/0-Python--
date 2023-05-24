@@ -116,7 +116,7 @@ plan1["销售额1"]=0.00001
 plan1["广告订单1"]=0
 plan1["毛利润"]=0
 
-plan1.rename(columns = {'COUNTRY':'站点','1':'销量1','2':'销量2','3':'销量3','4':'销量4','4':'销量4','5':'销量5','6':'销量6','7':'销量7','8':'销量8','9':'销量9','10':'销量10'},inplace=True)
+plan1.rename(columns = {'Country':'站点','1':'销量1','2':'销量2','3':'销量3','4':'销量4','4':'销量4','5':'销量5','6':'销量6','7':'销量7','8':'销量8','9':'销量9','10':'销量10'},inplace=True)
 
 
 print(plan1)
@@ -181,7 +181,7 @@ AllCountry_Weeks=AllCountry_Weeks.reindex(columns=["本周销量增长","本周�
 
 ProductsAnalyze=pd.read_excel(r'D:\\运营\\3数据分析结果\\'+ "国家汇总.xlsx", engine="openpyxl",sheet_name=1)
 
-ProductsAnalyze=ProductsAnalyze[["COUNTRY","SKU","日销售目标","周销售目标","大类","小类","手动标签"]]
+ProductsAnalyze=ProductsAnalyze[["Country","SKU","日销售目标","周销售目标","大类","小类","手动标签"]]
  
 
 
@@ -216,32 +216,32 @@ plan=pd.read_excel(r'D:\运营\2生成过程表\2023plan\plan.xlsx',sheet_name=0
 del plan["大类"]
 del plan["小类"]
 
-#plan["COUNTRY"].replace("CA","GV-CA",inplace=True)
-#plan["COUNTRY"].replace("US","GV-US",inplace=True)
-#plan["COUNTRY"].replace("MX","GV-MX",inplace=True)
+#plan["Country"].replace("CA","GV-CA",inplace=True)
+#plan["Country"].replace("US","GV-US",inplace=True)
+#plan["Country"].replace("MX","GV-MX",inplace=True)
 
 
 
 SailingstarPlan=pd.read_excel(r'D:\运营\2生成过程表\All_Product_Analyzefile_Weeks排序.xlsx',sheet_name=0)
 
 
-SailingstarPlan.rename(columns = {'站点':'COUNTRY','MSKU':'SKU','销量1':'1','销量2':'2','销量3':'3','销量4':'4','销量5':'5','销量6':'6','销量7':'7','销量8':'8','销量9':'9','销量10':'10'},inplace=True)
+SailingstarPlan.rename(columns = {'站点':'Country','MSKU':'SKU','销量1':'1','销量2':'2','销量3':'3','销量4':'4','销量5':'5','销量6':'6','销量7':'7','销量8':'8','销量9':'9','销量10':'10'},inplace=True)
 
 SailingstarPlan.rename(columns = {'广告花费1':'广告1','广告花费2':'广告2','广告花费3':'广告3','广告花费4':'广告4','广告花费5':'广告5','广告花费6':'广告6','广告花费7':'广告7','广告花费8':'广告8','广告花费9':'广告9','广告花费10':'广告10'},inplace=True)
 SailingstarPlan.rename(columns = {'FBA可售':'Fufillable'},inplace=True)
 
-SailingstarPlan=SailingstarPlan.loc[~SailingstarPlan["COUNTRY"].isnull()]
+SailingstarPlan=SailingstarPlan.loc[~SailingstarPlan["Country"].isnull()]
 
-for countryname99 in SailingstarPlan["COUNTRY"].drop_duplicates().to_list():
-    SailingstarPlan.loc[SailingstarPlan["COUNTRY"]==countryname99,'COUNTRY']=CountrDic[countryname99]
+for countryname99 in SailingstarPlan["Country"].drop_duplicates().to_list():
+    SailingstarPlan.loc[SailingstarPlan["Country"]==countryname99,'Country']=CountrDic[countryname99]
 
-SailingstarPlan=SailingstarPlan.loc[~SailingstarPlan["COUNTRY"].isnull()]
+SailingstarPlan=SailingstarPlan.loc[~SailingstarPlan["Country"].isnull()]
 
 plan=pd.concat([plan,SailingstarPlan],ignore_index=True)
 plan["SKU"].astype(str)
 
 
-plan=pd.merge(plan,ProductsAnalyze,how="left",on=["COUNTRY","SKU"])
+plan=pd.merge(plan,ProductsAnalyze,how="left",on=["Country","SKU"])
 plan["目标差"]=plan["1"]-plan["周销售目标"]
 
 CampaignWeek1=pd.read_excel(r'D:\运营\2生成过程表\周Bulk数据Summary.xlsx',sheet_name="SKU-Campaign-WEEK")
@@ -255,7 +255,7 @@ print(CampaignWeek1CampaignTotalCount.columns)
 
 
  
-#CampaignWeek1["广告开启数量"]=CampaignWeek1[CampaignWeek1['Campaign Status']=="enabled"].groupby["COUNTRY","SKU"],as index=False)[["Campaign"]].count()
+#CampaignWeek1["广告开启数量"]=CampaignWeek1[CampaignWeek1['Campaign Status']=="enabled"].groupby["Country","SKU"],as index=False)[["Campaign"]].count()
 
  
  
@@ -283,10 +283,10 @@ plan["Fufillable"].fillna(0,inplace=True)
 
 plan["广告1"].fillna(0,inplace=True)
 plan["Exchangerate"]=""
-plan_country_List=plan["COUNTRY"].drop_duplicates().to_list()
+plan_country_List=plan["Country"].drop_duplicates().to_list()
 for plan_country in plan_country_List:
     print(plan_country)
-    plan.loc[plan["COUNTRY"]==plan_country,"Exchangerate"]=exchangerate_20221217[plan_country]
+    plan.loc[plan["Country"]==plan_country,"Exchangerate"]=exchangerate_20221217[plan_country]
 
     
     print(plan["Exchangerate"])
@@ -303,7 +303,7 @@ for plan_country in plan_country_List:
    
     print(CampaignWeek1CampaignCountry_enabled)
 
-    plan_country_SKU_list=plan.loc[plan["COUNTRY"]==plan_country,"SKU"].drop_duplicates().to_list()
+    plan_country_SKU_list=plan.loc[plan["Country"]==plan_country,"SKU"].drop_duplicates().to_list()
     print(plan_country_SKU_list)
    
     CampaignWeek1WithEnabled_list=CampaignWeek1CampaignCountry_enabled.loc[(CampaignWeek1CampaignCountry_enabled["Country"]==plan_country)&(CampaignWeek1CampaignCountry_enabled["Campaign Status"]=="enabled"),"SKU"].drop_duplicates().to_list()
@@ -346,7 +346,7 @@ for plan_country in plan_country_List:
                     plan_enabled_sum+=plan_enabled_oi
                     print(plan_enabled_sum)
                     
-                    plan.loc[(plan["COUNTRY"]==plan_Country_SKU)&(plan["SKU"]==plan_Country_SKU),"广告开启数量"]=plan_enabled_sum
+                    plan.loc[(plan["Country"]==plan_Country_SKU)&(plan["SKU"]==plan_Country_SKU),"广告开启数量"]=plan_enabled_sum
 
         else:       
             print(plan_Country_SKU)
@@ -357,7 +357,7 @@ for plan_country in plan_country_List:
                 
                 xxenabled=CampaignWeek1CampaignCountry_enabled.loc[(CampaignWeek1CampaignCountry_enabled["Country"]==plan_country)&(CampaignWeek1CampaignCountry_enabled["SKU"]==plan_Country_SKU)&(CampaignWeek1CampaignCountry_enabled["Campaign Status"]=="enabled"),"Campaign"].values[0]
 
-                plan.loc[(plan["COUNTRY"]==plan_country)&(plan["SKU"]==plan_Country_SKU),"广告开启数量"]=xxenabled
+                plan.loc[(plan["Country"]==plan_country)&(plan["SKU"]==plan_Country_SKU),"广告开启数量"]=xxenabled
              
 
 #################################################以下有问题#################################################################
@@ -383,11 +383,11 @@ plan.loc[((plan["1"]+plan["2"]+plan["3"]+plan["4"])>0)&((plan["STOCKALL"]/(plan[
 plan.loc[(plan["广告1"]<0.5)| (plan["广告1"].isna())|(plan["广告1"]==""),"皮质层标签"] = plan["皮质层标签"].astype(str)+" 本周无广告"
 
 #每个订单花费广告费超过2美元就是效果差
-plan.loc[((plan["COUNTRY"]=="US")|(plan["COUNTRY"]=="CA"))&( plan["BILI1"]>2 ),"皮质层标签"] = plan["皮质层标签"].astype(str)+" 本周广告效果差"
-plan.loc[((plan["COUNTRY"]=="US")|(plan["COUNTRY"]=="CA"))&( plan["BILI1"]<0.3 ),"皮质层标签"] = plan["皮质层标签"].astype(str)+" 广告花费占比小"
+plan.loc[((plan["Country"]=="US")|(plan["Country"]=="CA"))&( plan["BILI1"]>2 ),"皮质层标签"] = plan["皮质层标签"].astype(str)+" 本周广告效果差"
+plan.loc[((plan["Country"]=="US")|(plan["Country"]=="CA"))&( plan["BILI1"]<0.3 ),"皮质层标签"] = plan["皮质层标签"].astype(str)+" 广告花费占比小"
 #4周广告费比上四周订单超过2美元就是长期效果差
 
-plan.loc[((plan["COUNTRY"]=="US")|(plan["COUNTRY"]=="CA"))&(((plan["1"]+plan["2"]+plan["3"]+plan["4"])>0) & ((plan["广告1"]+plan["广告2"]+plan["广告3"]+plan["广告4"])/(plan["1"]+plan["2"]+plan["3"]+plan["4"])>2)),"皮质层标签" ] = plan["皮质层标签"].astype(str)+" 长期广告效果差"
+plan.loc[((plan["Country"]=="US")|(plan["Country"]=="CA"))&(((plan["1"]+plan["2"]+plan["3"]+plan["4"])>0) & ((plan["广告1"]+plan["广告2"]+plan["广告3"]+plan["广告4"])/(plan["1"]+plan["2"]+plan["3"]+plan["4"])>2)),"皮质层标签" ] = plan["皮质层标签"].astype(str)+" 长期广告效果差"
 
 #墨西哥广告超过40比索是效果差
 
@@ -401,9 +401,9 @@ plan["广告4浪费金额"]=(plan["广告2"]/plan["Exchangerate"])-plan["4"]
 #plan.loc[ ((plan["广告1in美元"]-plan["1"])/(plan["广告1in美元"])>0.7),"皮质层标签"] = plan["皮质层标签"].where (plan["广告1in美元"]>0).astype(str)+"广告浪费比例大于70%"
 #plan.loc[plan["广告1in美元"]>0,"广告1浪费比例"]=(plan["广告1in美元"]-plan["1"])/(plan["广告1in美元"])
 
-plan.loc[((plan["COUNTRY"]=="MX")&( plan["BILI1"]>40 )),"皮质层标签"] = plan["皮质层标签"].astype(str)+" 本周广告效果差"
+plan.loc[((plan["Country"]=="MX")&( plan["BILI1"]>40 )),"皮质层标签"] = plan["皮质层标签"].astype(str)+" 本周广告效果差"
 
-plan.loc[(plan["COUNTRY"]=="MX")&(((plan["1"]+plan["2"]+plan["3"]+plan["4"])>0) & ((plan["广告1"]+plan["广告2"]+plan["广告3"]+plan["广告4"])/(plan["1"]+plan["2"]+plan["3"]+plan["4"])>40)),"皮质层标签" ] = plan["皮质层标签"].astype(str)+" 长期广告效果差"
+plan.loc[(plan["Country"]=="MX")&(((plan["1"]+plan["2"]+plan["3"]+plan["4"])>0) & ((plan["广告1"]+plan["广告2"]+plan["广告3"]+plan["广告4"])/(plan["1"]+plan["2"]+plan["3"]+plan["4"])>40)),"皮质层标签" ] = plan["皮质层标签"].astype(str)+" 长期广告效果差"
 
 plan.loc[(plan["广告1"]>0) &(plan["1"]==0),"皮质层标签"] = plan["皮质层标签"].astype(str)+" 本周广告效果差"
 
@@ -446,24 +446,24 @@ plan.loc[plan["皮质层标签"].str.contains("库存小于10且三周内无入�
 
 ############################占比##########################
 
-Country_Ad_Selling_Sum_All=plan.groupby("COUNTRY",as_index=False)[["1","2","3","4","5","6","7","8","9","10","广告1","广告2","广告3","广告4","广告5","广告6","广告7","广告8","广告9","广告10"]].agg("sum")
+Country_Ad_Selling_Sum_All=plan.groupby("Country",as_index=False)[["1","2","3","4","5","6","7","8","9","10","广告1","广告2","广告3","广告4","广告5","广告6","广告7","广告8","广告9","广告10"]].agg("sum")
 print(Country_Ad_Selling_Sum_All)
-Country_Stockall_sum=plan.groupby("COUNTRY",as_index=False)[["STOCKALL","Fufillable"]].agg("sum")
+Country_Stockall_sum=plan.groupby("Country",as_index=False)[["STOCKALL","Fufillable"]].agg("sum")
 print(Country_Stockall_sum)
 
-for country1 in plan["COUNTRY"].drop_duplicates().to_list():
+for country1 in plan["Country"].drop_duplicates().to_list():
     
     
  
-    Country_Ad_Selling_Sum_sku_country_sum=Country_Ad_Selling_Sum_All.loc[(Country_Ad_Selling_Sum_All["COUNTRY"]==country1),"广告1"].values[0]
+    Country_Ad_Selling_Sum_sku_country_sum=Country_Ad_Selling_Sum_All.loc[(Country_Ad_Selling_Sum_All["Country"]==country1),"广告1"].values[0]
     print(Country_Ad_Selling_Sum_sku_country_sum)
-    Country_Stockall_sum_STOCKALL=Country_Stockall_sum.loc[(Country_Stockall_sum["COUNTRY"]==country1),"STOCKALL"].values[0]
-    #Country_Stockall_sum_TotalAmount=Country_Stockall_sum.loc[(Country_Stockall_sum["COUNTRY"]==country1),"TotalAmount"].values[0]
+    Country_Stockall_sum_STOCKALL=Country_Stockall_sum.loc[(Country_Stockall_sum["Country"]==country1),"STOCKALL"].values[0]
+    #Country_Stockall_sum_TotalAmount=Country_Stockall_sum.loc[(Country_Stockall_sum["Country"]==country1),"TotalAmount"].values[0]
     
 
-    plan.loc[plan["COUNTRY"]==country1,"广告金额占比"]=plan["广告1"]/Country_Ad_Selling_Sum_sku_country_sum
-    plan.loc[plan["COUNTRY"]==country1,"库存占比"]=plan["STOCKALL"]/Country_Stockall_sum_STOCKALL
-    #plan.loc[plan["COUNTRY"]==country1,"库存金额占比"]=plan["STOCKALL"]/Country_Stockall_sum_TotalAmount
+    plan.loc[plan["Country"]==country1,"广告金额占比"]=plan["广告1"]/Country_Ad_Selling_Sum_sku_country_sum
+    plan.loc[plan["Country"]==country1,"库存占比"]=plan["STOCKALL"]/Country_Stockall_sum_STOCKALL
+    #plan.loc[plan["Country"]==country1,"库存金额占比"]=plan["STOCKALL"]/Country_Stockall_sum_TotalAmount
 
 
 

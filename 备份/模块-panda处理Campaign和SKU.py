@@ -8,7 +8,7 @@ src_dir_path_sales=r'D:\运营\广告BulkOperation'
 
 key =['US','CA','MX','NEW-JP']
 print(key)
-campaignskucountry=pd.read_excel(r'D:\运营\Campaign-sku-country.xlsx')
+campaignskucountry=pd.read_excel(r'D:\运营\Campaign-sku-Country.xlsx')
 
 for file in os.listdir(src_dir_path_sales): 
     print(file)
@@ -44,7 +44,7 @@ for file in os.listdir(src_dir_path_sales):
     print(campaignskucountry)
     shutil.move(r'D:\\运营\\广告BulkOperation\\'+ str(file), 'D:/运营/HistoricalData/广告BulkOperation')
 
-campaignskucountry.to_excel(r'D:/运营/Campaign-sku-country.xlsx', sheet_name="Sheet1",startrow=0,header=True,index=False)
+campaignskucountry.to_excel(r'D:/运营/Campaign-sku-Country.xlsx', sheet_name="Sheet1",startrow=0,header=True,index=False)
 
 
                             

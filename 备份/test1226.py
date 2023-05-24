@@ -20,8 +20,8 @@ SearchTermAll["Clicks"].fillna(0,inplace=True)
 
 SearchTermAll["Customer Search Term"].astype(str)
 
-SearchTermAll_Sum=SearchTermAll.groupby(["COUNTRY","Campaign Name", "Ad Group Name","Customer Search Term"],as_index=False)[["Impressions","Clicks","Spend","7 Day Total Sales ","7 Day Total Orders (#)"]].agg("sum")
-SearchTermAllquan=SearchTermAll.groupby(["COUNTRY","Campaign Name", "Ad Group Name","Customer Search Term","Targeting","Match Type"],as_index=False)[["Impressions","Clicks","Spend","7 Day Total Sales ","7 Day Total Orders (#)"]].agg("sum")
+SearchTermAll_Sum=SearchTermAll.groupby(["Country","Campaign Name", "Ad Group Name","Customer Search Term"],as_index=False)[["Impressions","Clicks","Spend","7 Day Total Sales ","7 Day Total Orders (#)"]].agg("sum")
+SearchTermAllquan=SearchTermAll.groupby(["Country","Campaign Name", "Ad Group Name","Customer Search Term","Targeting","Match Type"],as_index=False)[["Impressions","Clicks","Spend","7 Day Total Sales ","7 Day Total Orders (#)"]].agg("sum")
 
 SearchTermAll_Sum.loc[SearchTermAll_Sum['Clicks']>0,"转化率"]=SearchTermAll_Sum["7 Day Total Orders (#)"]/SearchTermAll_Sum['Clicks']
 
@@ -46,7 +46,7 @@ Allbulk=pd.read_excel(Allbulkpath+'周bulk广告数据汇总表.xlsx')
 #遍历SeachTermGood
 
 
-SearchTermAll_Good_Country_list=SearchTermAll_Good["COUNTRY"].drop_duplicates().to_list()
+SearchTermAll_Good_Country_list=SearchTermAll_Good["Country"].drop_duplicates().to_list()
 
 Allbulk_Campaign_SKUMax=Allbulk[Allbulk['Record Type']=="Ad"].groupby(["Country","Campaign","Ad Group","SKU"],as_index=False)[['Spend']].agg('sum')#全部历史bulk的sku spend相加：找自动广告的sku
 
@@ -55,7 +55,7 @@ Allbulk_Campaign_SKUMax=Allbulk[Allbulk['Record Type']=="Ad"].groupby(["Country"
 for countryname in SearchTermAll_Good_Country_list:   #遍历searchTemgood里的国家
 
 
-    CountrySKU_Close_List=ProductActions.loc[(ProductActions["COUNTRY"]==countryname)&(ProductActions["行动方案"].str.contains("关闭广告")),"SKU"].drop_duplicates().to_list()这个国家要关闭的SKU的List
+    CountrySKU_Close_List=ProductActions.loc[(ProductActions["Country"]==countryname)&(ProductActions["行动方案"].str.contains("关闭广告")),"SKU"].drop_duplicates().to_list()这个国家要关闭的SKU的List
 
     AllCountryActions_Country_SKU_Close_List_nocomma_list=[] 
     for AllCountryActions_Country_SKU_Close_List_nocomma in CountrySKU_Close_List:
@@ -90,7 +90,7 @@ for countryname in SearchTermAll_Good_Country_list:   #遍历searchTemgood里的
         Bulkfile_Country=bulkdatafile.split('_')[0]
 
         if Bulkfile_Country==countryname:
-            SearchTermAll_Good_Country=SearchTermAll_Good[SearchTermAll_Good["COUNTRY"]==str(countryname)]
+            SearchTermAll_Good_Country=SearchTermAll_Good[SearchTermAll_Good["Country"]==str(countryname)]
          
             
             print("SearchTermAll_Good_Country")
@@ -483,11 +483,11 @@ Bulkfile_SearchTerm_Add_manual_draft=pd.DataFrame(columns=["Record ID","Record T
 
 
 SearchTermAll_Bad=SearchTermAll_Sum[(SearchTermAll_Sum["转化率"]<0.05)&(SearchTermAll_Sum["Clicks"]>=20)]
-SearchTermAll_Bad_Country_list=SearchTermAll_Bad["COUNTRY"].drop_duplicates().to_list()
+SearchTermAll_Bad_Country_list=SearchTermAll_Bad["Country"].drop_duplicates().to_list()
 
 
 for countryname22 in SearchTermAll_Bad_Country_list:
-    SearchBadwithCountry=SearchTermAll_Bad[SearchTermAll_Bad["COUNTRY"]==countryname22] 
+    SearchBadwithCountry=SearchTermAll_Bad[SearchTermAll_Bad["Country"]==countryname22] 
     
     n=0                                             
     for bulkdatafile in os.listdir(bulkdatafilepath): #找bulkfile对应的国家文件

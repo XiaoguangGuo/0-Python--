@@ -5,7 +5,7 @@ ListingPd=pd.read_excel(r'D:/运营/Listinginfo.xlsx')
 print(ListingPd)
 
 Allbulk=pd.read_excel(r'D:/运营/周bulk广告数据汇总表.xlsx')
-Allbulk_fenlei=pd.merge(Allbulk,ListingPd,how="left",left_on=["Country","SKU"],right_on=["COUNTRY","SKU"])
+Allbulk_fenlei=pd.merge(Allbulk,ListingPd,how="left",left_on=["Country","SKU"],right_on=["Country","SKU"])
 print(Allbulk_fenlei)
 Allbulk_fenlei.to_excel(r'D:/运营/周bulk广告数据汇总表fenlei.xlsx')
 
@@ -23,6 +23,6 @@ Allbulk_SKUCAMPAIGN2.to_excel(r'D:/运营/Allbulk_SKUCAMPAIGN2.xlsx')
 #print(Allbulk_Dalei)
 input("?")
 
-Allbulk_SKUCAMPAIGN_Merge=pd.merge(Allbulk_SKUCAMPAIGN,ListingPd,how="left",left_on=["Country","SKU"],right_on=["COUNTRY","SKU"])
+Allbulk_SKUCAMPAIGN_Merge=pd.merge(Allbulk_SKUCAMPAIGN,ListingPd,how="left",left_on=["Country","SKU"],right_on=["Country","SKU"])
 Print(Allbulk_SKUCAMPAIGN_Merge)
 

@@ -5,11 +5,11 @@ src_dir_path_inventory=r'D:\运营\\1数据源\\计划数据\老站\当日库存
 
 key =['US','CA','MX']
 t=key[0]
-print(t)
+
 #获取原来库存文件的列名
-data_inventory_US=pd.read_excel(r'D:\2019plan\当日Amazon库存.xlsx')
-data_inventory_CA=pd.read_excel(r'D:\2019plan\Canada当前Amazon库存.xlsx')
-data_inventory_MX=pd.read_excel(r'D:\2019plan\Mexico当日Amazon库存.xlsx')
+data_inventory_US=pd.read_excel(r'D:\运营\2019plan\当日Amazon库存.xlsx')
+data_inventory_CA=pd.read_excel(r'D:\运营\2019plan\Canada当前Amazon库存.xlsx')
+data_inventory_MX=pd.read_excel(r'D:\运营\2019plan\Mexico当日Amazon库存.xlsx')
                                 
 inventorycolumns_US=data_inventory_US.columns.tolist()
 inventorycolumns_CA=data_inventory_CA.columns.tolist()
@@ -31,7 +31,7 @@ for file in os.listdir(src_dir_path_inventory):
          # 旧语句data_csv = pd.read_csv(r'D:\\运营\\1数据源\\计划数据\\老站\\当日库存\\'+str(file),encoding='utf-8 ', error_bad_lines=False)     # 读取以分
                                                  
         data_csv.columns=inventorycolumns_US                      
-        data_csv.to_excel(r'D:\2019plan\当日Amazon库存.xlsx',sheet_name="当前Amazon库存",startrow=0,header=True,index=False)
+        data_csv.to_excel(r'D:\运营\2019plan\当日Amazon库存.xlsx',sheet_name="当前Amazon库存",startrow=0,header=True,index=False)
         
     elif key[1]in file:
         print("有CA库存")
@@ -41,7 +41,7 @@ for file in os.listdir(src_dir_path_inventory):
         #df_data.columns.tolist())
         data_csv.columns=inventorycolumns_CA    
                          
-        data_csv.to_excel(r'D:\2019plan\Canada当前Amazon库存.xlsx', sheet_name="15828640259018099",startrow=0,header=True,index=False)
+        data_csv.to_excel(r'D:\运营\2019plan\Canada当前Amazon库存.xlsx', sheet_name="15828640259018099",startrow=0,header=True,index=False)
 
         
       
@@ -52,7 +52,7 @@ for file in os.listdir(src_dir_path_inventory):
         
         data_csv.columns=inventorycolumns_MX  
                          
-        data_csv.to_excel(r'D:\2019plan\Mexico当日Amazon库存.xlsx', sheet_name="当前Amazon库存",startrow=0,header=True,index=False)
+        data_csv.to_excel(r'D:\运营\2019plan\Mexico当日Amazon库存.xlsx', sheet_name="当前Amazon库存",startrow=0,header=True,index=False)
 
         print(data_csv)
         
@@ -73,7 +73,7 @@ for file in os.listdir(src_dir_path_restock):
          # 旧语句data_csv = pd.read_csv(r'D:\\运营\\计划数据\\老站\\当日库存\\'+str(file),encoding='utf-8 ', error_bad_lines=False)     # 读取以分
         print(data_csv2)
                      
-        data_csv2.to_excel(r'D:\2019plan\restock-report.xlsx',sheet_name="restock-report",startrow=0,header=True,index=False)
+        data_csv2.to_excel(r'D:\运营\2019plan\restock-report.xlsx',sheet_name="restock-report",startrow=0,header=True,index=False)
         
     elif key[1]in file:
         print("有CArestock")
@@ -83,7 +83,7 @@ for file in os.listdir(src_dir_path_restock):
         #df_data.columns.tolist())
         
                          
-        data_csv2.to_excel(r'D:\2019plan\restock-report_CA.xlsx', sheet_name="REstock-CA",startrow=0,header=True,index=False)
+        data_csv2.to_excel(r'D:\运营\2019plan\restock-report_CA.xlsx', sheet_name="REstock-CA",startrow=0,header=True,index=False)
 
         print(data_csv2)
       
@@ -92,7 +92,7 @@ for file in os.listdir(src_dir_path_restock):
         print(file)        
         #df_data.columns.tolist())
    
-        data_csv2.to_excel(r'D:\2019plan\restock-report_MX.xlsx', sheet_name="restock-report_MX",startrow=0,header=True,index=False)
+        data_csv2.to_excel(r'D:\运营\2019plan\restock-report_MX.xlsx', sheet_name="restock-report_MX",startrow=0,header=True,index=False)
 
         print(data_csv2)
         
@@ -112,13 +112,18 @@ key =['US','CA','MX']
 
 for file in os.listdir(src_dir_path_sales):
      
-    data_sales_US=pd.read_excel(r'D:\2019plan\周销售数据.xlsx')
-    data_sales_CA=pd.read_excel(r'D:\2019plan\Canada周销售数据.xlsx')
-    data_sales_MX=pd.read_excel(r'D:\2019plan\Mexico周销售数据.xlsx')
+    data_sales_US=pd.read_excel(r'D:\运营\2019plan\周销售数据.xlsx')
+    data_sales_CA=pd.read_excel(r'D:\运营\2019plan\Canada周销售数据.xlsx')
+    data_sales_MX=pd.read_excel(r'D:\运营\2019plan\Mexico周销售数据.xlsx')
+
+    #读取 D:\运营\2生成过程表\周销售数据总表.xlsx
+    all_sales_df=pd.read_excel(r'D:\运营\2生成过程表\周销售数据总表.xlsx')
+
 #未来可以做一个文件名列表包含文件名和sheet名
     salescolumns_US=data_sales_US.columns.tolist()
     salescolumns_CA=data_sales_CA.columns.tolist()
     salescolumns_MX=data_sales_MX.columns.tolist()
+    salescolumns_all=all_sales_df.columns.tolist()
 #取得目标文件的dataframe和列名
 
     if key[0] in file:
@@ -147,7 +152,7 @@ for file in os.listdir(src_dir_path_sales):
             data_sales_US ['周数']=(maxtime-data_sales_US['日期']).dt.days//7+1
         #周数写到目标文件
         #在导出之前加周数
-            data_sales_US.to_excel(r'D:\2019plan\周销售数据.xlsx', sheet_name="Sheet1",startrow=0,header=True,index=False)
+            data_sales_US.to_excel(r'D:\运营\2019plan\周销售数据.xlsx', sheet_name="Sheet1",startrow=0,header=True,index=False)
             print("US销售数据更新完成")
         else:
             print("US销售数据未导出，请修改目标文件以保证列数相同")
@@ -188,7 +193,7 @@ for file in os.listdir(src_dir_path_sales):
             data_sales_CA ['周数']=(maxtime-data_sales_CA['日期']).dt.days//7+1
         #周数写到目标文件
         #在导出之前加周数
-            data_sales_CA.to_excel(r'D:\2019plan\Canada周销售数据.xlsx', sheet_name="Sheet1",startrow=0,header=True,index=False)
+            data_sales_CA.to_excel(r'D:\运营\2019plan\Canada周销售数据.xlsx', sheet_name="Sheet1",startrow=0,header=True,index=False)
             print("CA销售数据更新完成")
         else:
             print("CA销售数据未导出，请修改目标文件以保证列数相同")
@@ -220,7 +225,7 @@ for file in os.listdir(src_dir_path_sales):
             maxtime=pd.to_datetime(data_sales_MX["日期"].max())
             print(maxtime)
             data_sales_MX['周数']=(maxtime-data_sales_MX['日期']).dt.days//7+1
-            data_sales_MX.to_excel(r'D:\2019plan\Mexico周销售数据.xlsx', sheet_name="Sheet1",startrow=0,header=True,index=False)
+            data_sales_MX.to_excel(r'D:\运营\2019plan\Mexico周销售数据.xlsx', sheet_name="Sheet1",startrow=0,header=True,index=False)
             print("MX销售数据更新完成")
         else:
             print("请修改目标文件，以保证列数相同")
@@ -239,9 +244,9 @@ print(os.listdir(src_dir_path_shipped))
 
 for file in os.listdir(src_dir_path_shipped):
     
-    data_shipped_US=pd.read_excel(r'D:\2019plan\在途库存.xlsx')
-    data_shipped_CA=pd.read_excel(r'D:\2019plan\Canada在途库存.xlsx')
-    data_shipped_MX=pd.read_excel(r'D:\2019plan\Mexico在途库存.xlsx')
+    data_shipped_US=pd.read_excel(r'D:\运营\2019plan\在途库存.xlsx')
+    data_shipped_CA=pd.read_excel(r'D:\运营\2019plan\Canada在途库存.xlsx')
+    data_shipped_MX=pd.read_excel(r'D:\运营\2019plan\Mexico在途库存.xlsx')
     salescolumns_US=data_shipped_US.columns.tolist()
     salescolumns_CA=data_shipped_CA.columns.tolist()
     salescolumns_MX=data_shipped_MX.columns.tolist()
@@ -267,7 +272,7 @@ for file in os.listdir(src_dir_path_shipped):
                      
        #追加到在途计划 data_csv2.to_excel(r'D:\2019plan\restock-report.xlsx',sheet_name="restock-report",startrow=0,header=True,index=False)
 
-        data_shipped_US.to_excel(r'D:\2019plan\在途库存.xlsx', sheet_name="Sheet1",startrow=0,header=True,index=False)
+        data_shipped_US.to_excel(r'D:\运营\2019plan\在途库存.xlsx', sheet_name="Sheet1",startrow=0,header=True,index=False)
         print("US在途更新完成")
     #CA
     elif key[1]in file:
@@ -287,7 +292,7 @@ for file in os.listdir(src_dir_path_shipped):
                      
        #追加到在途计划 data_csv2.to_excel(r'D:\2019plan\restock-report.xlsx',sheet_name="restock-report",startrow=0,header=True,index=False)
 
-        data_shipped_CA.to_excel(r'D:\2019plan\Canada在途库存.xlsx', sheet_name="Sheet1",startrow=0,header=True,index=False)
+        data_shipped_CA.to_excel(r'D:\运营\2019plan\Canada在途库存.xlsx', sheet_name="Sheet1",startrow=0,header=True,index=False)
         print("CA在途更新完成")
         
     elif key[2]in file:
@@ -303,7 +308,7 @@ for file in os.listdir(src_dir_path_shipped):
                      
        #追加到在途计划 data_csv2.to_excel(r'D:\2019plan\restock-report.xlsx',sheet_name="restock-report",startrow=0,header=True,index=False)
 
-        data_shipped_MX.to_excel(r'D:\2019plan\Mexico在途库存.xlsx', sheet_name="Sheet1",startrow=0,header=True,index=False)
+        data_shipped_MX.to_excel(r'D:\运营\2019plan\Mexico在途库存.xlsx', sheet_name="Sheet1",startrow=0,header=True,index=False)
         print("MX在途更新完成")
 
     
@@ -321,21 +326,21 @@ import datetime
 
 input ("首先檢查三個在途計劃表,確認沒問題之後點回車")
 
-
+##############################################################################################################################################################################
 
 #讀取2019計劃的銷售表
-Sales_US=pd.read_excel(r'D:\2019plan\周销售数据.xlsx')
+Sales_US=pd.read_excel(r'D:\运营\2019plan\周销售数据.xlsx')
 
 Sales_US["Country"]="GV-US"
 Sales_US.rename(columns = {'(Child) ASIN':"Asin"}, inplace = True)
                 
-Stock_US=pd.read_excel(r'D:\2019plan\当日Amazon库存.xlsx')
+Stock_US=pd.read_excel(r'D:\运营\2019plan\当日Amazon库存.xlsx')
 Stock_US.rename(columns = {'sku':"SKU",'asin':"Asin","afn-fulfillable-quantity":"Fufillable","afn-inbound-receiving-quantity":"Receiving","afn-reserved-quantity":"Reserved"}, inplace = True)
 Stock_US["Country"]="GV-US"
 Stock_US=Stock_US[["Country","Asin","SKU","Fufillable","Reserved","afn-inbound-working-quantity","afn-inbound-shipped-quantity","Receiving"]]
 
 
-Intransit_us=pd.read_excel(r'D:\2019plan\在途库存.xlsx')
+Intransit_us=pd.read_excel(r'D:\运营\2019plan\在途库存.xlsx')
 
 Intransit_us["Country"]="GV-US"
  
@@ -344,25 +349,27 @@ Intransit_us.rename(columns = {'Merchant SKU':"SKU",'ASIN':"Asin"}, inplace = Tr
 
 #输出成excel表
 
-Sales_CA=pd.read_excel(r'D:\2019plan\Canada周销售数据.xlsx')
+Sales_CA=pd.read_excel(r'D:\运营\2019plan\Canada周销售数据.xlsx')
 Sales_CA["Country"]="GV-CA"
 Sales_CA.rename(columns = {'(Child) ASIN':"Asin","Units ordered":"Units Ordered"}, inplace = True)
 
                 
-Stock_CA=pd.read_excel(r'D:\2019plan\Canada当前Amazon库存.xlsx')
+Stock_CA=pd.read_excel(r'D:\运营\2019plan\Canada当前Amazon库存.xlsx')
 Stock_CA["Country"]="GV-CA"
 Stock_CA.rename(columns = {'sku':"SKU",'asin':"Asin","afn-fulfillable-quantity":"Fufillable","afn-inbound-receiving-quantity":"Receiving","afn-reserved-quantity":"Reserved"}, inplace = True)
 Stock_CA=Stock_CA[["Country","Asin","SKU","Fufillable","Reserved","afn-inbound-working-quantity","afn-inbound-shipped-quantity","Receiving"]]
 
 
-Intransit_ca=pd.read_excel(r'D:\2019plan\Canada在途库存.xlsx')
+Intransit_ca=pd.read_excel(r'D:\运营\2019plan\Canada在途库存.xlsx')
 Intransit_ca["Country"]="GV-CA"
 Intransit_ca.rename(columns = {'Merchant SKU':"SKU",'ASIN':"Asin"}, inplace = True)
 
          
-Sales_MX=pd.read_excel(r'D:\2019plan\Mexico周销售数据.xlsx')
+Sales_MX=pd.read_excel(r'D:\运营\2019plan\Mexico周销售数据.xlsx')
 Sales_MX["Country"]="GV-MX"
-Stock_MX=pd.read_excel(r'D:\2019plan\Mexico当日Amazon库存.xlsx')
+
+
+Stock_MX=pd.read_excel(r'D:\运营\2019plan\Mexico当日Amazon库存.xlsx')
 Stock_MX.rename(columns = {'sku':"SKU",'asin':"Asin"}, inplace = True)
 Stock_MX.rename(columns = {'sku':"SKU",'asin':"Asin","afn-fulfillable-quantity":"Fufillable","afn-inbound-receiving-quantity":"Receiving","afn-reserved-quantity":"Reserved"}, inplace = True)
 Stock_MX["Country"]="GV-MX"
@@ -373,7 +380,7 @@ Stock_MX=Stock_MX[["Country","Asin","SKU","Fufillable","Reserved","afn-inbound-w
 
 
 
-Intransit_mx=pd.read_excel(r'D:\2019plan\Mexico在途库存.xlsx')
+Intransit_mx=pd.read_excel(r'D:\运营\2019plan\Mexico在途库存.xlsx')
 Intransit_mx["Country"]="GV-MX"
 
                 
@@ -382,7 +389,10 @@ Intransit_mx.rename(columns = {'Merchant SKU':"SKU",'ASIN':"Asin"}, inplace = Tr
 
 
 Sales_All=pd.concat([Sales_US,Sales_CA,Sales_MX])
+
+
 Sales_All.to_excel(r'D:\运营\2生成过程表\2023plan\Sales_all.xlsx')
+
 Stock_All=pd.concat([Stock_US,Stock_CA,Stock_MX])
 Intransit_All=pd.concat([Intransit_us,Intransit_ca,Intransit_mx])       
 
@@ -392,7 +402,7 @@ SKUAll_2=Sales_All[["Country","Asin","SKU"]].drop_duplicates()
 SKUAll=pd.concat([SKUAll_1,SKUAll_2])
 
 
-max_week=11
+max_week=100
 
 Sales_Weeks=SKUAll_2
 
@@ -441,15 +451,18 @@ for i in range(1,max_week):
 
 PlanAll=pd.merge(SKUAll,Sales_Weeks,how="left", on=["Country","SKU","Asin"])
 
+PlanAll.to_excel(r'D:\运营\2生成过程表\2023plan\PlanAllnew.xlsx' ,index=False)
+
+
 PlanAll=pd.merge(PlanAll,Stock_All,how="left", on=["Country","SKU","Asin"])
 
 PlanAll=pd.merge(PlanAll,Intransit_Weeks,how="left", on=["Country","SKU","Asin"])
 
 PlanAll.fillna(0,inplace=True)
-Listing=pd.read_excel(r'D:\2019plan\Listing.xlsx',sheet_name="Listing")
+Listing=pd.read_excel(r'D:\运营\2019plan\Listing.xlsx',sheet_name="Listing")
 Listing=Listing[["Country","SKU","大类","小类"]]
 
-Price=pd.read_excel(r'D:\2019plan\Listing.xlsx',sheet_name="Price")
+Price=pd.read_excel(r'D:\运营\2019plan\Listing.xlsx',sheet_name="Price")
 Price=Price[["SKU","Price"]]
 PlanAll=pd.merge(PlanAll,Listing,on=["Country","SKU" ] ,how="left")
 PlanAll=pd.merge(PlanAll,Price,on=["SKU" ] ,how="left")
@@ -608,8 +621,9 @@ PlanAll["Adjusted-Week15"]=PlanAll["ZZ2"]*0.7*15+PlanAll["For第15周销售的�
 
 
 
-CampaignSKU_Summary=pd.read_excel(r'D:/运营/2生成过程表/周bulk数据Summary.xlsx',sheet_name="SKU-WEEK")
+CampaignSKU_Summary=pd.read_excel(r'D:\运营\2生成过程表\周bulk数据Summary.xlsx',sheet_name="SKU-WEEK")
 CampaignSKU_Summary.rename(columns = {'Country':'Country'}, inplace = True)
+
 
 
 
@@ -632,7 +646,12 @@ for i in range(1,11):
 PlanAll["GGZZ1"]=PlanAll["广告1"]-PlanAll["广告2"]
 PlanAll["BILI1"]=PlanAll["广告1"]/PlanAll["1"]
 PlanAll=PlanAll.drop_duplicates()
-PlanAll=PlanAll[["Country","SKU","Asin","Title","大类","小类","Price",	"SELLING10","STOCKALL","TotalAmount","Zhouzhuan10","GGZZ1","BILI1","ZZ1","ZZ2","1","2","3","4","5","6","7","8","9","10","广告1","广告2","广告3","广告4","广告5","广告6","广告7","广告8","广告9","广告10","Fufillable","Reserved","afn-inbound-working-quantity","afn-inbound-shipped-quantity","Receiving","第1周入库","第2周入库","第3周入库","第4周入库","第5周入库","第6周入库","第7周入库","第8周入库","第9周入库","第10周入库","For第2周销售的到货需求","For第3周销售的到货需求","For第4周销售的到货需求","For第5周销售的到货需求","For第6周销售的到货需求","For第7周销售的到货需求","For第8周销售的到货需求","For第9周销售的到货需求","For第10周销售的到货需求","For第11周销售的到货需求","For第12周销售的到货需求","For第13周销售的到货需求","For第14周销售的到货需求","For第15周销售的到货需求","Adjusted-Week2","Adjusted-Week3","Adjusted-Week4","Adjusted-Week5","Adjusted-Week6","Adjusted-Week7","Adjusted-Week8","Adjusted-Week9","Adjusted-Week10","Adjusted-Week11","Adjusted-Week12","Adjusted-Week13","Adjusted-Week14","Adjusted-Week15","广告Clicks1","广告Orders1"	,"广告Clicks2","广告Orders2","广告Clicks3","广告Orders3","广告Clicks4","广告Orders4","广告Clicks5","广告Orders5","广告Clicks6","广告Orders6","广告Clicks7","广告Orders7","广告Clicks8","广告Orders8","广告Clicks9","广告Orders9","广告Clicks10","广告Orders10"]]
+PlanAll=PlanAll[["Country","SKU","Asin","Title","大类","小类","Price",	
+                 "SELLING10","STOCKALL","TotalAmount","Zhouzhuan10","GGZZ1","BILI1",
+                 "ZZ1","ZZ2","1","2","3","4","5","6","7","8","9","10",
+                 "广告1","广告2","广告3","广告4","广告5","广告6","广告7","广告8",
+                 "广告9","广告10","Fufillable","Reserved","afn-inbound-working-quantity","afn-inbound-shipped-quantity","Receiving","第1周入库","第2周入库","第3周入库","第4周入库","第5周入库","第6周入库","第7周入库","第8周入库","第9周入库","第10周入库","For第2周销售的到货需求","For第3周销售的到货需求","For第4周销售的到货需求","For第5周销售的到货需求","For第6周销售的到货需求","For第7周销售的到货需求","For第8周销售的到货需求","For第9周销售的到货需求",
+                 "For第10周销售的到货需求","For第11周销售的到货需求","For第12周销售的到货需求","For第13周销售的到货需求","For第14周销售的到货需求","For第15周销售的到货需求","Adjusted-Week2","Adjusted-Week3","Adjusted-Week4","Adjusted-Week5","Adjusted-Week6","Adjusted-Week7","Adjusted-Week8","Adjusted-Week9","Adjusted-Week10","Adjusted-Week11","Adjusted-Week12","Adjusted-Week13","Adjusted-Week14","Adjusted-Week15","广告Clicks1","广告Orders1"	,"广告Clicks2","广告Orders2","广告Clicks3","广告Orders3","广告Clicks4","广告Orders4","广告Clicks5","广告Orders5","广告Clicks6","广告Orders6","广告Clicks7","广告Orders7","广告Clicks8","广告Orders8","广告Clicks9","广告Orders9","广告Clicks10","广告Orders10"]]
 
 PlanAll.to_excel(r'D:\运营\2生成过程表\2023plan\plan.xlsx' ,index=False)       
 

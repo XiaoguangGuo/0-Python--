@@ -8,14 +8,14 @@ import shutil
 
 # 请输入国家名
 tempplate_file_path ="D:\\运营\\发票模板\\"
-country=input("请输入国家名:US,CA,JP，NEW-US,NEW-CA,UK,IT")
+Country=input("请输入国家名:US,CA,JP，NEW-US,NEW-CA,UK,IT")
 link_dic={"US":"www.amazon.com/dp/","JP":"www.amazon.co.jp/dp/","UK":"www.amazon.co.uk/dp/","CA":"www.amazon.ca/dp/"}
 #输入渠道名
 channel=input("请输入渠道名:全中,小平")
 #遍历D:\运营\发票模板\文件夹下的所有文件，找到第一个包含国家名和渠道名的文件并用load_workbook打开
 for root,dirs,files in os.walk(tempplate_file_path):
     for file in files:
-        if country in file and channel in file:
+        if Country in file and channel in file:
             print(file)
             templatefile=tempplate_file_path+file
             break
@@ -153,9 +153,9 @@ for row in range(1, sheet.max_row + 1):
 shipment_df = pd.DataFrame(shipment_data)
 shipment_df["Reference ID"]=Reference_id
 shipment_df["图片"]=""
-shipment_df["产品链接"]=link_dic[country]+shipment_df["ASIN"]
+shipment_df["产品链接"]=link_dic[Country]+shipment_df["ASIN"]
 #定义shipment_df的“Country”列等于country
-shipment_df["Country"]=country
+shipment_df["Country"]=Country
 
 print(shipment_df)
  
@@ -220,7 +220,7 @@ for index, row in other_df.iterrows():
         other_df.at[index, "箱体积"] = ""
         other_df.at[index, "箱尺寸"] = ""
 
-other_df["Country"]=country
+other_df["Country"]=Country
 invoiceALL_df=pd.read_excel(r'D:\运营\Invoice\\invoiceALL.xlsx')
 invoiceALL_df = pd.concat([invoiceALL_df, other_df], axis=0, ignore_index=True)
 invoiceALL_df.to_excel(r'D:\运营\Invoice\\invoiceALL.xlsx',index=False)
@@ -321,14 +321,14 @@ for col in new_col_names:
 # 将other_df_selected的列顺序调整为与new_col_names相同
 other_df_selected = other_df_selected[new_col_names]
 print(other_df_selected.columns)
-other_df_selected.to_excel(r'D:\\运营\invoice\\invoicedraft-new'+country+".xlsx")
+other_df_selected.to_excel(r'D:\\运营\invoice\\invoicedraft-new'+Country+".xlsx")
 
 
 
 
 
 today = datetime.datetime.today().strftime('%Y%m%d')
-new_file_name = country + today + '.xlsx'
+new_file_name = Country + today + '.xlsx'
 new_file_path = os.path.join(os.path.dirname(tempplate_file_path), new_file_name)
 shutil.copyfile(templatefile, new_file_path)
 

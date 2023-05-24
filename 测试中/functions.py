@@ -49,13 +49,13 @@ def process_spend_summary(BulkFile_df):
 
 #输出Campaign和主要SKU的对应表（如果有国家就包含国家）
  def process_spend_summary(pivot_df):
-    # 检查是否有 "Country" 列/或者"COUNTRY"列
+    # 检查是否有 "Country" 列/或者"Country"列
     
 
  
     #如果有COUNTRY列，将其改为Country
-    if "COUNTRY" in pivot_df.columns:
-        pivot_df.rename(columns={"COUNTRY": "Country"}, inplace=True)
+    if "Country" in pivot_df.columns:
+        pivot_df.rename(columns={"Country": "Country"}, inplace=True)
         has_country = "Country" in pivot_df.columns
 
 
@@ -297,4 +297,31 @@ def get_top_skus(df):
         top_skus.append((name, top_sku))
     return top_skus
 
-                       
+#把各周的数据合并到一起的函数 
+
+def merge_weekly_data(df, unique_cols, data_cols):
+    """
+    This function takes a DataFrame and merges weekly data for specified columns.
+    
+    Parameters:
+    df (pd.DataFrame): DataFrame to process.
+    unique_cols (list): Columns to use to identify unique rows.
+    data_cols (list): Columns with data to merge.
+
+    Returns:
+    pd.DataFrame: DataFrame with merged data.
+    """
+    unique_df = df[unique_cols].drop_duplicates()
+
+    for week in df["周数"].unique():
+        week_df = df[df["周数"] == week]
+        for col in data_cols:
+            week_df = week_df.rename(columns={col: col + str(week)})
+        unique_df = pd.merge(unique_df, week_df, on=unique_cols, how='left')
+    
+    return unique_df
+#使用方法:
+#unique_cols = ["Country","Campaign","Ad Group","Max Bid","Keyword or Product Targeting","Match Type","Campaign Status","Ad Group Status","Status"]
+#data_cols = ["Impressions", "Clicks", "Spend", "Orders", "Total Units", "Sales", "ACoS","转化率"]
+
+#result = merge_weekly_data(All_adv_selected, unique_cols, data_cols)

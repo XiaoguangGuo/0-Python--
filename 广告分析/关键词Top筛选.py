@@ -151,16 +151,16 @@ countries = keywords_df['Country'].unique()
 bulk_dir = r'D:\运营\1数据源\周Bulk广告数据'
 
 # 遍历国家列表
-for country in countries:
+for Country in countries:
     # 查找以国家名开头的Bulk文件
     bulk_file = None
     for file in os.listdir(bulk_dir):
-        if file.startswith(country + "_"):
+        if file.startswith(Country + "_"):
             bulk_file = os.path.join(bulk_dir, file)
             break
 
     if bulk_file is None:
-        print(f"No bulk file found for country {country}")
+        print(f"No bulk file found for Country {Country}")
         continue
 
     # 读取当前国家的Bulk文件
@@ -169,7 +169,7 @@ for country in countries:
     #amazon_bulk_df 1week转化率=0，if clicks=0 
     
     # 筛选当前国家的选词表格数据
-    country_keywords_df = keywords_df[keywords_df['Country'] == country].drop(columns=['Country'])
+    country_keywords_df = keywords_df[keywords_df['Country'] == Country].drop(columns=['Country'])
     
     
     # 为简化处理，我们将Bulk文件和选词表格的列名进行统一
@@ -199,7 +199,7 @@ for country in countries:
     mask1 = mask1.drop("主要SKU", axis=1)
     pivot_df_df_SKU=pivot_df[["Campaign", "Ad Group","主要SKU"]].drop_duplicates()
     mask1=mask1.merge(pivot_df_df_SKU,on=["Campaign", "Ad Group"],how="left")
-    mask1.to_excel(r'D:\\运营\\'+country+"mask1.xlsx")
+    mask1.to_excel(r'D:\\运营\\'+Country+"mask1.xlsx")
 
     # 从Bulk文件中筛选出需要保留的行
     filtered_bulk_df = amazon_bulk_df.merge(country_keywords_df, on=["Campaign", "Ad Group", "Match Type", "Keyword or Product Targeting"], how="inner")
@@ -225,7 +225,7 @@ for country in countries:
     merged_df=pd.concat([merged_df,mask1], ignore_index=True, sort=False)
 
     # 将结果保存到新的Excel文件
-    output_file = os.path.join("updated_bulk_files"+"20230413", f"{country}_updated_bulk_file.xlsx")
+    output_file = os.path.join("updated_bulk_files"+"20230413", f"{Country}_updated_bulk_file.xlsx")
     os.makedirs(os.path.dirname(output_file), exist_ok=True)
 
     #pandas读取D:\\运营\\3数据分析结果\\国家汇总.xlsx
@@ -236,10 +236,10 @@ for country in countries:
   
     #
 
-    df_SummaryCountry = df_SummaryCountry[df_SummaryCountry['COUNTRY'] == country][['SKU', 'STOCKALL']]
+    df_SummaryCountry = df_SummaryCountry[df_SummaryCountry['Country'] == Country][['SKU', 'STOCKALL']]
 
     df_SummaryCountry['SKU'] = df_SummaryCountry['SKU'].dropna().astype(str)
-    df_SummaryCountry.to_excel(r'D:\\运营\\'+country+"df_SummaryCountry.xlsx")
+    df_SummaryCountry.to_excel(r'D:\\运营\\'+Country+"df_SummaryCountry.xlsx")
    
 #获取merged_df 主要SKU 列的唯一值list
     merged_df['主要SKU'] = merged_df['主要SKU'].dropna()

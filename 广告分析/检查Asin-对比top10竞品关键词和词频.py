@@ -11,9 +11,9 @@ from collections import Counter
 #后续修改计划：设置国家和SKU就直接运行。
 
 
-country = 'GV-US'  # 指定国:
+Country = 'GV-US'  # 指定国:
 countrydic={'GV-US':"US",'NEW-US':"US","NEW-CA":"CA","GV-CA":"CA"}
-countryinTop1M=countrydic[country]
+countryinTop1M=countrydic[Country]
 
 
 CountrySummary=pd.read_excel(r'D:\运营\3数据分析结果\国家汇总.xlsx',sheet_name="ProductActions")
@@ -62,10 +62,10 @@ sheet_name="SKU-Campaign-Spend"
 seartchtermSummary= r'D:\运营\2生成过程表\Search_Term_Summary.xlsx'
 sheet_name_keywords='SeachTermWeekSum_Weeks'
 columnsSummary = ['Country', 'Campaign', 'SKU', 'Spend', 'Orders', 'Clicks', 'zhuanhualv', 'SKU-Campaign-zhuanhualv-ranking', 'Campaign-SKU_Spend_ranking', 'SKU_Campaign_Spend_ranking']
-seartchtermSummary_columns=['COUNTRY','Campaign Name',	'Ad Group Name','Targeting','Match Type','Customer Search Term','Impressions','Clicks','Spend','7 Day Total Orders (#)','Clicks1','Orders1']
+seartchtermSummary_columns=['Country','Campaign Name',	'Ad Group Name','Targeting','Match Type','Customer Search Term','Impressions','Clicks','Spend','7 Day Total Orders (#)','Clicks1','Orders1']
 
 dfSummary = pd.read_excel(file_pathSummary, sheet_name=sheet_name, usecols=columnsSummary)
-dfSummary=dfSummary[dfSummary['Country']==country]
+dfSummary=dfSummary[dfSummary['Country']==Country]
 seartchtermSummary_df=pd.read_excel(seartchtermSummary, sheet_name=sheet_name_keywords, usecols=seartchtermSummary_columns)
 
 # 筛选 Campaign-SKU_Spend_ranking 为 1 的行
@@ -73,10 +73,10 @@ CampaigntoSKU = dfSummary.loc[dfSummary['Campaign-SKU_Spend_ranking'] == 1]
 CampaigntoSKUBAoliu=CampaigntoSKU[['Country', 'Campaign', 'SKU']]
 
 
-seartchtermSummary_df=pd.merge(seartchtermSummary_df,CampaigntoSKUBAoliu,left_on=['COUNTRY','Campaign Name'],right_on=['Country', 'Campaign'],how='left')
+seartchtermSummary_df=pd.merge(seartchtermSummary_df,CampaigntoSKUBAoliu,left_on=['Country','Campaign Name'],right_on=['Country', 'Campaign'],how='left')
 
-seartchtermSummary_df_grouped=seartchtermSummary_df.groupby(["COUNTRY","SKU",'Customer Search Term'],as_index=False)[['Impressions','Clicks','Spend','7 Day Total Orders (#)','Clicks1','Orders1']].agg("sum")
-seartchtermSummary_df_grouped_country=seartchtermSummary_df_grouped[(seartchtermSummary_df_grouped["COUNTRY"]==country)&(seartchtermSummary_df_grouped["SKU"]==sku)]
+seartchtermSummary_df_grouped=seartchtermSummary_df.groupby(["Country","SKU",'Customer Search Term'],as_index=False)[['Impressions','Clicks','Spend','7 Day Total Orders (#)','Clicks1','Orders1']].agg("sum")
+seartchtermSummary_df_grouped_country=seartchtermSummary_df_grouped[(seartchtermSummary_df_grouped["Country"]==Country)&(seartchtermSummary_df_grouped["SKU"]==sku)]
 
 import pandas as pd
 import os
@@ -87,12 +87,12 @@ file_name_format = '{}_*.xlsx'
 
 # 指定国家名并根据其查找文件
  
-file_name = file_name_format.format(country)
+file_name = file_name_format.format(Country)
 file_path = None
 for file in os.listdir(directory):
     print(file)
     
-    if file.startswith(country):
+    if file.startswith(Country):
         file_path = os.path.join(directory, file)
         break
 
@@ -138,7 +138,7 @@ output=pd.merge(output,Top1M_df,left_on='关键词', right_on="Search Term",how=
 
 
 
-output_file = f"D:/运营/关键词考察/{country}关键词考察表.xlsx"
+output_file = f"D:/运营/关键词考察/{Country}关键词考察表.xlsx"
 
 # 检查文件是否存在，如果不存在则创建一个新文件
 if not os.path.exists(output_file):

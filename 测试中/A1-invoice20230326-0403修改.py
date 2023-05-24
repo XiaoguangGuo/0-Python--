@@ -104,7 +104,13 @@ for row in range(1, sheet.max_row + 1):
                             unit_dimensions = sheet.cell(row=dimensions_row + 6, column=1).value
                             break
                         dimensions_row += 1
-
+                    if "US" in Country  or "NEW-US" in Country:
+                        weight = round(weight * 0.45359237, 2)
+                        length = round(length * 2.54, 2)
+                        width = round(width * 2.54, 2)
+                        height = round(height * 2.54, 2)
+                        
+                    shipment_data["Shipment ID"].append(shipment_id)
                     shipment_data["Shipment ID"].append(shipment_id)
                     shipment_data["Box ID"].append(box_id)
                     shipment_data["SKU"].append(sku)

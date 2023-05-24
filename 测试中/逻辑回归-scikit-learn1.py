@@ -27,7 +27,7 @@ def update_week_numbers(df):
 
 # 准备数据
 
-country="GV-US"
+Country="GV-US"
 sku="20200512-Deskorganizer-6CWhite"
 Dataweek=53
 
@@ -41,7 +41,7 @@ print(Sales_df)
 conn = sqlite3.connect('D:/运营/sqlite/AmazonData.db')
 
 
-query = f'SELECT * FROM "Bulkfiles" WHERE Country = "{country}"'
+query = f'SELECT * FROM "Bulkfiles" WHERE Country = "{Country}"'
 
 AdData = pd.read_sql_query(query, conn)
 
@@ -93,7 +93,7 @@ dfSummary = pd.read_excel(file_pathSummary, sheet_name=sheet_name, usecols=colum
 
 
 CampaigntoSKU = dfSummary.loc[dfSummary['Campaign-SKU_Spend_ranking'] == 1]
-CampaigntoSKUBAoliu=CampaigntoSKU.loc[CampaigntoSKU['Country']==country,['Country', 'Campaign', 'SKU']]
+CampaigntoSKUBAoliu=CampaigntoSKU.loc[CampaigntoSKU['Country']==Country,['Country', 'Campaign', 'SKU']]
 
 CampaigntoSKUBAoliu.rename(columns={"SKU": "SKU3"}, inplace=True)
 

@@ -4,21 +4,37 @@ from openpyxl import load_workbook
 import datetime
 import os
 import shutil
+import re
 
 
 # 请输入国家名
+ 
 tempplate_file_path ="D:\\运营\\发票模板\\"
 Country=input("请输入国家名:US,CA,JP，NEW-US,NEW-CA,UK,IT")
 link_dic={"US":"www.amazon.com/dp/","JP":"www.amazon.co.jp/dp/","UK":"www.amazon.co.uk/dp/","CA":"www.amazon.ca/dp/"}
 #输入渠道名
 channel=input("请输入渠道名:全中,小平")
 #遍历D:\运营\发票模板\文件夹下的所有文件，找到第一个包含国家名和渠道名的文件并用load_workbook打开
-for root,dirs,files in os.walk(tempplate_file_path):
-    for file in files:
-        if Country in file and channel in file:
-            print(file)
-            templatefile=tempplate_file_path+file
+
+
+found_file = False
+
+while not found_file:
+    for root, dirs, files in os.walk(tempplate_file_path):
+        for file in files:
+            if Country in file and channel in file:
+                print(file)
+                templatefile = tempplate_file_path + file
+                found_file = True
+                break
+        if found_file:
             break
+
+    if not found_file:
+        print("没有模板，请先设置模板")
+        user_input = input("设置好后按回车继续，或输入 'S' 退出程序：")
+        if user_input.lower() == "s":
+            sys.exit("程序已退出")
 
              
 filename = r'D:\\运营\invoice\shipment.xlsx'
@@ -26,9 +42,27 @@ wb = load_workbook(filename)
 sheet = wb.active
 
 # 初始化变量和结果dataframe
+def find_values(sheet, key_words):
+    results = {key_word: None for key_word in key_words}
+
+    for row in sheet.iter_rows():
+        for cell in row:
+            if cell.value is not None:
+                cell_value = str(cell.value)
+                for key_word in key_words:
+                    if key_word in cell_value:
+                        results[key_word] = cell_value.replace(key_word, "").strip()
+                        break
+    return results
+
+key_words = ["Shipment ID:", "Amazon Reference ID:", "Ship to:", "Shipment name:"]
+
+
+ 
+
+results = find_values(sheet, key_words)
+print(results)
 shipment_data = {
-    "Shipment ID": [],
-    
     "Box ID": [],
     "SKU": [],
     "ASIN": [],
@@ -46,6 +80,8 @@ box_id = ""
 sku = ""
 asin = ""
 fnsku = ""
+address = ""
+shipment_name = ""
 
 # 遍历第一列
 for row in range(1, sheet.max_row + 1):
@@ -54,12 +90,7 @@ for row in range(1, sheet.max_row + 1):
     if cell_value is not None:
         cell_value = str(cell_value)  # 将cell_value转换为字符串
 
-        if "Shipment ID:" in cell_value:
-            shipment_id = cell_value.replace("Shipment ID:", "").strip()
-        elif  "Amazon Reference ID:" in cell_value:
-            Reference_id = cell_value.replace("Amazon Reference ID:", "").strip()
-        
-        elif "Box ID:" in cell_value:
+        if "Box ID:" in cell_value:
             box_id = cell_value.replace("Box ID:", "").strip()
 
             # 寻找SKU、ASIN和FNSKU以及数量
@@ -88,24 +119,26 @@ for row in range(1, sheet.max_row + 1):
                         fnsku_row += 1
                     
                     # 查找数量
-                    quantity_row = sku_row + 1
+                    quantity_row = fnsku_row + 1
+                    quantity = None
                     while quantity_row <= sheet.max_row:
-                        try:
-                            quantity = int(sheet.cell(row=quantity_row, column=1).value)
+                        cell_value = str(sheet.cell(row=quantity_row, column=1).value)
+                        if cell_value.isdigit():
+                            quantity = int(cell_value)        
                             break
-                        except (ValueError, TypeError):
+                        else:
                             quantity_row += 1
 
                         # 如果当前行是最后一行，寻找下一个有效的数字作为数量
-                        if quantity_row == sheet.max_row and quantity is None:
+                        if quantity is None:
                             search_row = sheet.max_row
                             while search_row > 0:
-                                try:
-                                    quantity = int(sheet.cell(row=search_row, column=1).value)
+                                cell_value = str(sheet.cell(row=quantity_row, column=1).value)
+                                if cell_value.isdigit():
+                                    quantity = int(cell_value)
                                     break
-                                except (ValueError, TypeError):
+                                else:
                                     search_row -= 1
-                    
 
                     weight_row = row + 1
                     dimensions_row = row + 1
@@ -126,9 +159,13 @@ for row in range(1, sheet.max_row + 1):
                             unit_dimensions = sheet.cell(row=dimensions_row + 6, column=1).value
                             break
                         dimensions_row += 1
+                    if "US" in Country  or "NEW-US" in Country:
+                        weight = round(weight * 0.45359237, 2)
+                        length = round(length * 2.54, 2)
+                        width = round(width * 2.54, 2)
+                        height = round(height * 2.54, 2)
+                        
 
-                    shipment_data["Shipment ID"].append(shipment_id)
-                    
                     shipment_data["Box ID"].append(box_id)
                     shipment_data["SKU"].append(sku)
                     shipment_data["ASIN"].append(asin)
@@ -148,46 +185,116 @@ for row in range(1, sheet.max_row + 1):
                 else:
                     sku_row += 1
 
-shipment_df = pd.DataFrame(shipment_data)
-shipment_df["Reference ID"]=Reference_id
-shipment_df["图片"]=""
-shipment_df["产品链接"]=link_dic[Country]+shipment_df["ASIN"]
+#将shipment_data转换为dataframe   
+shipment_data = pd.DataFrame(shipment_data)          
+shipment_data["Address"] = results["Ship to:"]
 
-print(shipment_df)
-shipment_df.to_excel(r'D:\\运营\\invoicedraft.xlsx')
+shipment_data["Shipment Name"] = results["Shipment name:"]
 
+shipment_data["Reference ID"]=results["Amazon Reference ID:"]
+shipment_data["图片"]=""
+shipment_data["产品链接"]=link_dic[Country]+shipment_data["ASIN"]
+#定义shipment_df的“发货日期”列等于今天的日期
+shipment_data["发货日期"]=datetime.date.today()
+#定义shipment_df的“Country”列等于country
+shipment_data["Country"]=Country
+#定义shipment_df的“Channel”列等于channel
+shipment_data["Channel"]=channel
+#定义shipment_dic
+ 
+print(shipment_data)
+#to_excel
 
-# 读取产品信息表格
+output_SUmmary_file = r'D:\\运营\invoice\\发货信息汇总表.xlsx'
+
+if os.path.exists(output_SUmmary_file ):
+    # 如果文件存在，读取现有文件并将新数据追加到文件中
+    existing_df = pd.read_excel(output_SUmmary_file )
+    combined_df = pd.concat([existing_df, shipment_data], ignore_index=True)
+
+    with pd.ExcelWriter(output_SUmmary_file , mode='w', engine='openpyxl') as writer:
+        combined_df.to_excel(writer, index=False)
+    print("数据已附加到发货信息汇总表")
+else:
+    # 如果文件不存在，创建一个新文件并将数据写入其中
+    shipment_df.to_excel(output_SUmmary_file , index=False)
+    print("生成新的发货信息汇总表")
+ 
 # 读取产品信息表格
 products_df = pd.read_excel(r'D:\\运营\invoice\\发票基础信息表.xlsx')
-products_df['SKU'] = products_df['SKU'].fillna('')
+
 
 # 读取另一个 DataFrame
-other_df = shipment_df
- 
+other_df = shipment_data
+other_df['SKU'] = other_df['SKU'].astype(str)
+all_skus = []
+#遍历 other_df 的 SKU列的unique值，在 products_df 的产品 SKU 列中查找是否有对应值，如果没有，则print出来找不到的sku，并input任意键继续。
+for value in products_df['SKU']:
+    # 跳过空值
+    if pd.isna(value):
+        continue
+
+    # 如果值是整数类型，将其转换为字符串
+    if isinstance(value, int):
+        value = str(value)
+
+    # 使用正则表达式以换行符（'\n'）或空格（' '）对值进行分割
+    skus = re.split('\n| ', value)
+    all_skus.extend(skus)
+
+# 去除 all_skus 列表中的重复值
+all_skus_unique = list(set(all_skus))
+print(all_skus_unique)
+input("按任意键继续...")
+
+# 去除 all_skus 列表中的重复值
+
+
+# 检查 other_df 的 SKU 的唯一值是否在 all_skus_unique 列表中
+for sku in other_df['SKU'].unique():
+    if sku not in all_skus_unique:
+        print(f"{sku} 不在 products_df 的 SKU 列中")
+#如果遍历结束则打印“遍历结束”并输入任何键继续
+print("遍历结束，如果更新过，请保存并关闭发票基础信息表")
+input("按任意键继续...")
+
+       
+#重新读取产品信息表格
+# 读取产品信息表格
+products_df = pd.read_excel(r'D:\\运营\invoice\\发票基础信息表.xlsx')
+products_df['SKU'] = products_df['SKU'].fillna('')   
 # 遍历 other_df 的 SKU 列，在 products_df 的产品 SKU 列中找到包含对应值的单元格，将这一行对应的信息合并到 other_df 中
+import re
 for index, row in other_df.iterrows():
-    for sku in row['SKU'].split():
-        matching_rows = products_df[products_df['SKU'].str.contains(sku)]
-        if not matching_rows.empty:
-            matching_row = matching_rows.iloc[0]
+    original_sku = row['SKU']
+    for _, product_row in products_df.iterrows():
+        sku_string = product_row['SKU']
+        sku_list = re.split(r'\n', sku_string)
+        
+        if original_sku in sku_list:
+            matching_row = product_row
+            print(f"Original SKU: {original_sku}")  # 调试输出
+            print(f"Matching SKU: {matching_row['SKU']}")  # 调试输出
+
             for col_name in ['产品简化名', '英文产品名称', '中文产品名称', '单个产品申报价值USD', "HSCODE",
                              'Brand(品牌)*', 'Model（型号）*', '中文材质',
                              'Purpose(用途)*', '是否带电', 'PICTURES（图片）*',
                              '产品销售链接', '内部名称', '产品销售价格', '英文材质',
-                             '英文用途',"带磁","是否含液体","是否危险品"]:
-
+                             '英文用途', "带磁", "是否含液体", "是否危险品"]:
                 other_df.at[index, col_name] = matching_row[col_name]
-            other_df.at[index, 'SKU'] = matching_row['SKU']
+            other_df.at[index, 'SKU'] = original_sku
+            break  # 跳出内部循环，继续处理 other_df 的下一行
             
  
 print(other_df.columns)
+#输出other_df至excel，路径D:\\运营\invoice\\other_df.xlsx
+
+# 计算箱体积并保留小数后三位
+other_df["箱体积"] = (other_df["Length"] * other_df["Width"] * other_df["Height"] / 1000000).round(3)
 
 # 修改箱尺寸列
 other_df["箱尺寸"] = other_df["Length"].astype(str) + "*" + other_df["Width"].astype(str) + "*" + other_df["Height"].astype(str)
 
-# 计算箱体积并保留小数后三位
-other_df["箱体积"] = (other_df["Length"] * other_df["Width"] * other_df["Height"] / 1000000).round(3)
 
 # 增加箱数列
 other_df["箱数"] = 1
@@ -226,26 +333,20 @@ invoiceALL_df.to_excel(r'D:\运营\Invoice\\invoiceALL.xlsx',index=False)
 
 # 打印合并后的 DataFrame
 print(other_df)
-
-import pandas as pd
-import openpyxl
-
-
-
 from openpyxl.worksheet.cell_range import CellRange
-
+from openpyxl import load_workbook, utils
 def is_merged_cell(ws, row, col):
-    cell_range = CellRange(f"{openpyxl.utils.get_column_letter(col)}{row}:{openpyxl.utils.get_column_letter(col)}{row}")
+    cell_range = CellRange(f"{utils.get_column_letter(col)}{row}:{utils.get_column_letter(col)}{row}")
     for merged_cell in ws.merged_cells.ranges:
         if merged_cell.issuperset(cell_range):
             return True
     return False
 
+
 def find_blank_area(file_path, extra_rows=30):
-    wb = openpyxl.load_workbook(file_path)
+    wb = load_workbook(file_path)
     ws = wb[wb.sheetnames[0]]
     blank_area_start = -1
-
     consecutive_blank_rows = 0
     max_row = ws.max_row
     max_col = ws.max_column
@@ -273,6 +374,8 @@ def find_blank_area(file_path, extra_rows=30):
         return top_left_cell_coord, col_names
     else:
         return None, None
+
+
 
 
 def match_col_names(template_col_names, mapping_file_path, mapping_sheet_name):
@@ -334,7 +437,7 @@ new_file_name = Country + today + '.xlsx'
 new_file_path = os.path.join(os.path.dirname(tempplate_file_path), new_file_name)
 shutil.copyfile(templatefile, new_file_path)
 
-template_workbook = openpyxl.load_workbook(new_file_path )
+template_workbook = load_workbook(new_file_path )
 template_worksheet = template_workbook.active
 
 print(top_left_cell_coord)
