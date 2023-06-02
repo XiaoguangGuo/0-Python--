@@ -189,7 +189,7 @@ All_adv_simple=All_adv[["Country","Campaign","Ad Group","Keyword or Product Targ
 #将日销售目标合并进来
 #读取"D:\运营\2生成过程表\TESTAll_Product_Analyzefile.xlsx"
 TESTAll_Product_Analyzefile=pd.read_excel('D:\\运营\\2生成过程表\\TESTAll_Product_Analyzefile.xlsx')
-TESTAll_Product_Analyzefile_adMount=TESTAll_Product_Analyzefile[['站点','计算销售日目标','MNSKU']]
+TESTAll_Product_Analyzefile_adMount=TESTAll_Product_Analyzefile[['站点','皮质层标签','计算销售日目标','MNSKU']]
 TESTAll_Product_Analyzefile_adMount=TESTAll_Product_Analyzefile_adMount.rename(columns={'站点':'Country'})
 TESTAll_Product_Analyzefile_adMount['站点'] = TESTAll_Product_Analyzefile_adMount['Country'].replace({
     '英国': 'NEW-UK',
