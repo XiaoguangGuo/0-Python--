@@ -60,7 +60,7 @@ for bulkdatafile in os.listdir(bulkdatafilepath):
 
 # 使用 pandas 从 your_table_name 读取数据
 df = pd.read_sql_query('SELECT * FROM "Bulkfiles"', conn)
-
+ 
                    
 # 获取行数
 row_count = len(df)
@@ -121,6 +121,7 @@ import numpy as np
 conn = sqlite3.connect('D:/运营/sqlite/AmazonData.db')
 
 df = pd.read_sql_query('SELECT * FROM "Bulkfiles"', conn)
+df=df.drop_duplicates()
 df = df[df['日期'].notna()]
 
 

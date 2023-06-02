@@ -472,7 +472,7 @@ Product_Analyzefile_df_pivot = pd.merge(Product_Analyzefile_df_pivot, result_df,
 Product_Analyzefile_df_pivot = pd.merge(Product_Analyzefile_df_pivot, ASIN_SKU_unique, how='left', left_on=['站点', 'ASIN'], right_on=['站点', 'ASIN'])
 
 
-
+Product_Analyzefile_df_pivot=Product_Analyzefile_df_pivot.drop_duplicates(subset=['ASIN', '店铺', '站点'], keep='first')
 
 #标签
 Product_Analyzefile_df_pivot["皮质层标签"] =""
@@ -480,21 +480,59 @@ Product_Analyzefile_df_pivot.loc[(Product_Analyzefile_df_pivot["4周广告浪费
 MonsterSKU=Product_Analyzefile_df_pivot.loc[(Product_Analyzefile_df_pivot["4周广告浪费金额"] >=20) & (Product_Analyzefile_df_pivot["广告浪费金额1"]>=8), ["站点","MNSKU"] ]
 #将MonsterSKU的MNSKU中有逗号的拆分成多个SKU，并和COuntry一一对应
 MonsterSKU['MNSKU'] = MonsterSKU['MNSKU'].str.split(',')
-
+Product_Analyzefile_df_pivot.loc[(Product_Analyzefile_df_pivot["ZHOUZHUAN10"] >=52) & (Product_Analyzefile_df_pivot["STOCKALL"]>=50), "皮质层标签"] = Product_Analyzefile_df_pivot["皮质层标签"].astype(str)+"海底沉金，"
+Product_Analyzefile_df_pivot.loc[(Product_Analyzefile_df_pivot["计算销售日目标"] >0) & ((Product_Analyzefile_df_pivot["广告花费1"]/Product_Analyzefile_df_pivot["计算销售日目标"])<0.2), "皮质层标签"] = Product_Analyzefile_df_pivot["皮质层标签"].astype(str)+"投入失衡，"
 
 # 使用 explode() 函数把列表展开成多行
 MonsterSKU = MonsterSKU.explode('MNSKU')
  
 
+Grouped_Country=Product_Analyzefile_df_pivot.groupby(["店铺","站点"]).agg(sum)
 
+cols_to_move = [
+    'ASIN', 
+    '店铺', 
+    '站点', 
+    'MNSKU', 
+    '皮质层标签', 
+    '毛利润1', 
+    '销量1', 
+    '销售额1',
+    'ZZ1', 
+    'ZZ2', 
+    '计算销售日目标', 
+    '计算销售周目标', 
+    '销售目标差', 
+    'ZHOUZHUAN10', 
+    'Fufillable', 
+    'STOCKALL', 
+    'Selling10', 
+    'Selling4', 
+    '广告花费1', 
+    '广告点击量1', 
+    '广告订单量1', 
+    '4周广告浪费金额', 
+    '广告浪费金额1'
+]
 
+# 然后获取除了这些列之外的其他所有列名
+other_cols = [col for col in Product_Analyzefile_df_pivot.columns if col not in cols_to_move]
+
+# 最后将两个列表合并，并按这个顺序重新排列DataFrame的列
+Product_Analyzefile_df_pivot = Product_Analyzefile_df_pivot[cols_to_move + other_cols]
 
 #输出到D:\运营\2生成过程表\TESTAll_Product_Analyzefile.xlsx
 today = datetime.today().strftime('%Y%m%d')
-Product_Analyzefile_df_pivot.to_excel(r'D:\运营\2生成过程表\TESTAll_Product_Analyzefile'+today+'.xlsx')
+writer = pd.ExcelWriter(r'D:\运营\2生成过程表\TESTAll_Product_Analyzefile'+today+'.xlsx')
+
+Product_Analyzefile_df_pivot.to_excel(writer, sheet_name='TESTAll_Product_Analyzefile')
+Grouped_Country.to_excel(writer, sheet_name='Grouped_Country')
+
+
 #输出MonsterSKU到D:\运营\2生成过程表\monstersku.xlsx
-MonsterSKU.to_excel(r'D:\运营\2生成过程表\monstersku.xlsx')
- 
+MonsterSKU.to_excel(writer,sheet_name='monstersku.xlsx')
+
+writer.save()
  
 
 
