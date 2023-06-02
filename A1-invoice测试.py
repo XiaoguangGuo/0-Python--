@@ -145,18 +145,21 @@ for row in range(1, sheet.max_row + 1):
                     while weight_row < sheet.max_row:
                         weight_value = str(sheet.cell(row=weight_row, column=1).value)
                         if "weight:" in weight_value.lower():
-                            weight = sheet.cell(row=weight_row + 1, column=1).value
-                            unit = sheet.cell(row=weight_row + 2, column=1).value
+                            potential_weight = sheet.cell(row=weight_row + 1, column=1).value
+                            weight = potential_weight if str(potential_weight).isnumeric() else 0
+                            unit = sheet.cell(row=weight_row + 2, column=1).value if weight != 0 else ""
+                            
                             break
                         weight_row += 1
 
                     while dimensions_row < sheet.max_row:
                         dimensions_value = str(sheet.cell(row=dimensions_row, column=1).value)
                         if "dimensions:" in dimensions_value.lower():
-                            length = sheet.cell(row=dimensions_row + 1, column=1).value
-                            width = sheet.cell(row=dimensions_row + 3, column=1).value
-                            height = sheet.cell(row=dimensions_row + 5, column=1).value
-                            unit_dimensions = sheet.cell(row=dimensions_row + 6, column=1).value
+                            potential_length = sheet.cell(row=weight_row + 1, column=1).value
+                            length = potential_length if str(potential_length).isnumeric() else 0
+                            width = sheet.cell(row=dimensions_row + 3, column=1).value if length != 0 else 0
+                            height = sheet.cell(row=dimensions_row + 5, column=1).value if length != 0 else 0
+                            unit_dimensions = sheet.cell(row=dimensions_row + 6, column=1).value if length != 0 else ""
                             break
                         dimensions_row += 1
                     if "US" in Country  or "NEW-US" in Country:
